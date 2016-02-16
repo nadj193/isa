@@ -10,8 +10,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name="admin")
 @NamedQueries({
-@NamedQuery(name = "loginAdmin", query = "SELECT a FROM Admin a WHERE a.userName = :userName and a.password = :password"),
-@NamedQuery(name = "findAdminWithUsename", query = "SELECT a FROM Admin a WHERE a.userName = :userName")
+@NamedQuery(name = "findAdmin", query = "SELECT a FROM Admin a WHERE a.email = :email and a.password = :password"),
+@NamedQuery(name = "findAdminWithEmail", query = "SELECT a FROM Admin a WHERE a.email = :email")
 })
 public class Admin extends User implements Serializable{
 

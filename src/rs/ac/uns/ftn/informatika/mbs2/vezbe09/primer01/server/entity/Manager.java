@@ -12,8 +12,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name="manager")
 @NamedQueries({
-@NamedQuery(name = "loginManager", query = "SELECT m FROM Manager m WHERE m.userName = :userName and m.password = :password"),
-@NamedQuery(name = "findManagerWithUsename", query = "SELECT m FROM Manager m WHERE m.userName = :userName")
+@NamedQuery(name = "findManager", query = "SELECT m FROM Manager m WHERE m.email = :email and m.password = :password"),
+@NamedQuery(name = "findManagerWithEmail", query = "SELECT m FROM Manager m WHERE m.email = :email")
 })
 public class Manager extends User implements Serializable {
 
