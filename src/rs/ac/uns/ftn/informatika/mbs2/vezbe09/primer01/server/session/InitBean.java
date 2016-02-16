@@ -5,9 +5,12 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Admin;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Gorivo;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Korisnik;
+import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Manager;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Menjac;
+import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Restoran;
 
 @Stateless
 @Remote(Init.class)
@@ -17,6 +20,18 @@ public class InitBean implements Init {
 	EntityManager em;
 	
 	public void init() {
+		Admin admin = new Admin("Admin", "Admin", "admin@gmail.com", "admin");
+		em.persist(admin);
+		
+		Manager manager = new Manager("Manager", "Manager", "manager@gmail.com", "manager");
+		em.persist(manager);
+		
+		Restoran restoran = new Restoran();
+		restoran.setName("Dva stapica");
+		restoran.setDescription("kineski");
+		restoran.add(manager);
+		em.persist(restoran);
+		
 		Korisnik korisnik = new Korisnik("Admin", "Admin", "admin", "admin");
 		em.persist(korisnik);
 		
