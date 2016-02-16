@@ -2,6 +2,41 @@
 <web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
    
    <servlet>
+      <servlet-name>PrepareCreateManagerController</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.PrepareCreateManagerController</servlet-class>
+   </servlet>
+   
+    <servlet>
+      <servlet-name>CreateManagerController</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.CreateManagerController</servlet-class>
+   </servlet>
+   
+    <servlet>
+      <servlet-name>DeleteManagerController</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.DeleteManagerController</servlet-class>
+   </servlet>
+   
+   <servlet>
+      <servlet-name>DeleteRestoranController</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.DeleteRestoranController</servlet-class>
+   </servlet>
+   
+    <servlet>
+      <servlet-name>CreateRestoranController</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.CreateRestoranController</servlet-class>
+   </servlet>
+   
+   <servlet>
+      <servlet-name>PrepareCreateRestoranController</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.PrepareCreateRestoranController</servlet-class>
+   </servlet>
+   
+    <servlet>
+      <servlet-name>ReadRestoranController</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.ReadRestoranController</servlet-class>
+   </servlet>
+   
+   <servlet>
       <servlet-name>LogoutController</servlet-name>
       <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.LogoutController</servlet-class>
    </servlet>
@@ -40,6 +75,41 @@
       <servlet-name>DeleteController</servlet-name>
       <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.DeleteController</servlet-class>
    </servlet>
+   
+   <servlet-mapping>
+      <servlet-name>PrepareCreateManagerController</servlet-name>
+      <url-pattern>/PrepareCreateManagerController</url-pattern>
+   </servlet-mapping>
+   
+   <servlet-mapping>
+      <servlet-name>CreateManagerController</servlet-name>
+      <url-pattern>/CreateManagerController</url-pattern>
+   </servlet-mapping>
+   
+   <servlet-mapping>
+      <servlet-name>DeleteManagerController</servlet-name>
+      <url-pattern>/DeleteManagerController</url-pattern>
+   </servlet-mapping>
+   
+   <servlet-mapping>
+      <servlet-name>DeleteRestoranController</servlet-name>
+      <url-pattern>/DeleteRestoranController</url-pattern>
+   </servlet-mapping>
+   
+   <servlet-mapping>
+      <servlet-name>CreateRestoranController</servlet-name>
+      <url-pattern>/CreateRestoranController</url-pattern>
+   </servlet-mapping>
+   
+   <servlet-mapping>
+      <servlet-name>PrepareCreateRestoranController</servlet-name>
+      <url-pattern>/PrepareCreateRestoranController</url-pattern>
+   </servlet-mapping>
+   
+    <servlet-mapping>
+      <servlet-name>ReadRestoranController</servlet-name>
+      <url-pattern>/ReadRestoranController</url-pattern>
+   </servlet-mapping>
 
    <servlet-mapping>
       <servlet-name>LogoutController</servlet-name>

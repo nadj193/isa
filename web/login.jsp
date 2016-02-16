@@ -1,31 +1,31 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
-
-<fmt:setBundle basename="messages.messages"/>
-
+<!DOCTYPE html>
 <html>
 	<head>
-		<title><fmt:message key="prijava"/></title>
-		<meta HTTP-EQUIV="Pragma" CONTENT="no-cache">
-		<meta HTTP-EQUIV="Expires" CONTENT="-1">
-		<link href="./theme.css" rel="stylesheet" type="text/css" />
+	<link href="./bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<style type="text/css">
+	body {
+    <!-- background-color:#d3d3d3; -->
+    align:center;
+	}
+		
+	</style>
 	</head>
+
 	<body>
+		<div class="container">
 		<form action="./LoginController" method="post" class="prijavaForma" accept-charset="ISO-8859-1">
-			<table class="prijavaTabela">
-				<tr>
-					<td><fmt:message key="korisnickoIme"/>:</td>
-					<td><input type="text" name="korisnickoIme">				
-				</tr>
-				<tr>
-					<td><fmt:message key="lozinka"/>:</td>
-					<td><input type="text" name="lozinka"></td>				
-				</tr>
-				<tr>
-					<td>&nbsp;</td>
-					<td><input type="submit" name="submit" value="<fmt:message key="prijaviSe"/>"></td>				
-				</tr>							
+			<div class="form-group">
+				<label for="email">Email:</label>
+				<input type="text" id="email" name="email" class="form-control" placeholder="email">
+			</div>
+			<div class="form-group">
+				<label for="password">Password:</label>
+				<input type="password" id="password" name="password" class="form-control" placeholder="password">
+			</div>	
+			<div class="form-group">
+			<input type="submit" name="submit" value="prijavi se"/>
+			</div>					
 		</form>
-	<body>	
+		</div>
+	</body>	
 </html>

@@ -42,7 +42,11 @@ public class InitBean implements Init {
 		restoran.addManager(manager);
 		em.persist(restoran);
 		
-		Dish dish = new Dish("supa", "kokosija supa", 499.99F, restoran);
+		Dish dish = new Dish();
+		dish.setName("supa");
+		dish.setDescription("kokosija supa");
+		dish.setPrice(499.99F); 
+		dish.setRestoran(restoran);
 		em.persist(dish);
 		
 		Korisnik korisnik = new Korisnik("Admin", "Admin", "admin", "admin");
