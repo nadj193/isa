@@ -3,6 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 
 <jsp:useBean id="manageri" type="java.util.List" scope="session"/>
+<jsp:useBean id="restorani" type="java.util.List" scope="session"/>
 
 <fmt:setBundle basename="messages.messages"/>
 
@@ -24,6 +25,7 @@
 					<th>Ime</th>
 					<th>Prezime</th>
 					<th>Lozinka</th>
+					<th>Restoran</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -32,6 +34,7 @@
 					<td>${manager.name}</td>
 					<td>${manager.lastName}</td>
 					<td>${manager.password}</td>
+					<td>${manager.restoran.name}</td>
 					<td><a href="./PrepareUpdateMenagerController?managerId=${manager.id}">promenaMenadzera</a></td>
 					<td><a href="./DeleteManagerController?managerId=${manager.id}">obrisi</a></td>			
 				</tr>

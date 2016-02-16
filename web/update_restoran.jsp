@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<jsp:useBean id="restoran" type="rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Restoran" scope="session"/>
 <html>
 	<head>
 	<link href="./bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -44,11 +45,11 @@ li a:hover {
         <h2 align="center">Restoran update</h2>
         <div class="form-group">
         	<label for="restoranName">Restoran name</label>
-        	<input type="text" id="restoranName" name="restoranName" class="form-control" placeholder="name">
+        	<input type="text" id="restoranName" name="restoranName" class="form-control" placeholder="${restoran.name}">
         </div>
         <div class="form-group">
         	<label for="restoranDescription">Restoran description</label>
-        	<input type="text" id="restoranDescription" class="form-control" placeholder="description" required>
+        	<input type="text" id="restoranDescription" name = "restoranDescription" class="form-control" placeholder="${restoran.description}" required>
         </div>
         <div class="form-group">
 			<input type="submit" name="submit" value="Update"/>

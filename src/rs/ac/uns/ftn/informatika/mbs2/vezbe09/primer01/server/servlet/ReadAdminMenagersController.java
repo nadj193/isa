@@ -10,14 +10,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
-import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Manager;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.ManagerDaoLocal;
 
-public class DeleteManagerController extends HttpServlet{
+public class ReadAdminMenagersController extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;
-	
-	private static Logger log = Logger.getLogger(DeleteManagerController.class);
+
+	private static Logger log = Logger.getLogger(ReadAdminHomeController.class);
+
 	
 	@EJB
 	private ManagerDaoLocal managerDao;
@@ -31,26 +31,21 @@ public class DeleteManagerController extends HttpServlet{
 				return;
 			}
 
-			String managerId = null;
-			managerId = request.getParameter("managerId");
+		    
+		    request.getSession().setAttribute("manageri", managerDao.findAll());
 			
-			Manager manager = managerDao.findById(Integer.parseInt(managerId));
-			managerDao.remove(manager);
-
-			getServletContext().getRequestDispatcher("/ReadAdminMenagersController").forward(request, response);
-			
+			getServletContext().getRequestDispatcher("/adminManageri.jsp").forward(request, response);
+		
 		} catch (ServletException e) {
 			log.error(e);
 			throw e;
 		} catch (IOException e) {
 			log.error(e);
 			throw e;
-		}
+		}	
 	}
 
 	protected void doPost(HttpServletRequest request, 	HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
-	
-
 }

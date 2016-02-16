@@ -3,6 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 
+<jsp:useBean id="restorani" type="java.util.List" scope="session"/>
+
 
 
 <fmt:setBundle basename="messages.messages"/>
@@ -37,6 +39,17 @@
 				<tr>
 					<td>Lozinka:</td>
 					<td><input type="text" name="lozinka" ></td>				
+				</tr>
+				
+				<tr>
+					<td>Restoran:</td>
+					<td>
+						<select name="restoran">
+						<c:forEach items="${restorani}" var="restoran">
+							<option value="${restoran.id}">${restoran.name}</option>
+						</c:forEach>
+						</select>
+					</td>				
 				</tr>
 								
 				<tr>

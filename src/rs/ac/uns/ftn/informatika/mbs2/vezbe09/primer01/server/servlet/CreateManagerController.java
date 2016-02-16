@@ -44,9 +44,10 @@ public class CreateManagerController extends HttpServlet{
 		try {
 			
 			String ime = null;
-			String prezime=null;
+			String prezime = null;
 			String email = null;
-			String lozinka=null;
+			String lozinka = null;
+			Integer restoranId = null; 
 
 			if ((request.getSession().getAttribute("admin")) == null) {
 				response.sendRedirect(response.encodeURL("./login.jsp"));
@@ -69,6 +70,10 @@ public class CreateManagerController extends HttpServlet{
 				lozinka = request.getParameter("lozinka");
 			}
 			
+			if ((request.getParameter("restoran") != null) && (!"".equals(request.getParameter("restoran")))) {
+				restoranId = new Integer(request.getParameter("restoran"));
+			}
+			
 			System.out.println("Ime manager: "+ ime);
 			System.out.println("Prezime manager: "+ prezime);
 			System.out.println("email manager: "+ email);
@@ -88,14 +93,14 @@ public class CreateManagerController extends HttpServlet{
 			if(lozinka != null)
 				manager.setPassword(lozinka);
 			
-			Restoran restoran = restoranDao.findById(1);
-			manager.setRestoran(restoran);
+			if (restoranId != null)
+				manager.setRestoran(restoranDao.findById(restoranId));
 			
-			System.out.println(manager.toString());
+			//System.out.println(manager.toString());
 			
 			managerDao.persist(manager);
 
-			getServletContext().getRequestDispatcher("/adminhome.jsp").forward(request, response);
+			getServletContext().getRequestDispatcher("/ReadAdminMenagersController").forward(request, response);
 			return;
 			
 		} catch (ServletException e) {

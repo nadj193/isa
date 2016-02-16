@@ -10,9 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
-import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.DishDaoLocal;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.GorivoDaoLocal;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.MenjacDaoLocal;
+import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.RestoranDaoLocal;
 
 public class PrepareCreateManagerController extends HttpServlet{
 
@@ -27,7 +27,7 @@ public class PrepareCreateManagerController extends HttpServlet{
 	private GorivoDaoLocal gorivoDao;
 	
 	@EJB
-	private DishDaoLocal dishDao;
+	private RestoranDaoLocal restoranDao;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -40,7 +40,7 @@ public class PrepareCreateManagerController extends HttpServlet{
 
 			request.setAttribute("menjaci", menjacDao.findAll());
 			request.setAttribute("goriva", gorivoDao.findAll());
-			request.getSession().setAttribute("jela", dishDao.findAll());
+			request.getSession().setAttribute("restorani", restoranDao.findAll());
 
 			getServletContext().getRequestDispatcher("/createManager.jsp").forward(request, response);
 

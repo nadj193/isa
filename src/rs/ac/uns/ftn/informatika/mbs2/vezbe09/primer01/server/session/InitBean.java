@@ -38,7 +38,7 @@ public class InitBean implements Init {
 		
 		Restoran restoran = new Restoran();
 		restoran.setName("Dva stapica");
-		restoran.setDescription("Dobro dosli u kucu tradicionalne kineske kuhinje.Restoran brze hrane 2 stapica se nalazi u Novom Sadu, na novoj adresi u ulici Vase Stajica 27. Autenticnost nase kuhinje cine kineski kuvari N'Jang Hantian i Yu Hongbo koji su pristigli iz Liaoninga na preporuku proslavljenog kineskog kuvara, popularnog u beogradskim restoranima, maestra Manga. On ih je poducio kako da kineska jela prilagode nasem ukusu i da pritom ne izgube sustinska svojstva. Na meniju su piletina, svinjetina, teletina, riba u raznim kombinacijama, sa kikirikijem, bambusom i kineskim pecurkama, u sosu od ostriga, kariju, ljutom secuan sosu i mnogim drugim. Sluze se i plodovi mora, salate, supe, rolnice i pohovane banane, ananas i jabuke s cokoladom ili medom.");
+		restoran.setDescription("kineski restoran");
 		restoran.addManager(manager);
 		em.persist(restoran);
 		

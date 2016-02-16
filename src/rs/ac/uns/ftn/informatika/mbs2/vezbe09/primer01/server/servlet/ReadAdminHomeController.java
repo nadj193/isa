@@ -15,12 +15,11 @@ import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Restoran;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.ManagerDaoLocal;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.RestoranDaoLocal;
 
+public class ReadAdminHomeController extends HttpServlet {
 
-public class ReadRestoranController extends HttpServlet{
-
-	private static final long serialVersionUID = 1L;
+private static final long serialVersionUID = 1L;
 	
-	private static Logger log = Logger.getLogger(ReadRestoranController.class);
+	private static Logger log = Logger.getLogger(ReadAdminHomeController.class);
 
 	@EJB
 	private RestoranDaoLocal restoranDao;
@@ -61,5 +60,5 @@ public class ReadRestoranController extends HttpServlet{
 	protected void doPost(HttpServletRequest request, 	HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
-
+	
 }

@@ -2,6 +2,21 @@
 <web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
    
    <servlet>
+      <servlet-name>UpdateRestoranController</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.UpdateRestoranController</servlet-class>
+   </servlet>
+   
+   <servlet>
+      <servlet-name>ReadAdminMenagersController</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.ReadAdminMenagersController</servlet-class>
+   </servlet>
+   
+    <servlet>
+      <servlet-name>ReadAdminHomeController</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.ReadAdminHomeController</servlet-class>
+   </servlet>
+   
+   <servlet>
       <servlet-name>PrepareCreateManagerController</servlet-name>
       <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.PrepareCreateManagerController</servlet-class>
    </servlet>
@@ -29,11 +44,6 @@
    <servlet>
       <servlet-name>PrepareCreateRestoranController</servlet-name>
       <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.PrepareCreateRestoranController</servlet-class>
-   </servlet>
-   
-    <servlet>
-      <servlet-name>ReadRestoranController</servlet-name>
-      <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.ReadRestoranController</servlet-class>
    </servlet>
    
    <servlet>
@@ -77,6 +87,21 @@
    </servlet>
    
    <servlet-mapping>
+      <servlet-name>UpdateRestoranController</servlet-name>
+      <url-pattern>/UpdateRestoranController</url-pattern>
+   </servlet-mapping>
+   
+   <servlet-mapping>
+      <servlet-name>ReadAdminMenagersController</servlet-name>
+      <url-pattern>/ReadAdminMenagersController</url-pattern>
+   </servlet-mapping>
+   
+   <servlet-mapping>
+      <servlet-name>ReadAdminHomeController</servlet-name>
+      <url-pattern>/ReadAdminHomeController</url-pattern>
+   </servlet-mapping>
+   
+   <servlet-mapping>
       <servlet-name>PrepareCreateManagerController</servlet-name>
       <url-pattern>/PrepareCreateManagerController</url-pattern>
    </servlet-mapping>
@@ -106,10 +131,6 @@
       <url-pattern>/PrepareCreateRestoranController</url-pattern>
    </servlet-mapping>
    
-    <servlet-mapping>
-      <servlet-name>ReadRestoranController</servlet-name>
-      <url-pattern>/ReadRestoranController</url-pattern>
-   </servlet-mapping>
 
    <servlet-mapping>
       <servlet-name>LogoutController</servlet-name>
