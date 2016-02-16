@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Admin;
+import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Dish;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Gorivo;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Korisnik;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Manager;
@@ -38,8 +39,11 @@ public class InitBean implements Init {
 		Restoran restoran = new Restoran();
 		restoran.setName("Dva stapica");
 		restoran.setDescription("kineski");
-		restoran.add(manager);
+		restoran.addManager(manager);
 		em.persist(restoran);
+		
+		Dish dish = new Dish("supa", "kokosija supa", 499.99F, restoran);
+		em.persist(dish);
 		
 		Korisnik korisnik = new Korisnik("Admin", "Admin", "admin", "admin");
 		em.persist(korisnik);

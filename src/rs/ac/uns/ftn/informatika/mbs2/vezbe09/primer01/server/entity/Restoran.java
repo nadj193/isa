@@ -35,18 +35,33 @@ public class Restoran implements Serializable{
 	@OneToMany(cascade = { ALL }, fetch = LAZY, mappedBy = "restoran")
 	private Set<Manager> managers = new HashSet<Manager>();
 	
-	//TODO add jelo, ocena, konfiguracija stolova 
+	@OneToMany(cascade = { ALL }, fetch = LAZY, mappedBy = "restoran")
+	private Set<Dish> menu = new HashSet<Dish>();
 	
-	public void add(Manager m) {
+	//TODO add ocena, konfiguracija stolova 
+	
+	public void addManager(Manager m) {
 		if (m.getRestoran() != null)
 			m.getRestoran().getManagers().remove(m);
 		m.setRestoran(this);
 		managers.add(m);
 	}
 
-	public void remove(Manager m) {
+	public void removeManager(Manager m) {
 		m.setRestoran(null);
 		managers.remove(m);
+	}
+	
+	public void addDish(Dish d) {
+		if (d.getRestoran() != null)
+			d.getRestoran().getMenu().remove(d);
+		d.setRestoran(this);
+		menu.add(d);
+	}
+
+	public void removeDish(Dish d) {
+		d.setRestoran(null);
+		menu.remove(d);
 	}
 	
 	public Integer getId() {
@@ -81,13 +96,22 @@ public class Restoran implements Serializable{
 		this.managers = managers;
 	}
 	
+	public Set<Dish> getMenu() {
+		return menu;
+	}
+
+	public void setMenu(Set<Dish> menu) {
+		this.menu = menu;
+	}
+
 	public Restoran() {}
 	
-	public Restoran(String name, String description, Set<Manager> managers) {
+	public Restoran(String name, String description, Set<Manager> managers, Set<Dish> menu) {
 		super();
 		this.name = name;
 		this.description = description;
 		this.managers = managers;
+		this.menu = menu;
 	}
 
 	@Override
