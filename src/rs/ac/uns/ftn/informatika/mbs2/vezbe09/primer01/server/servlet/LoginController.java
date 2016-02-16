@@ -15,8 +15,10 @@ import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Admin;
+import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Manager;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.AdminDaoLocal;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.KorisnikDaoLocal;
+import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.ManagerDaoLocal;
 
 public class LoginController extends HttpServlet {
 
@@ -30,7 +32,8 @@ public class LoginController extends HttpServlet {
 	@EJB
 	private AdminDaoLocal adminDao;
 	
-	
+	@EJB
+	private ManagerDaoLocal managerDao;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
@@ -49,7 +52,7 @@ public class LoginController extends HttpServlet {
 			}
 			
 			Admin admin = adminDao.findAdmin(korisnickoIme, lozinka);
-			
+			Manager manager = managerDao.findManager(korisnickoIme, lozinka);
 			//Korisnik korisnik = korisnikDao.findKorisnikSaKorisnickimImenomILozinkom(korisnickoIme, lozinka);
 			
 			if(admin != null){
@@ -60,8 +63,13 @@ public class LoginController extends HttpServlet {
 				//response.sendRedirect(response.encodeRedirectURL("./adminhome.jsp"));
 				
 			}
-			else
-			{
+			else if(manager != null) {	
+				HttpSession session = request.getSession(true);
+				session.setAttribute("manager", manager);
+				session.setAttribute("restoran", manager.getRestoran());
+				log.info("Manager " + manager.getName() + " se prijavio.");
+				getServletContext().getRequestDispatcher("/manager_home.jsp").forward(request, response);
+			} else {
 				System.out.println("asfsafsaas");
 				out.println ("<html><body><script>alert('Hello World!');</script></body></html>");
 			}
