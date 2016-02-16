@@ -20,10 +20,19 @@ public class InitBean implements Init {
 	EntityManager em;
 	
 	public void init() {
-		Admin admin = new Admin("Admin", "Admin", "admin@gmail.com", "admin");
+		
+		Admin admin = new Admin();
+		admin.setName("Admin");
+		admin.setLastName("Admin");
+		admin.setEmail("admin@gmail.com");
+		admin.setPassword("admin");
 		em.persist(admin);
 		
-		Manager manager = new Manager("Manager", "Manager", "manager@gmail.com", "manager");
+		Manager manager = new Manager();
+		manager.setName("Manager");
+		manager.setLastName("Manager");
+		manager.setEmail("manager@gmail.com");
+		manager.setPassword("manager");
 		em.persist(manager);
 		
 		Restoran restoran = new Restoran();

@@ -32,7 +32,7 @@ public class Restoran implements Serializable{
 	@Column(name = "restoran_description", unique = false, nullable = false)
 	private String description;
 	
-	@OneToMany(cascade = { ALL }, fetch = LAZY, mappedBy = "manager")
+	@OneToMany(cascade = { ALL }, fetch = LAZY, mappedBy = "restoran")
 	private Set<Manager> managers = new HashSet<Manager>();
 	
 	//TODO add jelo, ocena, konfiguracija stolova 
