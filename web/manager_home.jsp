@@ -33,7 +33,7 @@ li a:hover {
 <ul>
   <li><a class="active" href="manager_home.jsp">Restoran</a></li>
   <li><a href="update_restoran.jsp">Update restoran</a></li>
-  <li><a href="#menu">Menu</a></li>
+  <li><a href="restoranMenu.jsp">Menu</a></li>
 </ul>
 <h1 align="center">${restoran.name}</h1>
 <img src="./images/restoran.jpg" alt="Mountain View" style="width:1920px;height:500px;">

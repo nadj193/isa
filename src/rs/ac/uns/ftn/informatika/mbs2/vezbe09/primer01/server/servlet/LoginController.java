@@ -16,6 +16,7 @@ import org.apache.log4j.Logger;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Admin;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Manager;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.AdminDaoLocal;
+import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.DishDaoLocal;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.KorisnikDaoLocal;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.ManagerDaoLocal;
 
@@ -33,6 +34,8 @@ public class LoginController extends HttpServlet {
 	
 	@EJB
 	private ManagerDaoLocal managerDao;
+	
+	@EJB DishDaoLocal dishDao;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String korisnickoIme = request.getParameter("email");
@@ -75,6 +78,7 @@ public class LoginController extends HttpServlet {
 						HttpSession session = request.getSession(true);
 						session.setAttribute("manager", manager);
 						session.setAttribute("restoran", manager.getRestoran());
+						session.setAttribute("restoranMenu", dishDao.findRestoranMenu(manager.getRestoran().getId()));
 						log.info("Manager " + manager.getName() + " se prijavio.");
 						getServletContext().getRequestDispatcher("/manager_home.jsp").forward(request, response);
 					}
