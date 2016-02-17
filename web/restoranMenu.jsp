@@ -73,7 +73,7 @@
 				</c:forEach>
 			</tbody>
 		</table>
-		[<a href="./PrepareCreateDishController">addNewDish</a>]<br/>
+		[<a href="./createDish.jsp">addNewDish</a>]<br/>
 		[<a href="./LogoutController">logOut</a>]<br/>
 		
 	</body>	
