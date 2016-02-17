@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
+import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Dish;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Manager;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.ManagerDaoLocal;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.RestoranDaoLocal;
@@ -31,7 +32,7 @@ public class UpdateManagerController extends HttpServlet{
 				
 		try {
 			
-			String managerId = null;
+			//String managerId = null;
 			String name = null;
 			String lastName = null;
 			String password = null;
@@ -43,7 +44,7 @@ public class UpdateManagerController extends HttpServlet{
 		    	return;
 		    }
 			
-			managerId = request.getParameter("id");
+			//managerId = request.getParameter("id");
 			
 			if ((request.getParameter("name")!=null)&&(!"".equals(request.getParameter("name")))){
 				name = request.getParameter("name");
@@ -66,10 +67,14 @@ public class UpdateManagerController extends HttpServlet{
 			}
 			
 	
-			if ((managerId!=null) && (!managerId.equals(""))) {
+		
 				
-				Manager manager = new Manager();
-				manager.setId(new Integer(managerId));
+			Manager manager = (Manager)request.getSession().getAttribute("manager");
+			
+			if (manager == null) {
+				response.sendRedirect(response.encodeURL("./adminhome.jsp"));
+				return;
+			}
 				
 				if (name != null)
 					manager.setName(name);
@@ -88,7 +93,7 @@ public class UpdateManagerController extends HttpServlet{
 				
 				
 				managerDao.merge(manager);
-			}
+			
 			
 			getServletContext().getRequestDispatcher("/ReadAdminMenagersController").forward(request, response);
 		

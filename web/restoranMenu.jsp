@@ -5,10 +5,6 @@
 <html>
 	<head>
 		<title>Restoran menu</title>
-		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-		<meta HTTP-EQUIV="Pragma" CONTENT="no-cache">
-		<meta HTTP-EQUIV="Expires" CONTENT="-1">
-		<link href="./theme.css" rel="stylesheet" type="text/css" />
 		<link href="./bootstrap.min.css" rel="stylesheet" type="text/css" />
 	<style type="text/css">
 	body {
@@ -48,17 +44,23 @@
 	<body>
 		<!--Navigation bar -->
 		<ul>
-  			<li><a class="active" href="manager_home.jsp">Restoran</a></li>
-  			<li><a href="#menu">Menu</a></li>
+  			<li><a class="active" href="manager_home.jsp">HomePage</a></li>
+  			<li><a href="update_restoran.jsp">Update restoran</a></li>
+  			<li><a href="restoranMenu.jsp">Menu</a></li>
+  			<li class="navbar-right"><a href="./LogoutController">Logout</a></li>
 		</ul>
 		
 		<!-- Menu table -->
-		<table class="restoranMenuTable">
+		<div class="container">
+		<h2 align="center">Restorans menu</h2>
+		<table class="table table-hover">
 			<thead>
 				<tr>
 					<th>Dish name</th>
 					<th>Description</th>
 					<th>Price(RSD)</th>
+					<th> &nbsp; </th>
+					<th> &nbsp; </th>
 				</tr>
 			</thead>
 			<tbody>
@@ -73,8 +75,7 @@
 				</c:forEach>
 			</tbody>
 		</table>
-		[<a href="./createDish.jsp">addNewDish</a>]<br/>
-		[<a href="./LogoutController">logOut</a>]<br/>
-		
+		<a class="btn btn-lg btn-primary btn-block" href="./createDish.jsp">addNewDish</a>
+		</div>
 	</body>	
 </html>

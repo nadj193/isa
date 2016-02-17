@@ -36,12 +36,15 @@
 	</head>
 	<body>
 	<ul>
-  		<li><a class="active" href="manager_home.jsp">Restoran</a></li>
+  		<li><a class="active" href="manager_home.jsp">HomePage</a></li>
+  		<li><a href="update_restoran.jsp">Update restoran</a></li>
   		<li><a href="restoranMenu.jsp">Menu</a></li>
+  		<li class="navbar-right"><a href="./LogoutController">Logout</a></li>
 	</ul>
-		<div class="container">
+	<h2 align="center">New dish</h2>
+		<div class="col-md-4 col-md-offset-4 panel panel-default">
       <form action="./CreateDishController" method="post" class="createDishForm" accept-charset="ISO-8859-1">
-        <h2 align="center">New dish</h2>
+        
         <div class="form-group">
         	<label for="dishName">Dish name</label>
         	<input type="text" id="dishName" name="dishName" class="form-control" placeholder="name" autofocus>
@@ -55,7 +58,7 @@
         	<input type="text" id="dishPrice" name = "dishPrice" class="form-control" placeholder="/" required>
         </div>
         <div class="form-group">
-			<input type="submit" name="submit" value="Create"/>
+			<input type="submit" class="btn btn-lg btn-primary btn-block" name="submit" value="Create"/>
 		</div>
       </form>
     </div>

@@ -58,10 +58,14 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 			
 			restoranDao.merge(restoran);
 			
-			HttpSession session = request.getSession(true);
-			session.setAttribute("restoran", restoran);
+			if ((request.getSession().getAttribute("admin")) != null ) {
+				getServletContext().getRequestDispatcher("/ReadAdminRestoraniController").forward(request, response);
+			} else {
+				HttpSession session = request.getSession(true);
+				session.setAttribute("restoran", restoran);
 			
-			getServletContext().getRequestDispatcher("/manager_home.jsp").forward(request, response);
+				getServletContext().getRequestDispatcher("/manager_home.jsp").forward(request, response);
+			}
 			return;
 			
 		} catch (ServletException e) {

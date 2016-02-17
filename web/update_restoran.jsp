@@ -36,23 +36,37 @@ li a:hover {
 </style>
 	</head>
 	<body>
-	<ul>
-  		<li><a class="active" href="manager_home.jsp">Restoran</a></li>
-  		<li><a href="#menu">Menu</a></li>
-	</ul>
-		<div class="container">
+	<%request.getSession().getAttribute("admin"); %>
+  	<%if(request.getSession().getAttribute("admin") != null){%>
+  		<ul>
+  	  		 <li><a href="adminhome.jsp">HomePage</a></li>
+  			 <li><a class="active" href="adminRestoran.jsp">Restoran</a></li>
+  			 <li><a href="adminManageri.jsp">Manager</a></li>
+  		 	<li class="navbar-right"><a href="./LogoutController">Logout</a></li>
+  		</ul>
+   	<% } 
+   	else {%>
+      	<ul>
+  			<li><a class="active" href="manager_home.jsp">HomePage</a></li>
+  			<li><a href="update_restoran.jsp">Update restoran</a></li>
+  			<li><a href="restoranMenu.jsp">Menu</a></li>
+ 			 <li class="navbar-right"><a href="./LogoutController">Logout</a></li>
+		</ul>
+   	<% } %> 
+   	<h2 align="center">Restoran update</h2>
+	<div class="col-md-4 col-md-offset-4 panel panel-default">
       <form action="./UpdateRestoranController" method="post" class="updateManagerForm" accept-charset="ISO-8859-1">
-        <h2 align="center">Restoran update</h2>
+        
         <div class="form-group">
         	<label for="restoranName">Restoran name</label>
-        	<input type="text" id="restoranName" name="restoranName" class="form-control" placeholder="${restoran.name}">
+        	<input type="text" id="restoranName" name="restoranName" class="form-control" value="${restoran.name}">
         </div>
         <div class="form-group">
         	<label for="restoranDescription">Restoran description</label>
-        	<input type="text" id="restoranDescription" name = "restoranDescription" class="form-control" placeholder="${restoran.description}" required>
+        	<input type="text" id="restoranDescription" name = "restoranDescription" class="form-control" value="${restoran.description}" required>
         </div>
         <div class="form-group">
-			<input type="submit" name="submit" value="Update"/>
+			<input type="submit" class="btn btn-lg btn-primary btn-block" name="submit" value="Update"/>
 		</div>
       </form>
     </div>

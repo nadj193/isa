@@ -14,51 +14,86 @@
 		<title>AddManager</title>
 		<meta HTTP-EQUIV="Pragma" CONTENT="no-cache">
 		<meta HTTP-EQUIV="Expires" CONTENT="-1">
-		<link href="./theme.css" rel="stylesheet" type="text/css" />
+		<link href="./bootstrap.min.css" rel="stylesheet" type="text/css" />
+		
+	  <style type="text/css">
+		body {
+    	<!-- background-color:#d3d3d3; -->
+    	align:center;
+		}	
+		</style>
+		<style>
+		ul {
+    		list-style-type: none;
+    		margin: 0;
+    		padding: 0;
+    		overflow: hidden;
+    		background-color: #333;
+			}
+
+		li {
+    		float: left;
+			}
+
+		li a {
+    		display: inline-block;
+    		color: white;
+    		text-align: center;
+    		padding: 14px 16px;
+    		text-decoration: none;
+			}
+
+		li a:hover {
+    		background-color: #111;
+		}
+		</style>
+		
 	</head>
 	<c:if test="${sessionScope.admin==null}">
 		<c:redirect url="./login.jsp" />
 	</c:if>
 	<body>
-		<form action="./CreateManagerController" method="post"class="dodavanjeManageraForma" accept-charset="ISO-8859-1">
-			<table class="dodavanjeManageraForma">
-				<tr>
-					<td>Name:</td>
-					<td><input type="text" name="name" ></td>			
-				</tr>
-				<tr>
-					<td>LastName:</td>
-					<td><input type="text" name="lastName" ></td>				
-				</tr>
-				
-				<tr>
-					<td>Email:</td>
-					<td><input type="text" name="email" ></td>				
-				</tr>
-				
-				<tr>
-					<td>Password:</td>
-					<td><input type="text" name="password" ></td>				
-				</tr>
-				
-				<tr>
-					<td>Restoran:</td>
-					<td>
-						<select name="restoran">
+	<ul>
+  		 <li><a href="adminhome.jsp">HomePage</a></li>
+  		 <li><a class="active" href="adminRestoran.jsp">Restoran</a></li>
+  		 <li><a href="adminManageri.jsp">Manager</a></li>
+  		 <li class="navbar-right"><a href="./LogoutController">Logout</a></li>
+	</ul>
+		
+		<h2 align="center">New manager</h2>
+		<div class="col-md-4 col-md-offset-4 panel panel-default">
+      <form action="./CreateManagerController" method="post" class="createManagerForm" accept-charset="ISO-8859-1">
+        <div class="form-group">
+        	<label for="name">Manager name</label>
+        	<input type="text" id="name" name="name" class="form-control" placeholder="name" autofocus>
+        </div>
+        <div class="form-group">
+        	<label for="lastName">Manager lastName</label>
+        	<input type="text" id="lastName" name = "lastName" class="form-control" placeholder="lastName" required>
+        </div>
+        <div class="form-group">
+        	<label for="email">Manager email</label>
+        	<input type="text" id="email" name = "email" class="form-control" placeholder="email" required>
+        </div>
+        <div class="form-group">
+        	<label for="password">Manager password</label>
+        	<input type="text" id="password" name = "password" class="form-control" placeholder="password" required>
+        </div>
+        <div class="form-group">
+        	<label for="restoran">Managers restoran</label><br />
+  
+        	<select name="restoran" class="form-control">
 						<c:forEach items="${restorani}" var="restoran">
 							<option value="${restoran.id}">${restoran.name}</option>
 						</c:forEach>
-						</select>
-					</td>				
-				</tr>
-								
-				<tr>
-					<td>&nbsp;</td>
-					<td><input type="submit" name="submit" value="Submit"/></td>				
-				</tr>
-			</table>							
-		</form>
-		[<a href="./adminManageri.jsp">MenagerList</a>]<br/>
-		[<a href="./LogoutController">Logout</a>]<br/>
+			</select>
+		</div>	
+        
+        <div class="form-group">
+			<input type="submit" class="btn btn-lg btn-primary btn-block" name="submit" value="Create"/>
+		</div>
+      </form>
+    </div>
+    
 	<body>
 </html>

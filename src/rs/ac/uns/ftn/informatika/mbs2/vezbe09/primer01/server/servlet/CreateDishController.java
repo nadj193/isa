@@ -49,6 +49,7 @@ public class CreateDishController extends HttpServlet {
 			}
 
 			Dish dish = new Dish();
+			Restoran restoran = (Restoran)request.getSession().getAttribute("restoran");
 			
 			if(name != null)
 				dish.setName(name);
@@ -59,10 +60,11 @@ public class CreateDishController extends HttpServlet {
 			if(price != null)
 				dish.setPrice(Float.valueOf(price));
 			
+			if (restoran != null)
+				dish.setRestoran(restoran);
+			
 			dishDao.persist(dish);
 			
-			Restoran restoran = (Restoran)request.getSession().getAttribute("restoran");
-			restoran.addDish(dish);
 			request.getSession().setAttribute("restoranMenu", dishDao.findRestoranMenu(restoran.getId()));
 			
 			getServletContext().getRequestDispatcher("/restoranMenu.jsp").forward(request, response);

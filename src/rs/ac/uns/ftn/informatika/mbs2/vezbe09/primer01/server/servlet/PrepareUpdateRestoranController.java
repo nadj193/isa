@@ -10,17 +10,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
-import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.ManagerDaoLocal;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.RestoranDaoLocal;
 
-public class PrepareUpdateManagerController extends HttpServlet {
+public class PrepareUpdateRestoranController extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;
 	
 	private static Logger log = Logger.getLogger(PrepareUpdateController.class);
 
-	@EJB
-	private ManagerDaoLocal managerDao;
 
 	@EJB
 	private RestoranDaoLocal restoranDao;
@@ -36,11 +33,13 @@ public class PrepareUpdateManagerController extends HttpServlet {
 
 			request.getSession().setAttribute("restorani", restoranDao.findAll());
 
-			String managerId = request.getParameter("managerId");
+			String restoranId = request.getParameter("restoranId");
 
-			if ((managerId != null) && (!managerId.equals(""))) {
-				request.getSession().setAttribute("manager", managerDao.findById(Integer.parseInt(managerId)));
-				getServletContext().getRequestDispatcher("/updateManager.jsp").forward(request, response);
+			if ((restoranId != null) && (!restoranId.equals(""))) {
+				request.getSession().setAttribute("restoran", restoranDao.findById(Integer.parseInt(restoranId)));
+				getServletContext().getRequestDispatcher("/update_restoran.jsp").forward(request, response);
+			} else {
+				getServletContext().getRequestDispatcher("/adminRestoran.jsp").forward(request, response);
 			}
 			
 		} catch (ServletException e) {

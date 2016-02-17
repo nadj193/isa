@@ -51,11 +51,19 @@
 	<body>
 	<ul>
   		<li><a href="login.jsp">Login</a></li>
-  		<li><a href="registration.jsp">Register</a></li>
+  		<li><a href="register.jsp">Register</a></li>
 	</ul>
-	<h2 align="center">Login</h2>
+	<h2 align="center">Registration</h2>
 		<div class="col-md-4 col-md-offset-4 panel panel-default">
-		<form action="./LoginController" method="post" class="prijavaForma" accept-charset="ISO-8859-1">
+		<form action="./RegistrationController" method="post" class="prijavaForma" accept-charset="ISO-8859-1">
+			<div class="form-group">
+				<label for="name">Name:</label>
+				<input type="text" id="name" name="name" class="form-control" placeholder="name">
+			</div>
+			<div class="form-group">
+				<label for="lastName">LastName:</label>
+				<input type="text" id="lastName" name="lastName" class="form-control" placeholder="lastName">
+			</div>
 			<div class="form-group">
 				<label for="email">Email:</label>
 				<input type="text" id="email" name="email" class="form-control" placeholder="email">
@@ -65,7 +73,11 @@
 				<input type="password" id="password" name="password" class="form-control" placeholder="password">
 			</div>	
 			<div class="form-group">
-			<input type="submit" class="btn btn-lg btn-primary btn-block" name="submit" value="Sign in"/>
+				<label for="password">Repeat password:</label>
+				<input type="password" id="password" name="password" class="form-control" placeholder="password">
+			</div>
+			<div class="form-group">
+			<input type="submit" class="btn btn-lg btn-primary btn-block" name="submit" value="Sign up"/>
 			</div>					
 		</form>
 		</div>
