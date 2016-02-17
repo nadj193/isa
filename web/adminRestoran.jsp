@@ -12,13 +12,14 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<meta HTTP-EQUIV="Pragma" CONTENT="no-cache">
 		<meta HTTP-EQUIV="Expires" CONTENT="-1">
-		<link href="./theme.css" rel="stylesheet" type="text/css" />
+		  <link href="./theme.css" rel="stylesheet" type="text/css" />
+		
 	</head>
 	<c:if test="${sessionScope.admin==null}">
 		<c:redirect url="./login.jsp" />
 	</c:if>
 	<body>
-		<table class="listaRestoranaTabela">
+		<table class="table table-bordered">
 			<thead>
 				<tr>
 					<th>Naziv</th>

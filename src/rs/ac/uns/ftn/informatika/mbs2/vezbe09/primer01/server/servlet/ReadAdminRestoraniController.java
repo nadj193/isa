@@ -10,14 +10,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
-import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Restoran;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.RestoranDaoLocal;
 
-public class DeleteRestoranController extends HttpServlet{
-
+public class ReadAdminRestoraniController extends HttpServlet {
+	
 	private static final long serialVersionUID = 1L;
 	
-private static Logger log = Logger.getLogger(DeleteRestoranController.class);
+	private static Logger log = Logger.getLogger(ReadAdminHomeController.class);
+
 	
 	@EJB
 	private RestoranDaoLocal restoranDao;
@@ -31,27 +31,22 @@ private static Logger log = Logger.getLogger(DeleteRestoranController.class);
 				return;
 			}
 
-			String restoranId = null;
-			restoranId = request.getParameter("restoranId");
+		    
+		    request.getSession().setAttribute("restorani", restoranDao.findAll());
 			
-			Restoran restoran = restoranDao.findById(Integer.parseInt(restoranId));
-			restoranDao.remove(restoran);
-
-			getServletContext().getRequestDispatcher("/ReadAdminRestoraniController").forward(request, response);
-			
+			getServletContext().getRequestDispatcher("/adminRestoran.jsp").forward(request, response);
+		
 		} catch (ServletException e) {
 			log.error(e);
 			throw e;
 		} catch (IOException e) {
 			log.error(e);
 			throw e;
-		}
+		}	
 	}
 
 	protected void doPost(HttpServletRequest request, 	HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
-	
-	
 
 }

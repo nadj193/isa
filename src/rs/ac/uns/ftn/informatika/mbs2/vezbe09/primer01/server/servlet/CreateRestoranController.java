@@ -68,7 +68,7 @@ public class CreateRestoranController extends HttpServlet {
 			
 			restoranDao.persist(restoran);
 
-			getServletContext().getRequestDispatcher("/adminRestoran.jsp").forward(request, response);
+			getServletContext().getRequestDispatcher("/ReadAdminRestoraniController").forward(request, response);
 			return;
 			
 		} catch (ServletException e) {
