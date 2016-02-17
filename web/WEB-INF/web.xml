@@ -2,6 +2,31 @@
 <web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
    
    <servlet>
+      <servlet-name>DeleteDishController</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.DeleteDishController</servlet-class>
+   </servlet>
+   
+   <servlet>
+      <servlet-name>UpdateDishController</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.UpdateDishController</servlet-class>
+   </servlet>
+   
+   <servlet>
+      <servlet-name>PrepareUpdateDishController</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.PrepareUpdateDishController</servlet-class>
+   </servlet>
+   
+    <servlet>
+      <servlet-name>UpdateManagerController</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.UpdateManagerController</servlet-class>
+   </servlet>
+   
+   <servlet>
+      <servlet-name>PrepareUpdateManagerController</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.PrepareUpdateManagerController</servlet-class>
+   </servlet>
+   
+   <servlet>
       <servlet-name>ReadAdminRestoraniController</servlet-name>
       <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.ReadAdminRestoraniController</servlet-class>
    </servlet>
@@ -90,6 +115,31 @@
       <servlet-name>DeleteController</servlet-name>
       <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.DeleteController</servlet-class>
    </servlet>
+   
+   <servlet-mapping>
+      <servlet-name>DeleteDishController</servlet-name>
+      <url-pattern>/DeleteDishController</url-pattern>
+   </servlet-mapping>
+   
+   <servlet-mapping>
+      <servlet-name>UpdateDishController</servlet-name>
+      <url-pattern>/UpdateDishController</url-pattern>
+   </servlet-mapping>
+   
+   <servlet-mapping>
+      <servlet-name>PrepareUpdateDishController</servlet-name>
+      <url-pattern>/PrepareUpdateDishController</url-pattern>
+   </servlet-mapping>
+   
+   <servlet-mapping>
+      <servlet-name>UpdateManagerController</servlet-name>
+      <url-pattern>/UpdateManagerController</url-pattern>
+   </servlet-mapping>
+   
+   <servlet-mapping>
+      <servlet-name>PrepareUpdateManagerController</servlet-name>
+      <url-pattern>/PrepareUpdateManagerController</url-pattern>
+   </servlet-mapping>
    
    <servlet-mapping>
       <servlet-name>ReadAdminRestoraniController</servlet-name>

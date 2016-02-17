@@ -35,7 +35,7 @@
 					<td>${manager.lastName}</td>
 					<td>${manager.password}</td>
 					<td>${manager.restoran.name}</td>
-					<td><a href="./PrepareUpdateMenagerController?managerId=${manager.id}">updateManager</a></td>
+					<td><a href="./PrepareUpdateManagerController?managerId=${manager.id}">updateManager</a></td>
 					<td><a href="./DeleteManagerController?managerId=${manager.id}">delete</a></td>			
 				</tr>
 				</c:forEach>
