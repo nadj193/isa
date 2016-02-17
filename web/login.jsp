@@ -23,7 +23,7 @@
 				<input type="password" id="password" name="password" class="form-control" placeholder="password">
 			</div>	
 			<div class="form-group">
-			<input type="submit" name="submit" value="prijavi se"/>
+			<input type="submit" name="submit" value="Sign in"/>
 			</div>					
 		</form>
 		</div>

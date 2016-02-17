@@ -11,7 +11,7 @@
 
 <html>
 	<head>
-		<title>DodavanjeMenagera</title>
+		<title>AddManager</title>
 		<meta HTTP-EQUIV="Pragma" CONTENT="no-cache">
 		<meta HTTP-EQUIV="Expires" CONTENT="-1">
 		<link href="./theme.css" rel="stylesheet" type="text/css" />
@@ -23,12 +23,12 @@
 		<form action="./CreateManagerController" method="post"class="dodavanjeManageraForma" accept-charset="ISO-8859-1">
 			<table class="dodavanjeManageraForma">
 				<tr>
-					<td>Ime:</td>
-					<td><input type="text" name="ime" ></td>			
+					<td>Name:</td>
+					<td><input type="text" name="name" ></td>			
 				</tr>
 				<tr>
-					<td>Prezime:</td>
-					<td><input type="text" name="prezime" ></td>				
+					<td>LastName:</td>
+					<td><input type="text" name="lastName" ></td>				
 				</tr>
 				
 				<tr>
@@ -37,8 +37,8 @@
 				</tr>
 				
 				<tr>
-					<td>Lozinka:</td>
-					<td><input type="text" name="lozinka" ></td>				
+					<td>Password:</td>
+					<td><input type="text" name="password" ></td>				
 				</tr>
 				
 				<tr>
@@ -54,11 +54,11 @@
 								
 				<tr>
 					<td>&nbsp;</td>
-					<td><input type="submit" name="submit" value="dodaj"/></td>				
+					<td><input type="submit" name="submit" value="Submit"/></td>				
 				</tr>
 			</table>							
 		</form>
-		[<a href="./adminManageri.jsp">listaMenadzera</a>]<br/>
-		[<a href="./LogoutController"><fmt:message key="odjava"/></a>]<br/>
+		[<a href="./adminManageri.jsp">MenagerList</a>]<br/>
+		[<a href="./LogoutController">Logout</a>]<br/>
 	<body>
 </html>

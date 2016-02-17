@@ -17,7 +17,7 @@ import javax.persistence.Table;
 @Table(name = "dish")
 @NamedQueries({
 @NamedQuery(name = "findDishByName", query = "SELECT d FROM Dish d WHERE d.name = :name"),
-@NamedQuery(name = "findRestoranMenu", query = "SELECT d FROM Dish d WHERE d.restoran_id = :restoran_id")
+@NamedQuery(name = "findRestoranMenu", query = "SELECT d FROM Dish d WHERE d.restoran.id = :restoran_id")
 })
 public class Dish implements Serializable{
 

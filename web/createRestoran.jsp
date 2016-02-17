@@ -11,7 +11,7 @@
 
 <html>
 	<head>
-		<title>DodavanjeRestorana</title>
+		<title>AddRestoran</title>
 		<meta HTTP-EQUIV="Pragma" CONTENT="no-cache">
 		<meta HTTP-EQUIV="Expires" CONTENT="-1">
 		<link href="./theme.css" rel="stylesheet" type="text/css" />
@@ -23,21 +23,21 @@
 		<form action="./CreateRestoranController" method="post"class="dodavanjeRestoranaForma" accept-charset="ISO-8859-1">
 			<table class="dodavanjeRestoranaForma">
 				<tr>
-					<td>Naziv:</td>
-					<td><input type="text" name="naziv" ></td>			
+					<td>Name:</td>
+					<td><input type="text" name="name" ></td>			
 				</tr>
 				<tr>
-					<td>Opis:</td>
-					<td><input type="text" name="opis" ></td>				
+					<td>Description:</td>
+					<td><input type="text" name="description" ></td>				
 				</tr>
 								
 				<tr>
 					<td>&nbsp;</td>
-					<td><input type="submit" name="submit" value="dodaj"/></td>				
+					<td><input type="submit" name="submit" value="Submit"/></td>				
 				</tr>
 			</table>							
 		</form>
-		[<a href="./adminRestoran.jsp">listaRestorana</a>]<br/>
-		[<a href="./LogoutController"><fmt:message key="odjava"/></a>]<br/>
+		[<a href="./adminRestoran.jsp">RestoranList</a>]<br/>
+		[<a href="./LogoutController">Logout</a>]<br/>
 	<body>
 </html>

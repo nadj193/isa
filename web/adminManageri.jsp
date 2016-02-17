@@ -9,7 +9,7 @@
 
 <html>
 	<head>
-		<title>Lista menadzera</title>
+		<title>Menager list</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<meta HTTP-EQUIV="Pragma" CONTENT="no-cache">
 		<meta HTTP-EQUIV="Expires" CONTENT="-1">
@@ -22,9 +22,9 @@
 		<table class="listaMenadzeraTabela">
 			<thead>
 				<tr>
-					<th>Ime</th>
-					<th>Prezime</th>
-					<th>Lozinka</th>
+					<th>Name</th>
+					<th>LastName</th>
+					<th>Password</th>
 					<th>Restoran</th>
 				</tr>
 			</thead>
@@ -35,14 +35,14 @@
 					<td>${manager.lastName}</td>
 					<td>${manager.password}</td>
 					<td>${manager.restoran.name}</td>
-					<td><a href="./PrepareUpdateMenagerController?managerId=${manager.id}">promenaMenadzera</a></td>
-					<td><a href="./DeleteManagerController?managerId=${manager.id}">obrisi</a></td>			
+					<td><a href="./PrepareUpdateMenagerController?managerId=${manager.id}">updateManager</a></td>
+					<td><a href="./DeleteManagerController?managerId=${manager.id}">delete</a></td>			
 				</tr>
 				</c:forEach>
 			</tbody>
 		</table>
-		[<a href="./PrepareCreateManagerController">dodavanjeNovogMenadzera</a>]<br/>
-		[<a href="./LogoutController">odjava</a>]<br/>
+		[<a href="./PrepareCreateManagerController">addNewManager</a>]<br/>
+		[<a href="./LogoutController">Logout</a>]<br/>
 		
 	</body>	
 </html>

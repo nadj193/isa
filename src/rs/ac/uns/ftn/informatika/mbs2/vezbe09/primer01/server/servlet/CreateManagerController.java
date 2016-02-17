@@ -43,10 +43,10 @@ public class CreateManagerController extends HttpServlet{
 		
 		try {
 			
-			String ime = null;
-			String prezime = null;
+			String name = null;
+			String lastName = null;
 			String email = null;
-			String lozinka = null;
+			String password = null;
 			Integer restoranId = null; 
 
 			if ((request.getSession().getAttribute("admin")) == null) {
@@ -54,44 +54,40 @@ public class CreateManagerController extends HttpServlet{
 				return;
 			}
 
-			if ((request.getParameter("ime") != null) && (!"".equals(request.getParameter("ime")))) {
-				ime = request.getParameter("ime");
+			if ((request.getParameter("name") != null) && (!"".equals(request.getParameter("name")))) {
+				name = request.getParameter("name");
 			}
 
-			if ((request.getParameter("prezime") != null) && (!"".equals(request.getParameter("prezime")))) {
-				prezime = request.getParameter("prezime");
+			if ((request.getParameter("lastName") != null) && (!"".equals(request.getParameter("lastName")))) {
+				lastName = request.getParameter("lastName");
 			}
 			
 			if ((request.getParameter("email") != null) && (!"".equals(request.getParameter("email")))) {
 				email = request.getParameter("email");
 			}
 
-			if ((request.getParameter("lozinka") != null) && (!"".equals(request.getParameter("lozinka")))) {
-				lozinka = request.getParameter("lozinka");
+			if ((request.getParameter("password") != null) && (!"".equals(request.getParameter("password")))) {
+				password = request.getParameter("password");
 			}
 			
 			if ((request.getParameter("restoran") != null) && (!"".equals(request.getParameter("restoran")))) {
 				restoranId = new Integer(request.getParameter("restoran"));
 			}
 			
-			System.out.println("Ime manager: "+ ime);
-			System.out.println("Prezime manager: "+ prezime);
-			System.out.println("email manager: "+ email);
-			System.out.println("loz manager: "+ lozinka);
 			
 			Manager manager = new Manager();
 			
-			if(ime != null)
-				manager.setName(ime);
+			if(name != null)
+				manager.setName(name);
 			
-			if(prezime != null)
-				manager.setLastName(prezime);
+			if(lastName != null)
+				manager.setLastName(lastName);
 			
 			if(email != null)
 				manager.setEmail(email);
 			
-			if(lozinka != null)
-				manager.setPassword(lozinka);
+			if(password != null)
+				manager.setPassword(password);
 			
 			if (restoranId != null)
 				manager.setRestoran(restoranDao.findById(restoranId));

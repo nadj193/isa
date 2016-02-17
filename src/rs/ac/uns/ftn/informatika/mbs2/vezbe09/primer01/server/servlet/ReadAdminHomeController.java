@@ -36,12 +36,6 @@ private static final long serialVersionUID = 1L;
 				return;
 			}
 
-			System.out.println("Usao u read restoran!!");
-		    List<Restoran> restList = restoranDao.findAll();
-		    for(int i=0;i<restList.size();i++)
-		    {
-		    	System.out.println(restList.get(i).getName());
-		    }
 		    
 		    request.getSession().setAttribute("manageri", managerDao.findAll());
 			request.getSession().setAttribute("restorani", restoranDao.findAll());

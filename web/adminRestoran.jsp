@@ -22,8 +22,8 @@
 		<table class="table table-bordered">
 			<thead>
 				<tr>
-					<th>Naziv</th>
-					<th>Opis</th>
+					<th>Name</th>
+					<th>Description</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -31,14 +31,14 @@
 				<tr>
 					<td>${restoran.name}</td>
 					<td>${restoran.description}</td>
-					<td><a href="./PrepareUpdateController?voziloId=${restoran.id}">promenaRestorana</a></td>
-					<td><a href="./DeleteRestoranController?restoranId=${restoran.id}">obrisi</a></td>			
+					<td><a href="./PrepareUpdateController?voziloId=${restoran.id}">updateRestoran</a></td>
+					<td><a href="./DeleteRestoranController?restoranId=${restoran.id}">delete</a></td>			
 				</tr>
 				</c:forEach>
 			</tbody>
 		</table>
-		[<a href="./PrepareCreateRestoranController">dodavanjeNovogRestorana</a>]<br/>
-		[<a href="./LogoutController">odjava</a>]<br/>
+		[<a href="./PrepareCreateRestoranController">addNewRestoran</a>]<br/>
+		[<a href="./LogoutController">logout</a>]<br/>
 		
 	</body>	
 </html>

@@ -42,29 +42,29 @@ public class CreateRestoranController extends HttpServlet {
 		
 		try {
 			
-			String naziv = null;
-			String opis=null;
+			String name = null;
+			String description = null;
 
 			if ((request.getSession().getAttribute("admin")) == null) {
 				response.sendRedirect(response.encodeURL("./login.jsp"));
 				return;
 			}
 
-			if ((request.getParameter("naziv") != null) && (!"".equals(request.getParameter("naziv")))) {
-				naziv = request.getParameter("naziv");
+			if ((request.getParameter("name") != null) && (!"".equals(request.getParameter("name")))) {
+				name = request.getParameter("name");
 			}
 
-			if ((request.getParameter("opis") != null) && (!"".equals(request.getParameter("opis")))) {
-				opis = request.getParameter("opis");
+			if ((request.getParameter("description") != null) && (!"".equals(request.getParameter("description")))) {
+				description = request.getParameter("description");
 			}
 			
 			Restoran restoran = new Restoran();
 			
-			if(naziv != null)
-				restoran.setName(naziv);
+			if(name != null)
+				restoran.setName(name);
 			
-			if(opis != null)
-				restoran.setDescription(opis);
+			if(description != null)
+				restoran.setDescription(description);
 			
 			restoranDao.persist(restoran);
 

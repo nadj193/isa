@@ -42,9 +42,9 @@
 <body>
 <ul>
   <li><a class="active" href="adminRestoran.jsp">Restoran</a></li>
-  <li><a href="adminManageri.jsp">Menadzer</a></li>
+  <li><a href="adminManageri.jsp">Manager</a></li>
 </ul>
-	<h2>Pocetna strana</h2>
+	<h2>Home page</h2>
 </body>
 </html>
 		
