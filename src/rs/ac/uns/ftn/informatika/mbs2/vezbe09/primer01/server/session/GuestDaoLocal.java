@@ -11,5 +11,7 @@ public interface GuestDaoLocal extends GenericDaoLocal<Guest, Integer>{
 	public Guest findGuestByEmail(String email);
 	
 	public List<Guest> findPotencialFriends(Integer id);
+	
+	public List<Guest> getFriendsList(Integer id);
 
 }

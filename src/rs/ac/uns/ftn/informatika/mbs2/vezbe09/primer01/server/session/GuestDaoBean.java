@@ -43,4 +43,16 @@ public class GuestDaoBean extends GenericDaoBean<Guest, Integer> implements Gues
 		return result;
 	}
 
+	@Override
+	public List<Guest> getFriendsList(Integer id) {
+		List<Guest> result = new ArrayList<Guest>();
+		List<Guest> allGuests = findAll();
+		Guest guest = findById(id);
+		for(Guest g : allGuests) {
+			if(guest.getFriends().contains(g)){
+				result.add(g);
+			}
+		}
+		return result;
+	}
 }
