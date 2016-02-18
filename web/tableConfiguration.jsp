@@ -1,21 +1,9 @@
-<!DOCTYPE html>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!doctype html>
 <html>
-	<head>
-		<title>Restoran table configuration</title>
-		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-		<meta HTTP-EQUIV="Pragma" CONTENT="no-cache">
-		<meta HTTP-EQUIV="Expires" CONTENT="-1">
-		<link href="./theme.css" rel="stylesheet" type="text/css" />
-		<link href="./bootstrap.min.css" rel="stylesheet" type="text/css" />
-	<style type="text/css">
-	body {
-    	<!-- background-color:#d3d3d3; -->
-    	align:center;
-	}	
-	</style>
-	<style>
+<head>
+<title>Determine Click Position on click of a table cell</title>
+<!--CSS -->
+<style>
 		ul {
     		list-style-type: none;
     		margin: 0;
@@ -39,257 +27,136 @@
 		li a:hover {
     		background-color: #111;
 		}
-	</style>
-	<style>
-		input[type=submit]{
- 			color: black;
-			font-size: 7pt;
- 			width: 50px;
- 			height: 30px;
- 			border: 2px solid #000;
- 			margin: 0;
- 			padding: 3px;
- 			background-color:white; 
-		}
-	</style>
-	<script type="text/javascript">
-		function btnColor(btn) {
-    		var property=document.getElementById(btn);
-    		property.style.background-color=green;
-    		property.value=10;
-    		window.location = '/GeneralInfo.jsp';
-    	}
-		function  buttonClick(element) {
-			element.style.background-color=green;
-			element.value=10;
-			var row = element.parentNode.parentNode.rowIndex;
-			var column = element.parentNode.cellIndex;
-		    //window.location = './addRestoranTableController?row=row&column=column';
-		    document.location.href="./AddRestoranTableController?row=row&column=column";
-		}
-    </script>
-}
-	</head>
-	<c:if test="${sessionScope.manager==null}">
-		<c:redirect url="./login.jsp" />
-	</c:if>
-	<body>
-		<!--Navigation bar -->
-		<ul>
-  			<li><a class="active" href="manager_home.jsp">Restoran</a></li>
-  			<li><a href="restoranMenu.jsp">Menu</a></li>
-		</ul>
-		
-		<!-- Menu table -->
-		<table class="restoranTableConfiguration" style="width:50px">
-    		<tr>
-    			<td>
-                	<input id="edit1" type="submit" name="edit" value="edit" onclick="buttonClick(this)">
-               	</td>
-        		<td>
-    				<form name="f1" action="./addRestoranTableController" method="post" accept-charset="ISO-8859-1">
-                		<input id="edit1" type="submit" name="edit" value="edit">
-               		</form>
-               	</td>
-        		<td>
-    				<form name="f1" action="./addRestoranTableController" method="post" accept-charset="ISO-8859-1">
-                		<input id="edit1" type="submit" name="edit" value="edit">
-               		</form>
-               	</td>
-        		<td>
-    				<form name="f1" action="./addRestoranTableController" method="post" accept-charset="ISO-8859-1">
-                		<input id="edit1" type="submit" name="edit" value="edit">
-               		</form>
-               	</td>
-        		<td>
-    				<form name="f1" action="./addRestoranTableController" method="post" accept-charset="ISO-8859-1">
-                		<input id="edit1" type="submit" name="edit" value="edit">
-               		</form>
-               	</td>
-        		<td>
-    				<form name="f1" action="./addRestoranTableController" method="post" accept-charset="ISO-8859-1">
-                		<input id="edit1" type="submit" name="edit" value="edit">
-               		</form>
-               	</td>
-               	<td>
-    				<form name="f1" action="./addRestoranTableController" method="post" accept-charset="ISO-8859-1">
-                		<input id="edit1" type="submit" name="edit" value="edit">
-               		</form>
-               	</td>
-               	<td>
-    				<form name="f1" action="./addRestoranTableController" method="post" accept-charset="ISO-8859-1">
-                		<input id="edit1" type="submit" name="edit" value="edit">
-               		</form>
-               	</td>
-        	</tr>
-        	<tr>
-    			<td>
-    				<form name="f1" action="./addRestoranTableController" method="post" accept-charset="ISO-8859-1">
-                		<input id="edit1" type="submit" name="edit" value="edit">
-               		</form>
-               	</td>
-        		<td>
-    				<form name="f1" action="./addRestoranTableController" method="post" accept-charset="ISO-8859-1">
-                		<input id="edit1" type="submit" name="edit" value="edit">
-               		</form>
-               	</td>
-        		<td>
-    				<form name="f1" action="./addRestoranTableController" method="post" accept-charset="ISO-8859-1">
-                		<input id="edit1" type="submit" name="edit" value="edit">
-               		</form>
-               	</td>
-        		<td>
-    				<form name="f1" action="./addRestoranTableController" method="post" accept-charset="ISO-8859-1">
-                		<input id="edit1" type="submit" name="edit" value="edit">
-               		</form>
-               	</td>
-        		<td>
-    				<form name="f1" action="./addRestoranTableController" method="post" accept-charset="ISO-8859-1">
-                		<input id="edit1" type="submit" name="edit" value="edit">
-               		</form>
-               	</td>
-        		<td>
-    				<form name="f1" action="./addRestoranTableController" method="post" accept-charset="ISO-8859-1">
-                		<input id="edit1" type="submit" name="edit" value="edit">
-               		</form>
-               	</td>
-               	<td>
-    				<form name="f1" action="./addRestoranTableController" method="post" accept-charset="ISO-8859-1">
-                		<input id="edit1" type="submit" name="edit" value="edit">
-               		</form>
-               	</td>
-               	<td>
-    				<form name="f1" action="./addRestoranTableController" method="post" accept-charset="ISO-8859-1">
-                		<input id="edit1" type="submit" name="edit" value="edit">
-               		</form>
-               	</td>
-        	</tr>
-        	<tr>
-    			<td>
-    				<form name="f1" action="./addRestoranTableController" method="post" accept-charset="ISO-8859-1">
-                		<input id="edit1" type="submit" name="edit" value="edit">
-               		</form>
-               	</td>
-        		<td>
-    				<form name="f1" action="./addRestoranTableController" method="post" accept-charset="ISO-8859-1">
-                		<input id="edit1" type="submit" name="edit" value="edit">
-               		</form>
-               	</td>
-        		<td>
-    				<form name="f1" action="./addRestoranTableController" method="post" accept-charset="ISO-8859-1">
-                		<input id="edit1" type="submit" name="edit" value="edit">
-               		</form>
-               	</td>
-        		<td>
-    				<form name="f1" action="./addRestoranTableController" method="post" accept-charset="ISO-8859-1">
-                		<input id="edit1" type="submit" name="edit" value="edit">
-               		</form>
-               	</td>
-        		<td>
-    				<form name="f1" action="./addRestoranTableController" method="post" accept-charset="ISO-8859-1">
-                		<input id="edit1" type="submit" name="edit" value="edit">
-               		</form>
-               	</td>
-        		<td>
-    				<form name="f1" action="./addRestoranTableController" method="post" accept-charset="ISO-8859-1">
-                		<input id="edit1" type="submit" name="edit" value="edit">
-               		</form>
-               	</td>
-               	<td>
-    				<form name="f1" action="./addRestoranTableController" method="post" accept-charset="ISO-8859-1">
-                		<input id="edit1" type="submit" name="edit" value="edit">
-               		</form>
-               	</td>
-               	<td>
-    				<form name="f1" action="./addRestoranTableController" method="post" accept-charset="ISO-8859-1">
-                		<input id="edit1" type="submit" name="edit" value="edit">
-               		</form>
-               	</td>
-        	</tr>
-        	<tr>
-    			<td>
-    				<form name="f1" action="./addRestoranTableController" method="post" accept-charset="ISO-8859-1">
-                		<input id="edit1" type="submit" name="edit" value="edit">
-               		</form>
-               	</td>
-        		<td>
-    				<form name="f1" action="./addRestoranTableController" method="post" accept-charset="ISO-8859-1">
-                		<input id="edit1" type="submit" name="edit" value="edit">
-               		</form>
-               	</td>
-        		<td>
-    				<form name="f1" action="./addRestoranTableController" method="post" accept-charset="ISO-8859-1">
-                		<input id="edit1" type="submit" name="edit" value="edit">
-               		</form>
-               	</td>
-        		<td>
-    				<form name="f1" action="./addRestoranTableController" method="post" accept-charset="ISO-8859-1">
-                		<input id="edit1" type="submit" name="edit" value="edit">
-               		</form>
-               	</td>
-        		<td>
-    				<form name="f1" action="./addRestoranTableController" method="post" accept-charset="ISO-8859-1">
-                		<input id="edit1" type="submit" name="edit" value="edit">
-               		</form>
-               	</td>
-        		<td>
-    				<form name="f1" action="./addRestoranTableController" method="post" accept-charset="ISO-8859-1">
-                		<input id="edit1" type="submit" name="edit" value="edit">
-               		</form>
-               	</td>
-               	<td>
-    				<form name="f1" action="./addRestoranTableController" method="post" accept-charset="ISO-8859-1">
-                		<input id="edit1" type="submit" name="edit" value="edit">
-               		</form>
-               	</td>
-               	<td>
-    				<form name="f1" action="./addRestoranTableController" method="post" accept-charset="ISO-8859-1">
-                		<input id="edit1" type="submit" name="edit" value="edit">
-               		</form>
-               	</td>
-        	</tr>
-        	<tr>
-    			<td>
-    				<form name="f1" action="./addRestoranTableController" method="post" accept-charset="ISO-8859-1">
-                		<input id="edit1" type="submit" name="edit" value="edit">
-               		</form>
-               	</td>
-        		<td>
-    				<form name="f1" action="./addRestoranTableController" method="post" accept-charset="ISO-8859-1">
-                		<input id="edit1" type="submit" name="edit" value="edit">
-               		</form>
-               	</td>
-        		<td>
-    				<form name="f1" action="./addRestoranTableController" method="post" accept-charset="ISO-8859-1">
-                		<input id="edit1" type="submit" name="edit" value="edit">
-               		</form>
-               	</td>
-        		<td>
-    				<form name="f1" action="./addRestoranTableController" method="post" accept-charset="ISO-8859-1">
-                		<input id="edit1" type="submit" name="edit" value="edit">
-               		</form>
-               	</td>
-        		<td>
-    				<form name="f1" action="./addRestoranTableController" method="post" accept-charset="ISO-8859-1">
-                		<input id="edit1" type="submit" name="edit" value="edit">
-               		</form>
-               	</td>
-        		<td>
-    				<form name="f1" action="./addRestoranTableController" method="post" accept-charset="ISO-8859-1">
-                		<input id="edit1" type="submit" name="edit" value="edit">
-               		</form>
-               	</td>
-               	<td>
-    				<form name="f1" action="./addRestoranTableController" method="post" accept-charset="ISO-8859-1">
-                		<input id="edit1" type="submit" name="edit" value="edit">
-               		</form>
-               	</td>
-               	<td>
-    				<form name="f1" action="./addRestoranTableController" method="post" accept-charset="ISO-8859-1">
-                		<input id="edit1" type="submit" name="edit" value="edit">
-               		</form>
-               	</td>
-        	</tr>
-		</table>	
-	</body>	
+</style>
+<style>
+    td{
+        cursor:pointer;
+        background: -moz-linear-gradient(top, #ffffff, #D1E3E9);
+        background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#ffffff), to(#D1E3E9));
+        text-align:center;
+    }
+ 
+    td:hover{
+        background: -moz-linear-gradient(top, #249ee4, #057cc0);
+        background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#249ee4), to(#057cc0));
+    }
+ 
+    td:active
+    {
+        background: -moz-linear-gradient(top, #057cc0, #249ee4);
+        background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#057cc0), to(#249ee4));
+    }
+ 
+    #result{
+        font-weight:bold;
+        font-size:16pt;
+    }
+</style>
+<!--JAVASCRIPT -->
+<script  src="http://code.jquery.com/jquery-1.9.1.min.js" ></script>     
+<script>
+    $(document).ready(function(){
+        $("#myTable td").click(function() {     
+ 
+            var column_num = parseInt( $(this).index() ) + 1;
+            var row_num = parseInt( $(this).parent().index() )+1;    
+            $("#result").html( "Row_num =" + row_num + "  ,  Rolumn_num ="+ column_num );
+            
+            var sendData = { 'row' : row_num, 'column' : column_num};
+			
+			$.ajax({
+				type: 'post',
+				url: 'AddRestoranTableController',
+				dataType: 'text',
+				data: sendData,
+				success: function(data)
+				{
+					var obj = JSON.parse(data);
+					alert("Servlet je vratio " + obj.ordinal);
+					window.location = "tableConfiguration.jsp";
+				},
+				error: function(data)
+				{
+					alert("Greska prilikom izmene kategorije.");
+				}
+				
+				
+			});
+        });
+    });
+</script>
+</head>
+<body>
+<!--Navigation bar -->
+<ul>
+  	<li><a class="active" href="manager_home.jsp">HomePage</a></li>
+  	<li><a href="update_restoran.jsp">Update restoran</a></li>
+  	<li><a href="restoranMenu.jsp">Menu</a></li>
+  	<li class="navbar-right"><a href="./LogoutController">Logout</a></li>
+</ul>
+
+<!--Table -->    
+<div id="result"> </div>
+    <table id="myTable" border="1" style="border-collapse: collapse;" cellpadding="15">
+        <!--1st ROW-->
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+            <td>7</td>
+            <td>8</td>
+        </tr>
+ 
+        <!--2nd ROW-->
+        <tr>
+            <td>9</td>
+            <td>10</td>
+            <td>11</td>
+            <td>12</td>
+            <td>13</td>
+            <td>14</td>
+            <td>15</td>
+            <td>16</td>
+        </tr>
+ 
+        <!--3rd ROW-->
+        <tr>
+            <td>17</td>
+            <td>18</td>
+            <td>19</td>
+            <td>20</td>
+            <td>21</td>
+            <td>22</td>
+            <td>23</td>
+            <td>24</td>
+        </tr>
+ 
+        <!--4th ROW-->
+        <tr>
+            <td>25</td>
+            <td>23</td>
+            <td>27</td>
+            <td>28</td>
+            <td>29</td>
+            <td>30</td>
+            <td>31</td>
+            <td>32</td>
+        </tr>
+ 
+        <!--5th ROW-->
+        <tr>
+            <td>33</td>
+            <td>34</td>
+            <td>35</td>
+            <td>36</td>
+            <td>37</td>
+            <td>38</td>
+            <td>39</td>
+            <td>40</td>
+        </tr>
+    </table>
+</body>
 </html>

@@ -1,6 +1,7 @@
 package rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
+import org.json.JSONObject;
 
 public class AddRestoranTableController extends HttpServlet{
 
@@ -31,6 +33,11 @@ public class AddRestoranTableController extends HttpServlet{
 			System.out.println("Row " + row);
 			System.out.println("Column " + column);
 			
+			PrintWriter out = response.getWriter();
+			JSONObject jsonReply = new JSONObject();
+			response.setStatus(HttpServletResponse.SC_OK);
+			jsonReply.put("ordinal", 10);
+			out.print(jsonReply);
 			getServletContext().getRequestDispatcher("/tableConfiguration.jsp").forward(request, response);	
 		} catch (ServletException e) {
 			log.error(e);
