@@ -13,6 +13,7 @@ import org.apache.log4j.Logger;
 
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Restoran;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.RestoranTable;
+import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.RestoranDaoLocal;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.RestoranTableDaoLocal;
 
 public class SaveRestoranTableConfiguration extends HttpServlet {
@@ -23,6 +24,9 @@ public class SaveRestoranTableConfiguration extends HttpServlet {
 	
 	@EJB
 	private RestoranTableDaoLocal restoranTableDao;
+	
+	@EJB
+	private RestoranDaoLocal restoranDao;
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -46,6 +50,7 @@ public class SaveRestoranTableConfiguration extends HttpServlet {
 					table.setRow(row);
 					table.setColumn(column);
 					table.setOrdinal(tableOrdinal);
+					table.setIsReserved(false);
 					table.setRestoran(restoran);
 					restoranTableDao.persist(table);
 					tableOrdinal++;
@@ -53,7 +58,8 @@ public class SaveRestoranTableConfiguration extends HttpServlet {
 				position++;
 			}
 			
-			request.getSession().setAttribute("restoran", restoran);
+			Restoran updated = restoranDao.findById(restoran.getId()); 
+			request.getSession().setAttribute("restoran", updated);
 			getServletContext().getRequestDispatcher("/manager_home.jsp").forward(request, response);
 		} catch (IOException e) {
 			log.error(e);

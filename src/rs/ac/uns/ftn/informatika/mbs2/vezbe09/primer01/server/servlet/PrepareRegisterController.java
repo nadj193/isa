@@ -39,11 +39,15 @@ public class PrepareRegisterController extends HttpServlet {
 		String lastName = request.getParameter("lastName");
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
+		String repeatPassword = request.getParameter("repeatpassword");
 		
-		System.out.println("Ime: " +name);
-		System.out.println("prezime: " +lastName);
-		System.out.println("email: "+email );
-		System.out.println("pass: " +password);
+		
+		if(!password.equals(repeatPassword))
+		{
+			getServletContext().getRequestDispatcher("/registration.jsp").forward(request, response);
+		}
+		else
+		{
 		
 		Admin admin = new Admin();
 		admin.setName(name);
@@ -104,6 +108,7 @@ public class PrepareRegisterController extends HttpServlet {
 			throw e;
 		}
 		*/
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

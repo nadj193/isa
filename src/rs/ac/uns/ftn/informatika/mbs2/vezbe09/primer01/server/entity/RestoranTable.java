@@ -23,16 +23,16 @@ public class RestoranTable {
 	@Column(name = "table_id", unique = true, nullable = false)
 	private Integer id;
 	
-	@Column(name = "row", unique = false, nullable = false)
+	@Column(name = "table_row", unique = false, nullable = false)
 	private Integer row;
 	
-	@Column(name = "column", unique = false, nullable = false)
+	@Column(name = "table_column", unique = false, nullable = false)
 	private Integer column;
 	
-	@Column(name = "reserved", unique = false, nullable = false)
+	@Column(name = "table_reserved", unique = false, nullable = false)
 	private Boolean isReserved;
 	
-	@Column(name = "ordinal", unique = false, nullable = false)
+	@Column(name = "table_ordinal", unique = false, nullable = false)
 	private Integer ordinal;
 	
 	@ManyToOne

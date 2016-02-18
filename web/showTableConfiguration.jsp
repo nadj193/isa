@@ -6,6 +6,7 @@
 <html>
 <head>
 <title>Determine Click Position on click of a table cell</title>
+<link href="./bootstrap.min.css" rel="stylesheet" type="text/css" />
 <!--CSS -->
 <style>
 		ul {
@@ -63,6 +64,7 @@
   	<li><a class="active" href="manager_home.jsp">HomePage</a></li>
   	<li><a href="update_restoran.jsp">Update restoran</a></li>
   	<li><a href="restoranMenu.jsp">Menu</a></li>
+  	<li><a href="./PrepareTableConfigurationController">Table configuration</a></li>
   	<li class="navbar-right"><a href="./LogoutController">Logout</a></li>
 </ul>
 

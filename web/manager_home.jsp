@@ -44,7 +44,6 @@
   <li><a href="update_restoran.jsp">Update restoran</a></li>
   <li><a href="restoranMenu.jsp">Menu</a></li>
   <li><a href="./PrepareTableConfigurationController">Table configuration</a></li>
-  <li><a href="showTableConfiguration.jsp">Show table configuration</a></li>
   <li class="navbar-right"><a href="./LogoutController">Logout</a></li>
 </ul>
 <h1 align="center">${restoran.name}</h1>

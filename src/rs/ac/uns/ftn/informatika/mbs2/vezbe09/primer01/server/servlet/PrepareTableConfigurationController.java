@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Restoran;
+import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.RestoranTable;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.RestoranTableDaoLocal;
 
 public class PrepareTableConfigurationController extends HttpServlet {
@@ -34,13 +35,19 @@ public class PrepareTableConfigurationController extends HttpServlet {
 			}
 			
 			Restoran restoran = (Restoran)request.getSession().getAttribute("restoran");
-			if (restoran.getTableConfiguration() != null) {
-				request.getSession().setAttribute("restoranTables", restoranTableDao.findRestoranTableConfiguration(restoran.getId()));
+			List<Integer> restoranTables = new ArrayList<Integer>(Arrays.asList(-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1));
+			List<RestoranTable> tableConfiguration = restoranTableDao.findRestoranTableConfiguration(restoran.getId());
+			if (tableConfiguration.size() != 0) {
+				for(RestoranTable t : tableConfiguration) {
+					System.out.println("Table postion row " + t.getRow());
+					System.out.println("Table position column " + t.getColumn());
+					int position = t.getRow()*8 + t.getColumn();
+					restoranTables.set(position, t.getOrdinal());
+				}
+				request.getSession().setAttribute("restoranTables", restoranTables);
 				getServletContext().getRequestDispatcher("/showTableConfiguration.jsp").forward(request, response);
 			} else {
-				List<Integer> restoranTables = new ArrayList<Integer>(Arrays.asList(-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1));
 				request.getSession().setAttribute("restoranTables", restoranTables);
-			
 				getServletContext().getRequestDispatcher("/tableConfiguration.jsp").forward(request, response);
 			}
 		} catch (IOException e) {

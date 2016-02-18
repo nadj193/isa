@@ -48,7 +48,16 @@
 	
 	<script>
 	function message() {
-		alert("Mail with activation link is sent on your email account. Please chack your mail, you can't login before activation your account!");
+		var pass = document.getElementById("password");
+		var repeatPass = document.getElementById("repeatpassword");
+		if(pass.value!=repeatPass.value)
+			{
+			alert("You must enter same password!");
+			}
+		else
+			{
+			alert("Mail with activation link is sent on your email account. Please chack your mail, you can't login before activation your account!");
+			}
 	}
 	</script>
 	
