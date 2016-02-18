@@ -54,6 +54,7 @@ li a:hover {
   <li><a href="updateGuest.jsp">Edit profile</a></li>
   <li><a href="guestRestoran.jsp">Restorans List</a></li>
   <li><a href="./PrepareFriendsController">Friends List</a></li>
+  <li><a href="./PrepareAddFriendsController">Add Friends</a></li>
   <li class="navbar-right"><a href="./LogoutController">Logout</a></li>
 </ul>
 	<h2>Home page</h2>

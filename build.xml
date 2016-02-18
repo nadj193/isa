@@ -135,7 +135,11 @@
 			DROP TABLE IF EXISTS admin;
 			DROP TABLE IF EXISTS manager;
 			DROP TABLE IF EXISTS restoran;
-			DROP TABLE IF EXISTS dish; 
+			DROP TABLE IF EXISTS dish;
+			DROP TABLE IF EXISTS guest;
+			DROP TABLE IF EXISTS restorantable;
+			DROP TABLE IF EXISTS friends;
+			
 			
 		</sql>
 	</target>

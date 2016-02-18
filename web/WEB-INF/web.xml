@@ -2,6 +2,21 @@
 <web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
    
    <servlet>
+      <servlet-name>AddFriendController</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.AddFriendController</servlet-class>
+   </servlet>
+   
+   <servlet>
+      <servlet-name>PrepareAddFriendsController</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.PrepareAddFriendsController</servlet-class>
+   </servlet>
+   
+   <servlet>
+      <servlet-name>PrepareFriendsController</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.PrepareFriendsController</servlet-class>
+   </servlet>
+   
+   <servlet>
       <servlet-name>UpdateGuestController</servlet-name>
       <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.UpdateGuestController</servlet-class>
    </servlet>
@@ -155,6 +170,21 @@
       <servlet-name>DeleteController</servlet-name>
       <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.DeleteController</servlet-class>
    </servlet>
+   
+   <servlet-mapping>
+      <servlet-name>AddFriendController</servlet-name>
+      <url-pattern>/AddFriendController</url-pattern>
+	</servlet-mapping>
+   
+   <servlet-mapping>
+      <servlet-name>PrepareAddFriendsController</servlet-name>
+      <url-pattern>/PrepareAddFriendsController</url-pattern>
+	</servlet-mapping>
+   
+   <servlet-mapping>
+      <servlet-name>PrepareFriendsController</servlet-name>
+      <url-pattern>/PrepareFriendsController</url-pattern>
+	</servlet-mapping>
    
    <servlet-mapping>
       <servlet-name>UpdateGuestController</servlet-name>

@@ -2,17 +2,19 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 
-<jsp:useBean id="restorani" type="java.util.List" scope="session"/>
+<jsp:useBean id="potencialFriends" type="java.util.List" scope="session"/>
+
+<fmt:setBundle basename="messages.messages"/>
 
 <html>
-	<head>
-		<title>Restorans List</title>
-		<meta HTTP-EQUIV="Pragma" CONTENT="no-cache">
-		<meta HTTP-EQUIV="Expires" CONTENT="-1">
-		<link href="./bootstrap.min.css" rel="stylesheet" type="text/css" />
-		<script src="sorttable.js"></script>
-		  
-	 <style type="text/css">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Add friends</title>
+  	<meta HTTP-EQUIV="Pragma" CONTENT="no-cache">
+	<meta HTTP-EQUIV="Expires" CONTENT="-1">
+	<link href="./bootstrap.min.css" rel="stylesheet" type="text/css" />
+			
+	  <style type="text/css">
 	body {
     <!-- background-color:#d3d3d3; -->
     align:center;
@@ -22,7 +24,7 @@
 	<style>
 		thead th { text-align:left; background: lightgrey;}
 	</style>
-	
+
 	<style>
 ul {
     list-style-type: none;
@@ -48,8 +50,7 @@ li a:hover {
     background-color: #111;
 }
 </style>
-  
-		
+	
 	</head>
 	<c:if test="${sessionScope.guest==null}">
 		<c:redirect url="./login.jsp" />
@@ -65,32 +66,28 @@ li a:hover {
   		<li class="navbar-right"><a href="./LogoutController">Logout</a></li>
 	</ul>
 	<div class="container">
-		<h2 align="center">Restorans List</h2>
-		<table class="table table-hover,sortable">
-			<thead class="sortable">
+	<h2 align="center">Friends List</h2>
+		<table class="table table-hover">
+			<thead>
 				<tr>
 					<th>Name</th>
-					<th>Description</th>
-					<th>Distance </th>
-					<th>Average rating</th>
-					<th>Your and friends rating</th>
-					<th> Reservation </th>
+					<th>LastName</th>
+					<th> &nbsp; </th>
 				</tr>
 			</thead>
 			<tbody>
-			<c:forEach items="${restorani}" var="restoran">
+			<c:forEach items="${potencialFriends}" var="friend">
 				<tr>
-					<td>${restoran.name}</td>
-					<td>${restoran.description}</td>	
-					<td> 769m </td>	
-					<td>5</td>
-					<td>5</td>
-					<td><input type="button" class="btn btn-lg btn-primary btn-block" name="reserve" value="Reserve" onclick=""></td>
+					<td>${friend.name}</td>
+					<td>${friend.lastName}</td>
+					<td><input type="button" class="btn btn-lg btn-primary btn-block" name="reserve" value="Add" onclick="./AddFriendController"></td>
 				</tr>
 				</c:forEach>
 			</tbody>
+			
 		</table>
 		</div>
+		
 		
 	</body>	
 </html>

@@ -36,8 +36,10 @@ public class GuestDaoBean extends GenericDaoBean<Guest, Integer> implements Gues
 		List<Guest> allGuests = findAll();
 		Guest guest = findById(id);
 		for(Guest g : allGuests) {
-			if(!guest.getFriends().contains(g)){
-				result.add(g);
+			if(id.intValue() !=g.getId().intValue()) {
+				if(!guest.getFriends().contains(g)){
+					result.add(g);
+				}
 			}
 		}
 		return result;
@@ -49,7 +51,7 @@ public class GuestDaoBean extends GenericDaoBean<Guest, Integer> implements Gues
 		List<Guest> allGuests = findAll();
 		Guest guest = findById(id);
 		for(Guest g : allGuests) {
-			if(guest.getFriends().contains(g)){
+			if(guest.getFriends().contains(g) && g.getId().intValue() != id.intValue()){
 				result.add(g);
 			}
 		}

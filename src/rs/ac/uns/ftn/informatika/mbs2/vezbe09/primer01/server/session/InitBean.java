@@ -8,6 +8,7 @@ import javax.persistence.PersistenceContext;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Admin;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Dish;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Gorivo;
+import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Guest;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Korisnik;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Manager;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Menjac;
@@ -49,23 +50,26 @@ public class InitBean implements Init {
 		dish.setRestoran(restoran);
 		em.persist(dish);
 		
-		Korisnik korisnik = new Korisnik("Admin", "Admin", "admin", "admin");
-		em.persist(korisnik);
+		Guest guest = new Guest();
+		guest.setName("Pera");
+		guest.setLastName("Peric");
+		guest.setEmail("pera@gmail.com");
+		guest.setPassword("pera");
+		guest.setAdress("Milenka Grcica 35/12, Novi Sad");
+		em.persist(guest);
 		
-		Gorivo dizel = new Gorivo();
-		dizel.setTipGoriva("Dizel");
-		em.persist(dizel);
+		Guest guest2 = new Guest();
+		guest2.setName("Zika");
+		guest2.setLastName("Zikic");
+		guest2.setEmail("zika@gmail.com");
+		guest2.setPassword("zika");
+		guest2.setAdress("Stevana Gudurica 18, Irig");
+		guest2.addFriend(guest);
+		em.persist(guest2);
 		
-		Gorivo benzin = new Gorivo();
-		benzin.setTipGoriva("Benzin");
-		em.persist(benzin);
+		guest.addFriend(guest2);
+		em.merge(guest);
 		
-		Menjac automatski = new Menjac();
-		automatski.setTipMenjaca("Automatski");
-		em.persist(automatski);
 		
-		Menjac rucni = new Menjac();
-		rucni.setTipMenjaca("Manuelni");
-		em.persist(rucni);
 	}
 }

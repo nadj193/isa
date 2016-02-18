@@ -40,10 +40,11 @@ li a:hover {
   		<ul>
   	  	  <li><a href="guestHome.jsp">HomePage</a></li>
   		  <li><a class="active" href="guestProfile.jsp">Your profile</a></li>
-		  <li><a href="updateGuest.jsp">Edit profile</a></li>
-		  <li><a href="guestRestoran.jsp">Restorans List</a></li>
-		  <li><a href="friends">Friends List</a></li>
-		  <li class="navbar-right"><a href="./LogoutController">Logout</a></li>
+ 		  <li><a href="updateGuest.jsp">Edit profile</a></li>
+  		  <li><a href="guestRestoran.jsp">Restorans List</a></li>
+  		  <li><a href="./PrepareFriendsController">Friends List</a></li>
+  		  <li><a href="./PrepareAddFriendsController">Add Friends</a></li>
+  		  <li class="navbar-right"><a href="./LogoutController">Logout</a></li>
   		</ul>
    	<h2 align="center">Profile settings</h2>
 	<div class="col-md-4 col-md-offset-4 panel panel-default">
