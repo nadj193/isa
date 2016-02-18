@@ -46,6 +46,12 @@
 	}
 	</style>
 	
+	<script>
+	function message() {
+		alert("Mail with activation link is sent on your email account. Please chack your mail, you can't login before activation your account!");
+	}
+	</script>
+	
 	</head>
 
 	<body>
@@ -55,7 +61,7 @@
 	</ul>
 	<h2 align="center">Registration</h2>
 		<div class="col-md-4 col-md-offset-4 panel panel-default">
-		<form action="./RegistrationController" method="post" class="prijavaForma" accept-charset="ISO-8859-1">
+		<form action="./PrepareRegisterController" method="post" class="prijavaForma" accept-charset="ISO-8859-1">
 			<div class="form-group">
 				<label for="name">Name:</label>
 				<input type="text" id="name" name="name" class="form-control" placeholder="name">
@@ -74,10 +80,10 @@
 			</div>	
 			<div class="form-group">
 				<label for="password">Repeat password:</label>
-				<input type="password" id="password" name="password" class="form-control" placeholder="password">
+				<input type="password" id="repeatpassword" name="repeatpassword" class="form-control" placeholder="password">
 			</div>
 			<div class="form-group">
-			<input type="submit" class="btn btn-lg btn-primary btn-block" name="submit" value="Sign up"/>
+			<input type="submit" class="btn btn-lg btn-primary btn-block" name="submit" value="Sign up" onclick="message();"/>
 			</div>					
 		</form>
 		</div>

@@ -2,14 +2,34 @@
 <web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
    
    <servlet>
+      <servlet-name>SaveRestoranTableConfiguration</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.SaveRestoranTableConfiguration</servlet-class>
+   </servlet>
+   
+   <servlet>
+      <servlet-name>PrepareTableConfigurationController</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.PrepareTableConfigurationController</servlet-class>
+   </servlet>
+   
+   <servlet>
+      <servlet-name>RegistrationSuccessController</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.RegistrationSuccessController</servlet-class>
+   </servlet>
+   
+   <servlet>
       <servlet-name>AddRestoranTableController</servlet-name>
       <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.AddRestoranTableController</servlet-class>
    </servlet>
    
      <servlet>
+      <servlet-name>PrepareRegisterController</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.PrepareRegisterController</servlet-class>
+  	 </servlet>
+   
+     <servlet>
       <servlet-name>PrepareUpdateRestoranController</servlet-name>
       <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.PrepareUpdateRestoranController</servlet-class>
-   </servlet>
+  	 </servlet>
    
    <servlet>
       <servlet-name>CreateDishController</servlet-name>
@@ -132,9 +152,29 @@
    </servlet>
    
    <servlet-mapping>
+      <servlet-name>SaveRestoranTableConfiguration</servlet-name>
+      <url-pattern>/SaveRestoranTableConfiguration</url-pattern>
+	</servlet-mapping>
+	
+   <servlet-mapping>
+      <servlet-name>PrepareTableConfigurationController</servlet-name>
+      <url-pattern>/PrepareTableConfigurationController</url-pattern>
+	</servlet-mapping>
+	
+   <servlet-mapping>
+      <servlet-name>RegistrationSuccessController</servlet-name>
+      <url-pattern>/RegistrationSuccessController</url-pattern>
+	</servlet-mapping>
+   
+   <servlet-mapping>
       <servlet-name>AddRestoranTableController</servlet-name>
       <url-pattern>/AddRestoranTableController</url-pattern>
-   </servlet-mapping>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+      <servlet-name>PrepareRegisterController</servlet-name>
+      <url-pattern>/PrepareRegisterController</url-pattern>
+   	</servlet-mapping>
    
    <servlet-mapping>
       <servlet-name>PrepareUpdateRestoranController</servlet-name>

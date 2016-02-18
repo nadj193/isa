@@ -58,7 +58,7 @@
 		<form action="./LoginController" method="post" class="prijavaForma" accept-charset="ISO-8859-1">
 			<div class="form-group">
 				<label for="email">Email:</label>
-				<input type="text" id="email" name="email" class="form-control" placeholder="email">
+				<input type="text" id="email" name="email" class="form-control" placeholder="email" autofocus>
 			</div>
 			<div class="form-group">
 				<label for="password">Password:</label>
