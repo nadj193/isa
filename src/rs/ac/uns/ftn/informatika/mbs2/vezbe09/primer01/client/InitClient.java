@@ -6,6 +6,8 @@ import javax.naming.NamingException;
 
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.Init;
 
+
+
 public class InitClient {
 
 	public static void main(String args[]) {
@@ -17,5 +19,7 @@ public class InitClient {
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}
+		
+		
 	}
 }
