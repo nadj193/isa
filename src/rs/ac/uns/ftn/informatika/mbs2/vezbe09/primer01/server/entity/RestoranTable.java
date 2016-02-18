@@ -5,10 +5,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="restoranTable")
+@NamedQueries({
+@NamedQuery(name = "findRestoranTableConfiguration", query = "SELECT t FROM RestoranTable t WHERE t.restoran.id = :restoran_id")
+})
 public class RestoranTable {
 	
 	@Id
@@ -27,7 +34,11 @@ public class RestoranTable {
 	
 	@Column(name = "ordinal", unique = false, nullable = false)
 	private Integer ordinal;
-
+	
+	@ManyToOne
+	@JoinColumn(name = "restoran_id", referencedColumnName = "restoran_id", nullable = false)
+	private Restoran restoran;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -66,6 +77,14 @@ public class RestoranTable {
 
 	public void setOrdinal(Integer ordinal) {
 		this.ordinal = ordinal;
+	}
+	
+	public Restoran getRestoran() {
+		return restoran;
+	}
+
+	public void setRestoran(Restoran restoran) {
+		this.restoran = restoran;
 	}
 
 	public RestoranTable(){}

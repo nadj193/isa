@@ -3,6 +3,7 @@ package rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet;
 import java.io.IOException;
 import java.util.List;
 
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -11,12 +12,17 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Restoran;
+import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.RestoranTable;
+import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.RestoranTableDaoLocal;
 
 public class SaveRestoranTableConfiguration extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 	
 	private static Logger log = Logger.getLogger(CreateController.class);
+	
+	@EJB
+	private RestoranTableDaoLocal restoranTableDao;
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -36,8 +42,12 @@ public class SaveRestoranTableConfiguration extends HttpServlet {
 				if (i != -1) {
 					int row = position/8;
 					int column = position%8;
-					//TODO create new restoran table
-					//add table to restoran table configuration
+					RestoranTable table = new RestoranTable();
+					table.setRow(row);
+					table.setColumn(column);
+					table.setOrdinal(tableOrdinal);
+					table.setRestoran(restoran);
+					restoranTableDao.persist(table);
 					tableOrdinal++;
 				}
 				position++;

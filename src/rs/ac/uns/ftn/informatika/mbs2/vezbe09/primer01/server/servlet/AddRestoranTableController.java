@@ -1,8 +1,6 @@
 package rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.ServletException;

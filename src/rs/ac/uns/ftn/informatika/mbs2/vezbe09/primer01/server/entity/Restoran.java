@@ -38,6 +38,9 @@ public class Restoran implements Serializable{
 	@OneToMany(cascade = { ALL }, fetch = LAZY, mappedBy = "restoran")
 	private Set<Dish> menu = new HashSet<Dish>();
 	
+	@OneToMany(cascade = {ALL}, fetch = LAZY, mappedBy = "restoran")
+	private Set<RestoranTable> tableConfiguration = new HashSet<RestoranTable>();
+	
 	//TODO add ocena, konfiguracija stolova 
 	
 	public void addManager(Manager m) {
@@ -62,6 +65,18 @@ public class Restoran implements Serializable{
 	public void removeDish(Dish d) {
 		d.setRestoran(null);
 		menu.remove(d);
+	}
+	
+	public void addTable(RestoranTable t) {
+		if (t.getRestoran() != null)
+			t.getRestoran().getTableConfiguration().remove(t);
+		t.setRestoran(this);
+		tableConfiguration.add(t);
+	}
+
+	public void removeTable(RestoranTable t) {
+		t.setRestoran(null);
+		tableConfiguration.remove(t);
 	}
 	
 	public Integer getId() {
@@ -102,6 +117,15 @@ public class Restoran implements Serializable{
 
 	public void setMenu(Set<Dish> menu) {
 		this.menu = menu;
+	}
+	
+	
+	public Set<RestoranTable> getTableConfiguration() {
+		return tableConfiguration;
+	}
+
+	public void setTableConfiguration(Set<RestoranTable> tableConfiguration) {
+		this.tableConfiguration = tableConfiguration;
 	}
 
 	public Restoran() {}

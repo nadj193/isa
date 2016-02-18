@@ -81,10 +81,5 @@
     		</tr>
     	<%}%>
     </table>
-    <form action="./SaveRestoranTableConfiguration" method="post" class="saveRestoranTableConfigurationForm" accept-charset="ISO-8859-1">
-    <div class="form-group">
-			<input type="submit" name="submit" value="Save"/>
-	</div>
-	</form>
 </body>
 </html>
