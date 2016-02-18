@@ -1,8 +1,13 @@
 package rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -17,6 +22,31 @@ public class Guest extends User implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
+	@ManyToMany
+	@JoinTable(
+		      name="friends",
+		      joinColumns=@JoinColumn(name="guest1", referencedColumnName="user_id"),
+		      inverseJoinColumns=@JoinColumn(name="guest2", referencedColumnName="user_id"))
+	private Set<Guest> friends = new HashSet<Guest>();
+	
+	public void addFriend(Guest g) {
+		if (this.friends != null)
+			this.friends.remove(g);
+		this.friends.add(g);
+	}
+
+	public void removeFriend(Guest g) {
+		this.friends.remove(g);
+	}
+	
+	public Set<Guest> getFriends() {
+		return friends;
+	}
+
+	public void setFriends(Set<Guest> friends) {
+		this.friends = friends;
+	}
+
 	public Guest() {}
 
 	public Guest(String name, String lastName, String email, String password) {
