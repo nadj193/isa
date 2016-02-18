@@ -1,10 +1,12 @@
 package rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.persistence.Query;
 
-import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Admin;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Guest;
 
 @Stateless
@@ -13,7 +15,6 @@ public class GuestDaoBean extends GenericDaoBean<Guest, Integer> implements Gues
 
 	@Override
 	public Guest findGuest(String email, String password) {
-		// TODO Auto-generated method stub
 		Query q = em.createNamedQuery("findGuest");
 		q.setParameter("email", email);
 		q.setParameter("password", password);
@@ -26,6 +27,19 @@ public class GuestDaoBean extends GenericDaoBean<Guest, Integer> implements Gues
 		Query q = em.createNamedQuery("findGuestWithEmail");
 		q.setParameter("email", email);
 		Guest result = (Guest) q.getSingleResult();
+		return result;
+	}
+
+	@Override
+	public List<Guest> findPotencialFriends(Integer id) {
+		List<Guest> result = new ArrayList<Guest>();
+		List<Guest> allGuests = findAll();
+		Guest guest = findById(id);
+		for(Guest g : allGuests) {
+			if(!guest.getFriends().contains(g)){
+				result.add(g);
+			}
+		}
 		return result;
 	}
 
