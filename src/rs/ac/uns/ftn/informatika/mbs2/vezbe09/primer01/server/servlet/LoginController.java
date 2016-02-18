@@ -14,11 +14,13 @@ import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Admin;
+import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Guest;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Manager;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.AdminDaoLocal;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.DishDaoLocal;
-import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.KorisnikDaoLocal;
+import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.GuestDaoLocal;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.ManagerDaoLocal;
+import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.RestoranDaoLocal;
 
 public class LoginController extends HttpServlet {
 
@@ -27,13 +29,16 @@ public class LoginController extends HttpServlet {
 	private static Logger log = Logger.getLogger(LoginController.class);
 
 	@EJB
-	private KorisnikDaoLocal korisnikDao;
+	private RestoranDaoLocal restoranDao;
 	
 	@EJB
 	private AdminDaoLocal adminDao;
 	
 	@EJB
 	private ManagerDaoLocal managerDao;
+	
+	@EJB
+	private GuestDaoLocal guestDao;
 	
 	@EJB DishDaoLocal dishDao;
 
@@ -83,8 +88,22 @@ public class LoginController extends HttpServlet {
 						getServletContext().getRequestDispatcher("/manager_home.jsp").forward(request, response);
 					}
 				} catch (EJBException exp) {
-					if (exp.getCause().getClass().equals(NoResultException.class)) {
-						response.sendRedirect(response.encodeRedirectURL("./login.jsp"));
+					if (e.getCause().getClass().equals(NoResultException.class)) {
+						try {
+							Guest guest = guestDao.findGuest(korisnickoIme, lozinka);
+							if(guest != null) {	
+								System.out.println("GUEST LOG USAO");
+								HttpSession session = request.getSession(true);
+								session.setAttribute("guest", guest);
+								log.info("Guest " + guest.getName() + " se prijavio.");
+								request.getSession().setAttribute("restorani", restoranDao.findAll());
+								getServletContext().getRequestDispatcher("/guestHome.jsp").forward(request, response);
+							}
+						} catch (EJBException exp1) {
+							if (exp1.getCause().getClass().equals(NoResultException.class)) {
+								response.sendRedirect(response.encodeRedirectURL("./login.jsp"));
+							}
+						}
 					}
 				}
 			}

@@ -5,7 +5,8 @@
 <!doctype html>
 <html>
 <head>
-<title>Determine Click Position on click of a table cell</title>
+<title>Define restoran's table configuration</title>
+<link href="./bootstrap.min.css" rel="stylesheet" type="text/css" />
 <!--CSS -->
 <style>
 		ul {
@@ -64,32 +65,7 @@
  
             var column_num = parseInt( $(this).index() ) + 1;
             var row_num = parseInt( $(this).parent().index() )+1;    
-            $("#result").html( "Row_num =" + row_num + "  ,  Rolumn_num ="+ column_num );
             window.location.href = "./AddRestoranTableController?row=" +  row_num + "&column=" + column_num;
-            
-            /* var sendData = { 'row' : row_num, 'column' : column_num};
-			
-			$.ajax({
-				type: 'post',
-				url: 'AddRestoranTableController',
-				dataType: 'text',
-				data: sendData,
-				success: function(data)
-				{
-					var obj = JSON.parse(data);
-					alert("Servlet je vratio " + obj.ordinal);
-					window.location = "tableConfiguration.jsp";
-				},
-				error: function(data)
-				{
-					var obj = JSON.parse(data);
-					alert("Servlet je vratio " + obj.ordinal);
-					window.location = "tableConfiguration.jsp";
-					alert("Greska prilikom izmene kategorije.");
-				}
-				
-				
-			}); */
         });
     });
 </script>
@@ -106,7 +82,11 @@
 
 <!--Table -->    
 <div id="result"> </div>
-    <table id="myTable" border="1" style="border-collapse: collapse;" cellpadding="15">
+<br/>
+<h2 align="center">Define restoran's table configuration</h2>
+<br/><br/>
+	<div class="col-md-4 col-md-offset-4 panel panel-default">
+    <table id="myTable" border="1" style="border-collapse: collapse;" cellpadding="15" class="table table-hover">
     	<%if (restoranTables == null) {%>
     		<!--1st ROW-->
         <tr>
@@ -182,10 +162,12 @@
     	<%}
     	}%>
     </table>
+    <br/>
     <form action="./SaveRestoranTableConfiguration" method="post" class="saveRestoranTableConfigurationForm" accept-charset="ISO-8859-1">
     <div class="form-group">
-			<input type="submit" name="submit" value="Save"/>
+			<input type="submit" class="btn btn-lg btn-primary btn-block" name="submit" value="Save"/>
 	</div>
 	</form>
+    </div>
 </body>
 </html>

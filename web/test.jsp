@@ -70,33 +70,33 @@ li a:hover {
 			</thead>
 			<tbody>
 				<tr>
-					<td>Iriski</td>
-					<td>Lep</td>	
-					<td> 769m </td>	
-					<td>5</td>
+					<td>Ariski</td>
+					<td>Bep</td>	
+					<td> 169m </td>	
+					<td>1</td>
 					<td>5</td>
 					<td><input type="button" class="btn btn-lg btn-primary btn-block" name="reserve" value="Reserve" onclick=""></td>
 				</tr>
 				<tr>
-					<td>Novosadski</td>
-					<td>Lepsi</td>	
+					<td>Bovosadski</td>
+					<td>Aepsi</td>	
 					<td> 22769m </td>	
 					<td>5</td>
 					<td>5</td>
 					<td><input type="button" class="btn btn-lg btn-primary btn-block" name="reserve" value="Reserve" onclick=""></td>
 				</tr>
 				<tr>
-					<td>Rumski</td>
-					<td>Krs</td>	
+					<td>Cumski</td>
+					<td>Drs</td>	
 					<td> 40769m </td>	
 					<td>2</td>
 					<td>3</td>
 					<td><input type="button" class="btn btn-lg btn-primary btn-block" name="reserve" value="Reserve" onclick=""></td>
 				</tr>
 				<tr>
-					<td>Kovacevic</td>
-					<td>Lep</td>	
-					<td> 456 </td>	
+					<td>Dovacevic</td>
+					<td>LFep</td>	
+					<td> 56 </td>	
 					<td>4</td>
 					<td>5</td>
 					<td><input type="button" class="btn btn-lg btn-primary btn-block" name="reserve" value="Reserve" onclick=""></td>

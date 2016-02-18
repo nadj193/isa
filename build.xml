@@ -58,6 +58,8 @@
 	      <zipfileset dir="${web}">
 	        <include name="*.jsp"/>
 	      	<include name="*.css"/>
+	      	<include name="*.jpg"/>
+	      	<include name="images/**" />
 	      	<include name="*.js"/>
 	      </zipfileset>
 	      <classes dir="build">

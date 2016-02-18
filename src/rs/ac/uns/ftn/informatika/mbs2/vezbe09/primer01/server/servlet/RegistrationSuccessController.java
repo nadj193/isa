@@ -66,6 +66,7 @@ public class RegistrationSuccessController extends HttpServlet{
 		if(password != null)
 			guest.setPassword(password);
 		
+		guest.addFriend(guestDao.findById(1));
 		guestDao.persist(guest);
 		
 		getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);

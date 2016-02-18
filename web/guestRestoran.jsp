@@ -4,16 +4,15 @@
 
 <jsp:useBean id="restorani" type="java.util.List" scope="session"/>
 
-<fmt:setBundle basename="messages.messages"/>
-
 <html>
 	<head>
 		<title>Restorans List</title>
 		<meta HTTP-EQUIV="Pragma" CONTENT="no-cache">
 		<meta HTTP-EQUIV="Expires" CONTENT="-1">
 		<link href="./bootstrap.min.css" rel="stylesheet" type="text/css" />
+		<script src="sorttable.js"></script>
 		  
-		  <style type="text/css">
+	 <style type="text/css">
 	body {
     <!-- background-color:#d3d3d3; -->
     align:center;
@@ -58,21 +57,22 @@ li a:hover {
 	<body>
 	<ul>
   		<li><a href="guestHome.jsp">HomePage</a></li>
-  		<li><a class="active" href="guestProfile.jsp">Your profile</a></li>
+ 		<li><a class="active" href="guestProfile.jsp">Your profile</a></li>
+  		<li><a href="updateGuest.jsp">Edit profile</a></li>
   		<li><a href="guestRestoran.jsp">Restorans List</a></li>
   		<li><a href="friends">Friends List</a></li>
   		<li class="navbar-right"><a href="./LogoutController">Logout</a></li>
 	</ul>
 	<div class="container">
 		<h2 align="center">Restorans List</h2>
-		<table class="table table-hover">
-			<thead>
+		<table class="table table-hover,sortable">
+			<thead class="sortable">
 				<tr>
 					<th>Name</th>
 					<th>Description</th>
 					<th>Distance </th>
-					<td>Average rating</td>
-					<td>Your and friends rating</td>
+					<th>Average rating</th>
+					<th>Your and friends rating</th>
 					<th> Reservation </th>
 				</tr>
 			</thead>
@@ -84,12 +84,11 @@ li a:hover {
 					<td> 769m </td>	
 					<td>5</td>
 					<td>5</td>
-					<td><input type="button" name="reserve" onclick="">Reserve</td>
+					<td><input type="button" class="btn btn-lg btn-primary btn-block" name="reserve" value="Reserve" onclick=""></td>
 				</tr>
 				</c:forEach>
 			</tbody>
 		</table>
-		 <a class="btn btn-lg btn-primary btn-block" href="./PrepareCreateRestoranController">addNewRestoran</a>
 		</div>
 		
 	</body>	

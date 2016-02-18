@@ -61,7 +61,7 @@ public class PrepareRegisterController extends HttpServlet {
 		javax.mail.Message msg = new MimeMessage(session);
 		try {
 			msg.setFrom(new InternetAddress("iprojekat@gmail.com"));
-			msg.setRecipients(RecipientType.TO, InternetAddress.parse(email));
+			msg.setRecipients(RecipientType.TO, InternetAddress.parse("nadjdavor@gmail.com"));
 			msg.setSubject("Registracija");
 			msg.setText("Registrovao se korisnik novi!!Jeee");
 			msg.setContent("<p>Ovo je automatska poruka namenjena za registraciju na sajt Restorana. "

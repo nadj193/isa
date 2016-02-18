@@ -5,7 +5,7 @@
 <!doctype html>
 <html>
 <head>
-<title>Determine Click Position on click of a table cell</title>
+<title>Restoran table configuration</title>
 <link href="./bootstrap.min.css" rel="stylesheet" type="text/css" />
 <!--CSS -->
 <style>
@@ -70,7 +70,10 @@
 
 <!--Table -->    
 <div id="result"> </div>
-    <table id="myTable" border="1" style="border-collapse: collapse;" cellpadding="15">  	
+<h2 align="center">Restoran table configuration</h2>
+<br/><br/>
+	<div class="col-md-4 col-md-offset-4 panel panel-default">
+    <table id="myTable" border="1" style="border-collapse: collapse;" cellpadding="15" class="table table-hover">  	
     	<%for(int i = 0; i < 5; i++){%>
     		<tr>
     		<% for(int j = 0; j < 8; j++){
@@ -83,5 +86,6 @@
     		</tr>
     	<%}%>
     </table>
+    </div>
 </body>
 </html>

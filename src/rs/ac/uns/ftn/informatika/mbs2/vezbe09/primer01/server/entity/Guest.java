@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -21,6 +22,9 @@ import javax.persistence.Table;
 public class Guest extends User implements Serializable{
 
 	private static final long serialVersionUID = 1L;
+	
+	@Column(name = "guest_adress", unique = false, nullable = true)
+	private String adress;
 	
 	@ManyToMany
 	@JoinTable(
@@ -46,12 +50,30 @@ public class Guest extends User implements Serializable{
 	public void setFriends(Set<Guest> friends) {
 		this.friends = friends;
 	}
+	
+	
+
+	public String getAdress() {
+		return adress;
+	}
+
+	public void setAdress(String adress) {
+		this.adress = adress;
+	}
 
 	public Guest() {}
 
 	public Guest(String name, String lastName, String email, String password) {
 		super(name, lastName, email, password);
 	}
+
+	public Guest(String adress, Set<Guest> friends) {
+		super();
+		this.adress = adress;
+		this.friends = friends;
+	}
+	
+	
 	
 	
 	

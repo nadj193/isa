@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
+	<title>Login</title>
 	<link href="./bootstrap.min.css" rel="stylesheet" type="text/css" />
 	<style type="text/css">
 	body {
