@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
    
+   <servlet>
+      <servlet-name>AddRestoranTableController</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.AddRestoranTableController</servlet-class>
+   </servlet>
+   
      <servlet>
       <servlet-name>PrepareUpdateRestoranController</servlet-name>
       <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.PrepareUpdateRestoranController</servlet-class>
@@ -125,6 +130,11 @@
       <servlet-name>DeleteController</servlet-name>
       <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.DeleteController</servlet-class>
    </servlet>
+   
+   <servlet-mapping>
+      <servlet-name>AddRestoranTableController</servlet-name>
+      <url-pattern>/AddRestoranTableController</url-pattern>
+   </servlet-mapping>
    
    <servlet-mapping>
       <servlet-name>PrepareUpdateRestoranController</servlet-name>
