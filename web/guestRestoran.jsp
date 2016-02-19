@@ -76,6 +76,7 @@ li a:hover {
 					<th>Average rating</th>
 					<th>Your and friends rating</th>
 					<th> Reservation </th>
+					<th> &nbsp; </th>
 				</tr>
 			</thead>
 			<tbody>
@@ -86,7 +87,8 @@ li a:hover {
 					<td><%=((Restoran)restorani.get(i)).getDistance()%></td>	
 					<td><%=((Restoran)restorani.get(i)).getAverageRate()%></td>
 					<td><%=((Restoran)restorani.get(i)).getAverageRateByGuestAndFriends(((Guest)guest).getId(),((Guest)guest).getFriends())%></td>
-					<td><input type="button" class="btn btn-lg btn-primary btn-block" name="reserve" value="Reserve" onclick=""></td>
+					<td><%=((Restoran)restorani.get(i)).getAverageRate()%></td>
+					<td><a href="./ShowRestoranMenuController?restoranId=<%=((Restoran)restorani.get(i)).getId()%>">Restoran menu</a></td>
 				</tr>
 			<%}%>
 			<!--

@@ -2,6 +2,8 @@ package rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,8 +19,10 @@ import javax.persistence.Table;
 @NamedQueries({
 @NamedQuery(name = "findGuestRate", query = "SELECT r FROM Rate r WHERE r.guest.id = :guest_id")
 })
-public class Rate {
-	
+public class Rate implements Serializable{
+
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 	@Column(name = "rate_id", unique = true, nullable = false)
