@@ -1,7 +1,6 @@
 package rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -13,7 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Guest;
+import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Restoran;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.GuestDaoLocal;
+import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.RateDaoLocal;
+import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.RestoranDaoLocal;
 
 public class PrepareAddFriendsController extends HttpServlet{
 
@@ -23,6 +25,12 @@ public class PrepareAddFriendsController extends HttpServlet{
 
 	@EJB
 	private GuestDaoLocal guestDao;
+	
+	@EJB
+	private RestoranDaoLocal restoranDao;
+	
+	@EJB
+	private RateDaoLocal rateDao;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -39,6 +47,8 @@ public class PrepareAddFriendsController extends HttpServlet{
 			List<Guest> potencialFriend= guestDao.findPotencialFriends(guest.getId());
 			
 			request.getSession().setAttribute("potencialFriends", potencialFriend);
+			
+			
 
 			getServletContext().getRequestDispatcher("/addFriends.jsp").forward(request, response);
 

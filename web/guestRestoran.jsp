@@ -83,7 +83,7 @@ li a:hover {
 					<td>${restoran.name}</td>
 					<td>${restoran.description}</td>	
 					<td> 769m </td>	
-					<td>5</td>
+					<td>${restoran.rating}</td>
 					<td>5</td>
 					<td><input type="button" class="btn btn-lg btn-primary btn-block" name="reserve" value="Reserve" onclick=""></td>
 				</tr>

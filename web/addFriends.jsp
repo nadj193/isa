@@ -65,13 +65,14 @@ li a:hover {
   		<li><a href="./PrepareAddFriendsController">Add Friends</a></li>
   		<li class="navbar-right"><a href="./LogoutController">Logout</a></li>
 	</ul>
-	<div class="container">
+	<div class="container"> 
 	<h2 align="center">Friends List</h2>
 		<table class="table table-hover">
 			<thead>
 				<tr>
 					<th>Name</th>
 					<th>LastName</th>
+					<th> &nbsp; </th>
 					<th> &nbsp; </th>
 				</tr>
 			</thead>
@@ -80,7 +81,8 @@ li a:hover {
 				<tr>
 					<td>${friend.name}</td>
 					<td>${friend.lastName}</td>
-					<td><input type="button" class="btn btn-lg btn-primary btn-block" name="reserve" value="Add" onclick="./AddFriendController"></td>
+					<td><input type="hidden" name="id" value="${friend.id}"></td>
+					<td><a href="./AddFriendController?id=${friend.id}">Add to friends list</a></td> 
 				</tr>
 				</c:forEach>
 			</tbody>

@@ -2,6 +2,11 @@
 <web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
    
    <servlet>
+      <servlet-name>FaceController</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.FaceController</servlet-class>
+   </servlet>
+   
+   <servlet>
       <servlet-name>AddFriendController</servlet-name>
       <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.AddFriendController</servlet-class>
    </servlet>
@@ -170,6 +175,11 @@
       <servlet-name>DeleteController</servlet-name>
       <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.DeleteController</servlet-class>
    </servlet>
+   
+   <servlet-mapping>
+      <servlet-name>FaceController</servlet-name>
+      <url-pattern>/FaceController</url-pattern>
+	</servlet-mapping>
    
    <servlet-mapping>
       <servlet-name>AddFriendController</servlet-name>

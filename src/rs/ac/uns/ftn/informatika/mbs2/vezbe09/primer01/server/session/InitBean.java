@@ -7,11 +7,9 @@ import javax.persistence.PersistenceContext;
 
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Admin;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Dish;
-import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Gorivo;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Guest;
-import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Korisnik;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Manager;
-import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Menjac;
+import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Rate;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Restoran;
 
 @Stateless
@@ -69,6 +67,24 @@ public class InitBean implements Init {
 		
 		guest.addFriend(guest2);
 		em.merge(guest);
+		
+		Guest guest3 = new Guest();
+		guest3.setName("Mika");
+		guest3.setLastName("Mikic");
+		guest3.setEmail("mika@gmail.com");
+		guest3.setPassword("mika");
+		guest3.setAdress("Stevana Gudurica 26, Irig");
+		em.persist(guest3);
+		
+		Rate ocena = new Rate();
+		ocena.setValue(4);
+		ocena.setRestoran(restoran);
+		ocena.setGuest(guest3);
+		
+		Rate ocena2 = new Rate();
+		ocena2.setValue(5);
+		ocena2.setRestoran(restoran);
+		ocena2.setGuest(guest2);
 		
 		
 	}

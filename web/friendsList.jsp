@@ -13,6 +13,7 @@
   	<meta HTTP-EQUIV="Pragma" CONTENT="no-cache">
 	<meta HTTP-EQUIV="Expires" CONTENT="-1">
 	<link href="./bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<script src="sorttable.js"></script>
 			
 	  <style type="text/css">
 	body {
@@ -67,8 +68,8 @@ li a:hover {
 	</ul>
 	<div class="container">
 	<h2 align="center">Friends List</h2>
-		<table class="table table-hover">
-			<thead>
+		<table class="table table-hover,sortable">
+			<thead class="sortable">
 				<tr>
 					<th>Name</th>
 					<th>LastName</th>

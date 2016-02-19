@@ -9,6 +9,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -33,7 +34,7 @@ public class Guest extends User implements Serializable{
 	@OneToMany(cascade = {ALL}, fetch = LAZY, mappedBy = "guest")
 	private Set<Rate> restoranRates = new HashSet<Rate>();
 	
-	@ManyToMany(cascade = {ALL}, fetch = LAZY)
+	@ManyToMany(cascade = {ALL}, fetch = FetchType.EAGER)
 	@JoinTable(
 		      name="friends",
 		      joinColumns=@JoinColumn(name="guest1", referencedColumnName="user_id"),
@@ -41,13 +42,17 @@ public class Guest extends User implements Serializable{
 	private Set<Guest> friends = new HashSet<Guest>();
 	
 	public void addFriend(Guest g) {
-		if (this.friends != null)
-			this.friends.remove(g);
-		this.friends.add(g);
+		if (g.getFriends() != null) {
+			g.getFriends().add(this);
+		}
+		friends.add(g);
 	}
 
 	public void removeFriend(Guest g) {
-		this.friends.remove(g);
+		if (g.getFriends() != null) {
+			g.getFriends().remove(this);
+		}
+		friends.remove(g);
 	}
 	
 	public void addRate(Rate r) {
