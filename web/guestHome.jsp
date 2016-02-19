@@ -57,7 +57,36 @@ li a:hover {
   <li><a href="./PrepareAddFriendsController">Add Friends</a></li>
   <li class="navbar-right"><a href="./LogoutController">Logout</a></li>
 </ul>
-	<h2>Home page</h2>
+	<div class="container">
+		<h2 align="center">My visits</h2>
+		<table class="table table-hover,sortable">
+			<thead class="sortable">
+				<tr>
+					<th>Restoran</th>
+					<th>Date</th>
+					<th>Rating</th>
+					<th>Friends</th>
+					<th> &nbsp; </th>
+				</tr>
+			</thead>
+			<tbody>
+			<tr>
+				<td>Dva stapica</td>
+				<td>21.02.2015</td>	
+				<td>5.0</td>	
+				<td>Mika, Pera</td>
+				<td><a href="./PrepareRateRestoranController?visitedRestoranId=1">Rate</a></td>
+			</tr>
+			<tr>
+				<td>Dunavska terasa</td>
+				<td>25.02.2015</td>	
+				<td>5.0</td>	
+				<td>Mika, Pera</td>
+				<td><a href="./PrepareRateRestoranController?visitedRestoranId=1">Rate</a></td>
+			</tr>
+			</tbody>
+		</table>
+		</div>
 </body>
 </html>
 		

@@ -97,7 +97,7 @@ public class LoginController extends HttpServlet {
 								session.setAttribute("guest", guest);
 								log.info("Guest " + guest.getName() + " se prijavio.");
 								request.getSession().setAttribute("restorani", restoranDao.findAll());
-								getServletContext().getRequestDispatcher("/guestHome.jsp").forward(request, response);
+								getServletContext().getRequestDispatcher("/PrepareGuestHomeController").forward(request, response);
 							}
 						} catch (EJBException exp1) {
 							if (exp1.getCause().getClass().equals(NoResultException.class)) {

@@ -2,6 +2,21 @@
 <web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
    
    <servlet>
+      <servlet-name>PrepareGuestHomeController</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.PrepareGuestHomeController</servlet-class>
+   </servlet>
+   
+   <servlet>
+      <servlet-name>PrepareRateRestoranController</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.PrepareRateRestoranController</servlet-class>
+   </servlet>
+   
+   <servlet>
+      <servlet-name>RateRestoranController</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.RateRestoranController</servlet-class>
+   </servlet>
+   
+   <servlet>
       <servlet-name>ShowRestoranMenuController</servlet-name>
       <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.ShowRestoranMenuController</servlet-class>
    </servlet>
@@ -181,6 +196,21 @@
       <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.DeleteController</servlet-class>
    </servlet>
    
+   <servlet-mapping>
+      <servlet-name>PrepareGuestHomeController</servlet-name>
+      <url-pattern>/PrepareGuestHomeController</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+      <servlet-name>PrepareRateRestoranController</servlet-name>
+      <url-pattern>/PrepareRateRestoranController</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+      <servlet-name>RateRestoranController</servlet-name>
+      <url-pattern>/RateRestoranController</url-pattern>
+	</servlet-mapping>
+	
    <servlet-mapping>
       <servlet-name>ShowRestoranMenuController</servlet-name>
       <url-pattern>/ShowRestoranMenuController</url-pattern>
