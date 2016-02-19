@@ -2,8 +2,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <%@ page import="rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Restoran" %>
+<%@ page import="rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Guest" %>
 <jsp:useBean id="restorani" type="java.util.List" scope="session"/>
-
+<jsp:useBean id="guest" type="rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Guest" scope="session"/>
 <html>
 	<head>
 		<title>Restorans List</title>
@@ -84,7 +85,7 @@ li a:hover {
 					<td><%=((Restoran)restorani.get(i)).getDescription()%></td>	
 					<td><%=((Restoran)restorani.get(i)).getDistance()%></td>	
 					<td><%=((Restoran)restorani.get(i)).getAverageRate()%></td>
-					<td>5</td>
+					<td><%=((Restoran)restorani.get(i)).getAverageRateByGuestAndFriends(((Guest)guest).getId(),((Guest)guest).getFriends())%></td>
 					<td><input type="button" class="btn btn-lg btn-primary btn-block" name="reserve" value="Reserve" onclick=""></td>
 				</tr>
 			<%}%>

@@ -6,10 +6,12 @@ import static javax.persistence.GenerationType.IDENTITY;
 
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -41,8 +43,11 @@ public class Restoran implements Serializable{
 	@OneToMany(cascade = {ALL}, fetch = LAZY, mappedBy = "restoran")
 	private Set<RestoranTable> tableConfiguration = new HashSet<RestoranTable>();
 	
-	@OneToMany(cascade = {ALL}, fetch = LAZY, mappedBy = "restoran")
+	@OneToMany(cascade = {ALL}, fetch = FetchType.EAGER, mappedBy = "restoran")
 	private Set<Rate> rating = new HashSet<Rate>(); 
+	
+	@Column(name = "restoran_distance", unique = false, nullable = true)
+	private int distance;
 	
 	public void addManager(Manager m) {
 		if (m.getRestoran() != null)
@@ -150,7 +155,11 @@ public class Restoran implements Serializable{
 	}
 	
 	public int getDistance() {
-		return 100 + (int)(Math.random() * ((2000 - 100) + 1));
+		return distance;
+	}
+	
+	public void setDistance(int distance) {
+		this.distance = distance;
 	}
 	
 	public float getAverageRate() {
@@ -163,25 +172,23 @@ public class Restoran implements Serializable{
 		if (counter == 0) {
 			return 0;
 		}
-		return sum/counter;
+		return (float)sum/counter;
 	}
 	
-	public float getAverageRateByGuestAndFriends(Integer guestId) {
+	public float getAverageRateByGuestAndFriends(Integer guestId, Set<Guest> friends) {
 		int counter = 0;
 		int sum = 0;
-		Guest guest = null;
 		for(Rate r : rating) {
 			if(r.getGuest().getId().intValue() == guestId.intValue()){
 				sum += r.getValue();
 				counter++;
-				guest = r.getGuest();
 				break;
 			}
 		}
 		
-		if (guest != null) {
+		if (friends != null) {
 			for(Rate r : rating) {
-				for (Guest g : guest.getFriends()){
+				for (Guest g : friends){
 					if(r.getGuest().getId().intValue() == g.getId().intValue()) {
 						sum+=r.getValue();
 						counter++;
@@ -192,7 +199,7 @@ public class Restoran implements Serializable{
 		if(counter == 0) {
 			return 0;
 		}
-		return sum/counter;
+		return (float)sum/counter;
 	}
 	
 	public Restoran() {}

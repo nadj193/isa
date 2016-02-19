@@ -39,6 +39,7 @@ public class InitBean implements Init {
 		restoran.setName("Dva stapica");
 		restoran.setDescription("kineski restoran");
 		restoran.addManager(manager);
+		restoran.setDistance(100 + (int)(Math.random() * ((2000 - 100) + 1)));
 		em.persist(restoran);
 		
 		Dish dish = new Dish();
@@ -80,12 +81,13 @@ public class InitBean implements Init {
 		ocena.setValue(4);
 		ocena.setRestoran(restoran);
 		ocena.setGuest(guest3);
+		em.persist(ocena);
 		
 		Rate ocena2 = new Rate();
 		ocena2.setValue(5);
 		ocena2.setRestoran(restoran);
 		ocena2.setGuest(guest2);
-		
+		em.persist(ocena2);
 		
 	}
 }

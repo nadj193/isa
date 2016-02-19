@@ -1,9 +1,6 @@
 package rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet;
 
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -14,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Restoran;
-import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Vozilo;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.GorivoDaoLocal;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.MenjacDaoLocal;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.RestoranDaoLocal;
@@ -65,6 +61,8 @@ public class CreateRestoranController extends HttpServlet {
 			
 			if(description != null)
 				restoran.setDescription(description);
+			
+			restoran.setDistance(100 + (int)(Math.random() * ((2000 - 100) + 1)));
 			
 			restoranDao.persist(restoran);
 
