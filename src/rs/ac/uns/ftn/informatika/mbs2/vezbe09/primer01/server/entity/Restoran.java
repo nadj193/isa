@@ -148,7 +148,53 @@ public class Restoran implements Serializable{
 	public void setRating(Set<Rate> rating) {
 		this.rating = rating;
 	}
-
+	
+	public int getDistance() {
+		return 100 + (int)(Math.random() * ((2000 - 100) + 1));
+	}
+	
+	public float getAverageRate() {
+		int counter = 0;
+		int sum = 0;
+		for(Rate r : rating) {
+			sum += r.getValue();
+			counter++;
+		}
+		if (counter == 0) {
+			return 0;
+		}
+		return sum/counter;
+	}
+	
+	public float getAverageRateByGuestAndFriends(Integer guestId) {
+		int counter = 0;
+		int sum = 0;
+		Guest guest = null;
+		for(Rate r : rating) {
+			if(r.getGuest().getId().intValue() == guestId.intValue()){
+				sum += r.getValue();
+				counter++;
+				guest = r.getGuest();
+				break;
+			}
+		}
+		
+		if (guest != null) {
+			for(Rate r : rating) {
+				for (Guest g : guest.getFriends()){
+					if(r.getGuest().getId().intValue() == g.getId().intValue()) {
+						sum+=r.getValue();
+						counter++;
+					}
+				}
+			}
+		}
+		if(counter == 0) {
+			return 0;
+		}
+		return sum/counter;
+	}
+	
 	public Restoran() {}
 	
 	public Restoran(String name, String description, Set<Manager> managers, Set<Dish> menu) {

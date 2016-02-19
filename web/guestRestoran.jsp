@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
-
+<%@ page import="rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Restoran" %>
 <jsp:useBean id="restorani" type="java.util.List" scope="session"/>
 
 <html>
@@ -78,16 +78,27 @@ li a:hover {
 				</tr>
 			</thead>
 			<tbody>
+			<%for(int i=0; i < restorani.size(); i++){%>
+				<tr>
+					<td><%=((Restoran)restorani.get(i)).getName()%></td>
+					<td><%=((Restoran)restorani.get(i)).getDescription()%></td>	
+					<td><%=((Restoran)restorani.get(i)).getDistance()%></td>	
+					<td><%=((Restoran)restorani.get(i)).getAverageRate()%></td>
+					<td>5</td>
+					<td><input type="button" class="btn btn-lg btn-primary btn-block" name="reserve" value="Reserve" onclick=""></td>
+				</tr>
+			<%}%>
+			<!--
 			<c:forEach items="${restorani}" var="restoran">
 				<tr>
 					<td>${restoran.name}</td>
 					<td>${restoran.description}</td>	
-					<td> 769m </td>	
+					<td>796</td>	
 					<td>${restoran.rating}</td>
 					<td>5</td>
 					<td><input type="button" class="btn btn-lg btn-primary btn-block" name="reserve" value="Reserve" onclick=""></td>
 				</tr>
-				</c:forEach>
+				</c:forEach>-->
 			</tbody>
 		</table>
 		</div>
