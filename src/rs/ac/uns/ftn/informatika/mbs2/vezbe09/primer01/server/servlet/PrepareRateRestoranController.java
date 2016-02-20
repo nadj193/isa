@@ -33,10 +33,7 @@ public class PrepareRateRestoranController extends HttpServlet {
 		Integer id = Integer.parseInt(request.getParameter("visitedRestoranId"));
 		String date = request.getParameter("visitDate");
 		String duration = request.getParameter("visitDuration");
-		
-		System.out.println(" id je: " +id);
-		System.out.println("Date " + date);
-		System.out.println("Duration " + duration);
+		String visitFriends = request.getParameter("visitFriends");
 		
 		try {
 			
@@ -50,6 +47,7 @@ public class PrepareRateRestoranController extends HttpServlet {
 			request.getSession().setAttribute("visitedRestoran", restoran);
 			request.getSession().setAttribute("visitDate", date);
 			request.getSession().setAttribute("visitDuration", duration);
+			request.getSession().setAttribute("visitFriends", visitFriends);
 			
 			getServletContext().getRequestDispatcher("/rateRestoran.jsp").forward(request, response);
 

@@ -41,7 +41,7 @@ public class PrepareRegisterController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 
-		testLocal.test();
+		
 		String name = request.getParameter("name");
 		String lastName = request.getParameter("lastName");
 		String email = request.getParameter("email");
@@ -55,18 +55,11 @@ public class PrepareRegisterController extends HttpServlet {
 		}
 		else
 		{
-		
-		/*Guest guest = new Guest();
-		guest.setName(name);
-		guest.setLastName(lastName);
-		guest.setEmail(email);
-		guest.setPassword(password);
-		
-		request.getSession().setAttribute("user", guest);
-		*/
+	
 		
 		javax.mail.Message msg = new MimeMessage(session);
 		try {
+			testLocal.test();
 			msg.setFrom(new InternetAddress("iprojekat@gmail.com"));
 			msg.setRecipients(RecipientType.TO, InternetAddress.parse("nadjdavor@gmail.com"));
 			msg.setSubject("Registracija");
@@ -90,31 +83,6 @@ public class PrepareRegisterController extends HttpServlet {
 		System.out.println("MESSAGE BEAN: Mail was sent successfully.");
 		getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
 		
-		/*
-		
-		try {
-			
-			if ((request.getSession().getAttribute("admin")) == null) {
-				response.sendRedirect(response.encodeURL("./login.jsp"));
-				return;
-			}
-
-
-			String voziloId = request.getParameter("voziloId");
-
-			if ((voziloId != null) && (!voziloId.equals(""))) {
-				request.setAttribute("vozilo", voziloDao.findById(Integer.parseInt(voziloId)));
-				getServletContext().getRequestDispatcher("/update.jsp").forward(request, response);
-			}
-			
-		} catch (ServletException e) {
-			log.error(e);
-			throw e;
-		} catch (IOException e) {
-			log.error(e);
-			throw e;
-		}
-		*/
 		}
 	}
 

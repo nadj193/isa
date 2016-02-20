@@ -25,6 +25,7 @@ import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Guest;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Restoran;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.GuestDaoLocal;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.RestoranDaoLocal;
+import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.TestLocal;
 
 public class ReservationStep4Controller extends HttpServlet{
 
@@ -37,6 +38,9 @@ public class ReservationStep4Controller extends HttpServlet{
 
 	@EJB
 	private GuestDaoLocal guestDao;
+	
+	@EJB 
+	private TestLocal testLocal;
 	
 	@Resource(name="Mail")
 	Session session;
@@ -113,6 +117,7 @@ public class ReservationStep4Controller extends HttpServlet{
 			for(int i=0;i<friendsCallList.size();i++) {
 			javax.mail.Message msg = new MimeMessage(session);
 			try {
+				testLocal.test();
 				System.out.println("Saljemo mejl");
 				msg.setFrom(new InternetAddress("iprojekat@gmail.com"));
 				msg.setRecipients(RecipientType.TO, InternetAddress.parse(friendsCallList.get(i).getEmail()));

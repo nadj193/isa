@@ -81,7 +81,7 @@ li a:hover {
 					<td><%=((Reservation)visitedRestorans.get(i)).getDate()%></td>	
 					<td><%=((Restoran)((Reservation)visitedRestorans.get(i)).getRestoran()).getAverageRate()%></td>	
 					<td><%=guestFriends.get(i)%></td>
-					<td><a href="./PrepareRateRestoranController?visitedRestoranId=<%=((Restoran)((Reservation)visitedRestorans.get(i)).getRestoran()).getId()%>&visitDate=<%=((Reservation)visitedRestorans.get(i)).getDate()%> &visitDuration=<%=((Reservation)visitedRestorans.get(i)).getDuration()%> ">Rate</a></td>
+					<td><a href="./PrepareRateRestoranController?visitedRestoranId=<%=((Restoran)((Reservation)visitedRestorans.get(i)).getRestoran()).getId()%>&visitDate=<%=((Reservation)visitedRestorans.get(i)).getDate()%> &visitDuration=<%=((Reservation)visitedRestorans.get(i)).getDuration()%>&visitFriends=<%=guestFriends.get(i)%> ">Rate</a></td>
 				</tr>
 			<%}%>
 			<tr>
