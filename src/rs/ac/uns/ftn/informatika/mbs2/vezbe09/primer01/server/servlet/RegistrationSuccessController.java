@@ -28,46 +28,45 @@ public class RegistrationSuccessController extends HttpServlet{
 		
 		try {
 			
-		Admin admin = (Admin)request.getSession().getAttribute("user");
+		Guest guest = (Guest)request.getSession().getAttribute("user");
 		
 		String name = null;
 		String lastName = null;
 		String email = null;
 		String password = null;
 		
-		if ((admin.getName() != null) && (!"".equals(admin.getName()))) {
-			name = admin.getName();
+		if ((guest.getName() != null) && (!"".equals(guest.getName()))) {
+			name = guest.getName();
 		}
 
-		if ((admin.getLastName() != null) && (!"".equals(admin.getLastName()))) {
-			lastName = admin.getLastName();
+		if ((guest.getLastName() != null) && (!"".equals(guest.getLastName()))) {
+			lastName = guest.getLastName();
 		}
 		
-		if ((admin.getEmail() != null) && (!"".equals(admin.getEmail()))) {
-			email = admin.getEmail();
+		if ((guest.getEmail() != null) && (!"".equals(guest.getEmail()))) {
+			email = guest.getEmail();
 		}
 
-		if ((admin.getPassword() != null) && (!"".equals(admin.getPassword()))) {
-			password = admin.getPassword();
+		if ((guest.getPassword() != null) && (!"".equals(guest.getPassword()))) {
+			password = guest.getPassword();
 		}
 		
 		
-		Guest guest = new Guest();
+		Guest newGuest = new Guest();
 		
 		if(name != null)
-			guest.setName(name);
+			newGuest.setName(name);
 		
 		if(lastName != null)
-			guest.setLastName(lastName);
+			newGuest.setLastName(lastName);
 		
 		if(email != null)
-			guest.setEmail(email);
+			newGuest.setEmail(email);
 		
 		if(password != null)
-			guest.setPassword(password);
+			newGuest.setPassword(password);
 		
-		guest.addFriend(guestDao.findById(1));
-		guestDao.persist(guest);
+		guestDao.persist(newGuest);
 		
 		getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
 		return;

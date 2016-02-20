@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
-import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Admin;
+import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Guest;
 
 
 public class PrepareRegisterController extends HttpServlet {
@@ -49,13 +49,13 @@ public class PrepareRegisterController extends HttpServlet {
 		else
 		{
 		
-		Admin admin = new Admin();
-		admin.setName(name);
-		admin.setLastName(lastName);
-		admin.setEmail(email);
-		admin.setPassword(password);
+		Guest guest = new Guest();
+		guest.setName(name);
+		guest.setLastName(lastName);
+		guest.setEmail(email);
+		guest.setPassword(password);
 		
-		request.getSession().setAttribute("user", admin);
+		request.getSession().setAttribute("user", guest);
 		
 		
 		javax.mail.Message msg = new MimeMessage(session);

@@ -41,7 +41,14 @@ private static Logger log = Logger.getLogger(AddFriendController.class);
 			List<Reservation> reservations = reservationDao.findAll();
 			
 			request.getSession().setAttribute("visitedRestorans", reservations);
-			request.getSession().setAttribute("guestFriends", guestDao.getFriendsList(guest.getId()));
+			List<Guest> friends = guestDao.getFriendsList(guest.getId());
+			String guestFriends = new String();
+			for(Guest g : friends) {
+				System.out.println("Friend " + g.getName());
+				guestFriends += g.getName() + " ";
+			}
+			System.out.println(guestFriends);
+			request.getSession().setAttribute("guestFriends", guestFriends);
 			
 			getServletContext().getRequestDispatcher("/guestHome.jsp").forward(request, response);
 

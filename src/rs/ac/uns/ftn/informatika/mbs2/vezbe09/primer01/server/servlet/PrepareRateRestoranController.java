@@ -32,7 +32,7 @@ public class PrepareRateRestoranController extends HttpServlet {
 		
 		Integer id = Integer.parseInt(request.getParameter("visitedRestoranId"));
 		String date = request.getParameter("visitDate");
-		String duration = request.getParameter("visitedDuration");
+		String duration = request.getParameter("visitDuration");
 		
 		System.out.println(" id je: " +id);
 		System.out.println("Date " + date);

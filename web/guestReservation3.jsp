@@ -145,8 +145,8 @@ ArrayList<Integer> checkedFriends = new ArrayList<Integer>();
         	<b><input type="text" id="dateandtime" name="dateandtime" class="form-control" value="${dateandtime}" readonly></b>
         </div>
         <div class="form-group">
-        	<label for="duration">Duration</label>
-        	<b><input type="text" min="1" max="24" id="duration" name = "duration" class="form-control" value="${duration} hours" readonly></b>
+        	<label for="duration">Duration(hours)</label>
+        	<b><input type="text" min="1" max="24" id="duration" name = "duration" class="form-control" value="${duration}" readonly></b>
         </div>
         <div class="form-group">
         <label for="friend">Call friends</label> &nbsp;&nbsp;&nbsp;
@@ -164,7 +164,7 @@ ArrayList<Integer> checkedFriends = new ArrayList<Integer>();
 				<tr>
 					<td>${friend.name}</td>
 					<td>${friend.lastName}</td>
-					<td><input type="checkbox" id="check" name="check" value="${friend.id}" onclick = foo()>Check</td> 
+					<td><input type="checkbox" id="check" name="check" value="${friend.id}">Check</td> 
 					<td><input type="hidden" name="friendId" value="${friend.id}" /></td>
 				</tr>
 				</c:forEach>
@@ -173,7 +173,7 @@ ArrayList<Integer> checkedFriends = new ArrayList<Integer>();
 		</div>
         
         <div class="form-group">
-			<input type="submit" class="btn btn-lg btn-primary btn-block" name="submit" value="Next>>"/>
+			<input type="submit" class="btn btn-lg btn-primary btn-block" name="submit" value="Confirm"/>
 			<input type="hidden" name="restoranId" value="${restoran.id}" />
 		</div>
 		 </form>

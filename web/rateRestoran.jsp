@@ -3,6 +3,7 @@
 <jsp:useBean id="visitedRestoran" type="rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Restoran" scope="session"/>
 <jsp:useBean id="visitDate" type="java.lang.String" scope="session"/>
 <jsp:useBean id="visitDuration" type="java.lang.String" scope="session"/>
+<jsp:useBean id="guestFriends" type="java.lang.String" scope="session"/>
 <html>
 <head>
 	<link href="./bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -88,7 +89,7 @@ function validate2() {
         </div>
         <div class="form-group">
         	<label for="friends">Friends</label>
-        	<input type="text" id="friends" name = "friends" class="form-control" value="Mika, Zika" readonly>
+        	<input type="text" id="friends" name = "friends" class="form-control" value="${guestFriends}" readonly>
         </div>
         <div class="form-group">
         	<label for="rate">Rate</label>
