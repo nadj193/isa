@@ -94,13 +94,23 @@ public class ReservationStep4Controller extends HttpServlet{
 			}
 			
 			request.getSession().setAttribute("friendsCallList",friendsCallList);
+			String friendsCallString = new String();
+			for(int i=0;i<friendsCallList.size();i++)
+			{
+				friendsCallString += " "+friendsCallList.get(i).getName() + ",";
+			}
 			
+			//ukloni razmak sa pocetka i zarez na kraju stringa
+			if (friendsCallString.length() > 0 && friendsCallString.charAt(friendsCallString.length()-1)==',') {
+				friendsCallString = friendsCallString.substring(0, friendsCallString.length()-1);
+				friendsCallString = friendsCallString.substring(1);
+			    }
 			
-			
+			request.getSession().setAttribute("friendsCallString",friendsCallString);
 			
 			
 			System.out.println("sriprema za slanje mejla.");
-			/*for(int i=0;i<friendsCallList.size();i++) {
+			for(int i=0;i<friendsCallList.size();i++) {
 			javax.mail.Message msg = new MimeMessage(session);
 			try {
 				System.out.println("Saljemo mejl");
@@ -110,7 +120,7 @@ public class ReservationStep4Controller extends HttpServlet{
 				msg.setText("Your friend "+ guest.getName() + " call you in restoran " + restoran.getName());
 				msg.setContent("<p>Ovo je automatska poruka namenjena za potvrdu posete restoranu. "
 		         		+ "Kliknite na link da biste odgovorili na poziv.</p>"
-		         		+ "<a href='http://localhost:8080/Vezbe09/ShowConfirmComingController?id="+UUID.randomUUID().toString()+"'>Confirm your arrival</a>",
+		         		+ "<a href='http://localhost:8080/Vezbe09/ShowConfirmComingController?restoranId="+restoranId+"&friendId="+friendsCallList.get(i).getId()+"&id="+UUID.randomUUID().toString()+"'>Confirm your arrival</a>",
 	                     "text/html" );
 				msg.setSentDate(new Date());
 				
@@ -127,8 +137,8 @@ public class ReservationStep4Controller extends HttpServlet{
 			
 
 			System.out.println("MESSAGE BEAN: Mail was sent successfully.");
-			}*/
-			getServletContext().getRequestDispatcher("/friendConfirmationComing.jsp").forward(request, response);
+			}
+			getServletContext().getRequestDispatcher("/guestHome.jsp").forward(request, response);
 			
 		} catch (ServletException e) {
 			log.error(e);

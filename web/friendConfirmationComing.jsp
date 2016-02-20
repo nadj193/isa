@@ -3,6 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <%@ page import="java.util.ArrayList" %>
 <jsp:useBean id="friendsCallList" type="java.util.ArrayList" scope="session"/>
+<jsp:useBean id="friendsCallString" type="java.lang.String" scope="session"/>
 <!DOCTYPE html>
 <jsp:useBean id="restoran" type="rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Restoran" scope="session"/>
 <jsp:useBean id="dateandtime" type="java.lang.String" scope="session"/>
@@ -69,12 +70,12 @@ li a:hover {
         </div>
         <div class="form-group">
         	<label for="friends">Friends</label>
-        	<b><input type="text" id="friends" name="friends" class="form-control" value="${friendsCallList.name}" readonly></b>
+        	<b><input type="text" id="friends" name="friends" class="form-control" value="${friendsCallString}" readonly></b>
         </div>
         
         <div class="form-group">
-			<input type="submit" class="btn btn-lg btn-primary btn-block" name="submit" value="Coming"/>
-			<input type="submit" class="btn btn-lg btn-primary btn-block" name="submit" value="Not coming"/>
+			<a href="./ReservationConfirmController?restoranId=${reservation.id}" class="btn btn-lg btn-primary btn-block" >Coming</a>
+			<a href="./login.jsp" class="btn btn-lg btn-primary btn-block" >Not coming </a>
 			<input type="hidden" name="restoranId" value="${restoran.id}" />
 		</div>
 		 </form>

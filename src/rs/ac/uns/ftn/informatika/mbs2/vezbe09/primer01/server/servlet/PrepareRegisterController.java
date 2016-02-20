@@ -2,9 +2,11 @@ package rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet;
 
 import java.io.IOException;
 import java.util.Date;
-import java.util.UUID;
 
 import javax.annotation.Resource;
+import javax.ejb.ActivationConfigProperty;
+import javax.ejb.EJB;
+import javax.ejb.MessageDriven;
 import javax.mail.MessagingException;
 import javax.mail.Session;
 import javax.mail.Transport;
@@ -19,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
-import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Guest;
+import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.TestLocal;
 
 
 public class PrepareRegisterController extends HttpServlet {
@@ -30,11 +32,16 @@ public class PrepareRegisterController extends HttpServlet {
 	
 	@Resource(name="Mail")
 	Session session;
+	
+	@EJB 
+	private TestLocal testLocal;
 
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+
+		testLocal.test();
 		String name = request.getParameter("name");
 		String lastName = request.getParameter("lastName");
 		String email = request.getParameter("email");
@@ -49,14 +56,14 @@ public class PrepareRegisterController extends HttpServlet {
 		else
 		{
 		
-		Guest guest = new Guest();
+		/*Guest guest = new Guest();
 		guest.setName(name);
 		guest.setLastName(lastName);
 		guest.setEmail(email);
 		guest.setPassword(password);
 		
 		request.getSession().setAttribute("user", guest);
-		
+		*/
 		
 		javax.mail.Message msg = new MimeMessage(session);
 		try {
@@ -66,7 +73,7 @@ public class PrepareRegisterController extends HttpServlet {
 			msg.setText("Registrovao se korisnik novi!!Jeee");
 			msg.setContent("<p>Ovo je automatska poruka namenjena za registraciju na sajt Restorana. "
 	         		+ "Kliknite na link da biste zavrsili registraciju.</p>"
-	         		+ "<a href='http://localhost:8080/Vezbe09/RegistrationSuccessController?id="+UUID.randomUUID().toString()+"'>Registrujte se</a>",
+	         		+ "<a href='http://localhost:8080/Vezbe09/RegistrationSuccessController?name="+name+"&lastName="+lastName+"&email="+email+"&password="+password+"'>Registrujte se</a>",
                      "text/html" );
 			msg.setSentDate(new Date());
 			
@@ -114,4 +121,5 @@ public class PrepareRegisterController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
+
 }

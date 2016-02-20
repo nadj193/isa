@@ -2,6 +2,11 @@
 <web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
   
   <servlet>
+      <servlet-name>ShowConfirmComingController</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.ShowConfirmComingController</servlet-class>
+   </servlet>
+  
+  <servlet>
       <servlet-name>ReservationStep4Controller</servlet-name>
       <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.ReservationStep4Controller</servlet-class>
    </servlet>
@@ -220,6 +225,11 @@
       <servlet-name>DeleteController</servlet-name>
       <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.DeleteController</servlet-class>
    </servlet>
+   
+   <servlet-mapping>
+      <servlet-name>ShowConfirmComingController</servlet-name>
+      <url-pattern>/ShowConfirmComingController</url-pattern>
+	</servlet-mapping>
    
    <servlet-mapping>
       <servlet-name>ReservationStep4Controller</servlet-name>

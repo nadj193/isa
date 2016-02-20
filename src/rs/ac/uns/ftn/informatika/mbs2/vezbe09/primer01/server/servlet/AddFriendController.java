@@ -52,7 +52,7 @@ public class AddFriendController extends HttpServlet{
 
 			request.getSession().setAttribute("friends", friendList);
 			
-			getServletContext().getRequestDispatcher("/friendsList.jsp").forward(request, response);
+			getServletContext().getRequestDispatcher("/addFriends.jsp").forward(request, response);
 
 		} catch (ServletException e) {
 			log.error(e);

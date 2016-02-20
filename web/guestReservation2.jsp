@@ -52,12 +52,19 @@ li a:hover {
 <script>
 function validate() {
 	var duration = document.getElementById("duration");
+	var dateandtime = document.getElementById("dateandtime");
 	if(duration.value < 1 || rate.value >24) {
 		alert("You must enter number from 1 to 24 for duration!");
 		return false;
 	} else {
-		return true;
-	  	
+		return true;  	
+	}
+	
+	if(dateandtime.value == "" || dateandtime.value==null || dateandtime.length==0 ) {
+		alert("You must select date and time!");
+		return false;
+	} else {
+		return true;  	
 	}
 }
 </script>

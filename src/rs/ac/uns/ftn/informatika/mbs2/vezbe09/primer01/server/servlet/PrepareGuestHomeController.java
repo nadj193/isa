@@ -44,12 +44,12 @@ private static Logger log = Logger.getLogger(AddFriendController.class);
 			List<Guest> friends = guestDao.getFriendsList(guest.getId());
 			String guestFriends = new String();
 			for(Guest g : friends) {
-				System.out.println("Friend " + g.getName());
+
 				guestFriends += g.getName() + " ";
 			}
-			System.out.println(guestFriends);
-			request.getSession().setAttribute("guestFriends", guestFriends);
 			
+			request.getSession().setAttribute("guestFriends", guestFriends);
+			request.getSession().setAttribute("friends", friends);
 			getServletContext().getRequestDispatcher("/guestHome.jsp").forward(request, response);
 
 		} catch (ServletException e) {
