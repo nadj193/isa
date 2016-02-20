@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <jsp:useBean id="visitedRestorans" type="java.util.List" scope="session"/>
-<jsp:useBean id="guestFriends" type="java.lang.String" scope="session"/>
+<jsp:useBean id="guestFriends" type="java.util.List" scope="session"/>
 <%@ page import="rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Reservation" %>
 <%@ page import="rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Restoran" %>
 <%@ page import="rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Guest" %>
@@ -80,7 +80,7 @@ li a:hover {
 					<td><%=((Restoran)((Reservation)visitedRestorans.get(i)).getRestoran()).getName()%></td>
 					<td><%=((Reservation)visitedRestorans.get(i)).getDate()%></td>	
 					<td><%=((Restoran)((Reservation)visitedRestorans.get(i)).getRestoran()).getAverageRate()%></td>	
-					<td><%=guestFriends%></td>
+					<td><%=guestFriends.get(i)%></td>
 					<td><a href="./PrepareRateRestoranController?visitedRestoranId=<%=((Restoran)((Reservation)visitedRestorans.get(i)).getRestoran()).getId()%>&visitDate=<%=((Reservation)visitedRestorans.get(i)).getDate()%> &visitDuration=<%=((Reservation)visitedRestorans.get(i)).getDuration()%> ">Rate</a></td>
 				</tr>
 			<%}%>

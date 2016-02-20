@@ -6,6 +6,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -14,6 +15,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -35,9 +37,8 @@ public class Reservation implements Serializable{
 	@Column(name= "reservation_duration", unique = false, nullable = false)
 	private Integer duration;
 	
-	@ManyToOne
-	@JoinColumn(name = "guest_id", referencedColumnName = "user_id", nullable = false)
-	private Guest guest;
+	@ManyToMany(mappedBy="reservations")
+	private Set<Guest> guests = new HashSet<Guest>();
 	
 	@ManyToOne
 	@JoinColumn(name = "restoran_id", referencedColumnName = "restoran_id", nullable = false)
@@ -45,6 +46,31 @@ public class Reservation implements Serializable{
 	
 	@OneToMany(cascade = {ALL}, fetch = FetchType.EAGER, mappedBy = "reservation")
 	private Set<RestoranTable> tables = new HashSet<RestoranTable>();
+	
+	public void addGuest(Guest g) {
+		if (g.getReservations() != null) {
+			g.getReservations().add(this);
+		}
+		guests.add(g);
+	}
+	
+	public void removeGuest(Guest g) {
+		Iterator<Guest> iter = guests.iterator();
+		while(iter.hasNext()) {
+			Guest guest = iter.next();
+			if(guest.getId().intValue() == g.getId().intValue()) {
+				iter.remove();
+			}
+		}
+		
+		Iterator<Reservation> iter1 = g.getReservations().iterator();
+		while(iter1.hasNext()) {
+			Reservation reservation = iter1.next();
+			if(reservation.getId().intValue() == this.id.intValue()) {
+				iter1.remove();
+			}
+		}
+	}
 	
 	public void addTable(RestoranTable t) {
 		if (t.getReservation() != null)
@@ -82,12 +108,12 @@ public class Reservation implements Serializable{
 		this.duration = duration;
 	}
 
-	public Guest getGuest() {
-		return guest;
+	public Set<Guest> getGuests() {
+		return guests;
 	}
 
-	public void setGuest(Guest guest) {
-		this.guest = guest;
+	public void setGuests(Set<Guest> guests) {
+		this.guests = guests;
 	}
 
 	public Restoran getRestoran() {
@@ -108,18 +134,18 @@ public class Reservation implements Serializable{
 	
 	public Reservation(){}
 	
-	public Reservation(Date date, Integer duration, Guest guest, Restoran restoran, Set<RestoranTable> tables) {
+	public Reservation(Date date, Integer duration, Set<Guest> guests, Restoran restoran, Set<RestoranTable> tables) {
 		super();
 		this.date = date;
 		this.duration = duration;
-		this.guest = guest;
+		this.guests = guests;
 		this.restoran = restoran;
 		this.tables = tables;
 	}
 
 	@Override
 	public String toString() {
-		return "Reservation [id=" + id + ", date=" + date + ", duration=" + duration + ", guest=" + guest
+		return "Reservation [id=" + id + ", date=" + date + ", duration=" + duration + ", guests=" + guests
 				+ ", restoran=" + restoran + ", tables=" + tables + "]";
 	}
 	

@@ -42,9 +42,13 @@ public class Guest extends User implements Serializable{
 		      inverseJoinColumns=@JoinColumn(name="guest2", referencedColumnName="user_id"))
 	private Set<Guest> friends = new HashSet<Guest>();
 	
-	@OneToMany(cascade = {ALL}, fetch = FetchType.EAGER, mappedBy = "guest")
+	@ManyToMany(cascade = {ALL}, fetch = FetchType.EAGER)
+	@JoinTable(
+		      name="guestReservation",
+		      joinColumns=@JoinColumn(name="guest", referencedColumnName="user_id"),
+		      inverseJoinColumns=@JoinColumn(name="reservation", referencedColumnName="reservation_id"))
 	private Set<Reservation> reservations = new HashSet<Reservation>();
-	
+		
 	public void addFriend(Guest g) {
 		if (g.getFriends() != null) {
 			g.getFriends().add(this);
@@ -80,18 +84,6 @@ public class Guest extends User implements Serializable{
 	public void removeRate(Rate r) {
 		r.setGuest(null);
 		restoranRates.remove(r);
-	}
-	
-	public void addReservation(Reservation r) {
-		if (r.getGuest() != null)
-			r.getGuest().getReservations().remove(r);
-		r.setGuest(this);
-		reservations.add(r);
-	}
-
-	public void removeReservation(Reservation r) {
-		r.setGuest(null);
-		reservations.remove(r);
 	}
 	
 	public Set<Guest> getFriends() {
