@@ -2,6 +2,8 @@
 <jsp:useBean id="restoran" type="rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Restoran" scope="session"/>
 <jsp:useBean id="dateandtime" type="java.lang.String" scope="session"/>
 <jsp:useBean id="duration" type="java.lang.String" scope="session"/>
+<jsp:useBean id="reservationTables" type="java.util.List" scope="session"/>
+<%@ page import="rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.RestoranTable" %>
 <html>
   <head >
     <meta charset="utf-8">
@@ -49,6 +51,31 @@ li a:hover {
 }
 </style>
 
+<style>
+    td{
+        cursor:pointer;
+        background: -moz-linear-gradient(top, #ffffff, #D1E3E9);
+        background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#ffffff), to(#D1E3E9));
+        text-align:center;
+    }
+ 
+    td:hover{
+        background: -moz-linear-gradient(top, #249ee4, #057cc0);
+        background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#249ee4), to(#057cc0));
+    }
+ 
+    td:active
+    {
+        background: -moz-linear-gradient(top, #057cc0, #249ee4);
+        background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#057cc0), to(#249ee4));
+    }
+ 
+    #result{
+        font-weight:bold;
+        font-size:16pt;
+    }
+</style>
+
 <script>
 function validate() {
 	var duration = document.getElementById("duration");
@@ -68,7 +95,17 @@ function validate() {
 	}
 }
 </script>
-
+<script  src="http://code.jquery.com/jquery-1.9.1.min.js" ></script>     
+<script>
+    $(document).ready(function(){
+        $("#myTable td").click(function() {     
+ 
+            var column_num = parseInt( $(this).index() ) + 1;
+            var row_num = parseInt( $(this).parent().index() )+1;    
+            window.location.href = "./AddReservationTableController?row=" +  row_num + "&column=" + column_num;
+        });
+    });
+</script>
 </head>
 <body>
 <ul>
@@ -96,6 +133,24 @@ function validate() {
         	<label for="duration">Duration(hours)</label>
         	<b><input type="text" min="1" max="24" id="duration" name = "duration" class="form-control" value="${duration}" readonly></b>
         </div>
+        <div class="col-md-4 col-md-offset-4 panel panel-default">
+    	<table id="myTable" border="1" style="border-collapse: collapse;" cellpadding="15" class="table table-hover">  	
+    	<%for(int i = 0; i < 5; i++){%>
+    		<tr>
+    		<% for(int j = 0; j < 8; j++){
+    			if ((RestoranTable)reservationTables.get(i*8+j) != null) {%>
+    				<%if(((RestoranTable)reservationTables.get(i*8+j)).getIsReserved()) {%>
+    					<td bgcolor='red'><%} else { %>
+    						<td bgcolor='green' > <%} %>
+    						<%=((RestoranTable)reservationTables.get(i*8+j)).getOrdinal()%></td>
+    			<%} else {%>
+    				<td>&nbsp;</td>
+    			<%}
+    		}%>
+    		</tr>
+    	<%}%>
+    	</table>
+    </div>
         <div class="form-group">
 			<input type="submit" class="btn btn-lg btn-primary btn-block" name="submit" value="Next>>" onclick="return validate();"/>
 			<input type="hidden" name="restoranId" value="${restoran.id}" />

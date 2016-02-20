@@ -1,6 +1,8 @@
 package rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -11,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Restoran;
+import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.RestoranTable;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.RestoranDaoLocal;
 
 public class ReservationStep2Controller extends HttpServlet{
@@ -48,16 +51,20 @@ public class ReservationStep2Controller extends HttpServlet{
 			
 			
 			Integer id = Integer.parseInt(restoranId);
-			
-			request.getSession().setAttribute("restoran", (Restoran)restoranDao.findById(id));
+			Restoran restoran = restoranDao.findById(id);
+			request.getSession().setAttribute("restoran", restoran);
 			request.getSession().setAttribute("dateandtime", dateAndTime);
 			request.getSession().setAttribute("duration", duration);
+			List<RestoranTable> reservationTables = new ArrayList<RestoranTable>();
+			for(int i = 0; i < 40; i++) {
+				reservationTables.add(null);
+			}
+			for(RestoranTable t : restoran.getTableConfiguration()){
+				int position = t.getRow()*8+t.getColumn();
+				reservationTables.set(position, t);
+			}
 			
-			
-			
-			
-			
-
+			request.getSession().setAttribute("reservationTables", reservationTables);
 			getServletContext().getRequestDispatcher("/guestReservation2.jsp").forward(request, response);
 			
 		} catch (ServletException e) {
