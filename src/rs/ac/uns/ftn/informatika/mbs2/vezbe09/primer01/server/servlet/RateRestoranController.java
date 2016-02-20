@@ -36,7 +36,13 @@ private static Logger log = Logger.getLogger(AddFriendController.class);
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String restoranName = request.getParameter("restoran");
 		System.out.println("Restoran " + restoranName);
-		Integer value = Integer.parseInt(request.getParameter("rate"));
+		String rateString = request.getParameter("rate");
+		
+		if (rateString == null || rateString.isEmpty() || rateString.equals("")) {
+			getServletContext().getRequestDispatcher("/guestHome.jsp").forward(request, response);
+		}
+		
+		Integer value = Integer.parseInt(rateString);
 		System.out.println(" Rate is: " +value);
 		
 		try {
@@ -45,6 +51,8 @@ private static Logger log = Logger.getLogger(AddFriendController.class);
 				response.sendRedirect(response.encodeURL("./login.jsp"));
 				return;
 			}
+			
+			
 			
 			Guest guest = (Guest) request.getSession().getAttribute("guest");
 			Restoran restoran = (Restoran)request.getSession().getAttribute("visitedRestoran");
@@ -66,6 +74,7 @@ private static Logger log = Logger.getLogger(AddFriendController.class);
 				rateDao.persist(rate);
 			}
 			
+			request.getSession().setAttribute("restorani", restoranDao.findAll());
 			getServletContext().getRequestDispatcher("/guestHome.jsp").forward(request, response);
 
 		} catch (ServletException e) {

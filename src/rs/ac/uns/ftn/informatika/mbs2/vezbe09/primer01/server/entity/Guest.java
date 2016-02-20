@@ -5,6 +5,7 @@ import static javax.persistence.FetchType.LAZY;
 
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -49,10 +50,21 @@ public class Guest extends User implements Serializable{
 	}
 
 	public void removeFriend(Guest g) {
-		if (g.getFriends() != null) {
-			g.getFriends().remove(this);
+		Iterator<Guest> iter = g.getFriends().iterator();
+		while(iter.hasNext()) {
+			Guest guest = iter.next();
+			if(guest.getId().intValue() == super.getId().intValue()) {
+				iter.remove();
+			}
 		}
-		friends.remove(g);
+		
+		Iterator<Guest> iter1 = friends.iterator();
+		while(iter1.hasNext()) {
+			Guest guest = iter1.next();
+			if(guest.getId().intValue() == g.getId().intValue()) {
+				iter1.remove();
+			}
+		}
 	}
 	
 	public void addRate(Rate r) {

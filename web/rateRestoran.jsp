@@ -35,6 +35,27 @@ li a:hover {
     background-color: #111;
 }
 </style>
+
+
+<script>
+function validate2() {
+	var rate = document.getElementById("rate");
+	if(rate.value >= 1 && rate.value < 6) {
+		return true;
+	} else {
+		alert("You must enter number from 1 to 5 for rate!");
+	  	return false;
+	}
+	  /* if(rate.value!='1' || rate.value!='2' || rate.value!='3' || rate.value!='4' || rate.value!='5')
+		  {
+	  	alert("You must enter number from 1 to 5 for rate!");
+	  	return false;
+		  }
+	  return true; */
+}
+</script>
+
+
 </head>
 
 <body>
@@ -69,10 +90,10 @@ li a:hover {
         </div>
         <div class="form-group">
         	<label for="rate">Rate</label>
-        	<input type="text" id="rate" name = "rate" class="form-control" value="0" autofocus>
+        	<input type="text" id="rate" name = "rate" class="form-control" value="1" maxlength='1' autofocus/>
         </div>
         <div class="form-group">
-			<input type="submit" class="btn btn-lg btn-primary btn-block" name="submit" value="Rate"/>
+			<input type="submit" class="btn btn-lg btn-primary btn-block" name="submit" value="Rate" onclick="return validate2();" />
 		</div>
       </form>
     </div>

@@ -7,15 +7,53 @@
 <fmt:setBundle basename="messages.messages"/>
 
 <html>
-<head>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Manager List</title>
-  	<meta HTTP-EQUIV="Pragma" CONTENT="no-cache">
-	<meta HTTP-EQUIV="Expires" CONTENT="-1">
+<head> 
+
 	<link href="./bootstrap.min.css" rel="stylesheet" type="text/css" />
 	<script src="sorttable.js"></script>
-			
-	  <style type="text/css">
+<script>
+(function(document) {
+	'use strict';
+
+	var LightTableFilter = (function(Arr) {
+
+		var _input;
+
+		function _onInputEvent(e) {
+			_input = e.target;
+			var tables = document.getElementsByClassName(_input.getAttribute('data-table'));
+			Arr.forEach.call(tables, function(table) {
+				Arr.forEach.call(table.tBodies, function(tbody) {
+					Arr.forEach.call(tbody.rows, _filter);
+				});
+			});
+		}
+
+		function _filter(row) {
+			var text = row.textContent.toLowerCase(), val = _input.value.toLowerCase();
+			row.style.display = text.indexOf(val) === -1 ? 'none' : 'table-row';
+		}
+
+		return {
+			init: function() {
+				var inputs = document.getElementsByClassName('light-table-filter');
+				Arr.forEach.call(inputs, function(input) {
+					input.oninput = _onInputEvent;
+				});
+			}
+		};
+	})(Array.prototype);
+
+	document.addEventListener('readystatechange', function() {
+		if (document.readyState === 'complete') {
+			LightTableFilter.init();
+		}
+	});
+
+})(document);
+</script>
+
+<style type="text/css">
 	body {
     <!-- background-color:#d3d3d3; -->
     align:center;
@@ -51,12 +89,12 @@ li a:hover {
     background-color: #111;
 }
 </style>
-	
-	</head>
+
+</head>
+<body>
 	<c:if test="${sessionScope.guest==null}">
 		<c:redirect url="./login.jsp" />
 	</c:if>
-	<body>
 	<ul>
   	  <li><a href="guestHome.jsp">HomePage</a></li>
   	  <li><a class="active" href="guestProfile.jsp">Your profile</a></li>
@@ -66,27 +104,38 @@ li a:hover {
   	  <li><a href="./PrepareAddFriendsController">Add Friends</a></li>
   	  <li class="navbar-right"><a href="./LogoutController">Logout</a></li>
 	</ul>
-	<div class="container">
+	<% if(friends.isEmpty()) { %>
+		<br /> <h1 align="center"> Friends list are empty </h1>
+		<% } else { %>
+	
+	<section class="container">
+
 	<h2 align="center">Friends List</h2>
-		<table class="table table-hover,sortable">
-			<thead class="sortable">
-				<tr>
-					<th>Name</th>
-					<th>LastName</th>
-				</tr>
-			</thead>
-			<tbody>
+
+	<input type="search" class="light-table-filter" data-table="order-table" placeholder="Filter">
+	<br />
+
+	<table class="table order-table table-hover sortable">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>LastName</th>
+				<th> &nbsp; </th>
+			</tr>
+		</thead>
+		<tbody>
 			<c:forEach items="${friends}" var="friend">
 				<tr>
 					<td>${friend.name}</td>
 					<td>${friend.lastName}</td>
+					<td><a href="./RemoveFriendController?id=${friend.id}">Remove friend from friends list</a></td> 
 				</tr>
 				</c:forEach>
-			</tbody>
-			
-		</table>
-		</div>
-		
+		</tbody>
+	</table>
+
+</section>
+<% } %>
 		
 	</body>	
 </html>

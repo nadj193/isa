@@ -66,9 +66,6 @@ public class InitBean implements Init {
 		guest2.addFriend(guest);
 		em.persist(guest2);
 		
-		guest.addFriend(guest2);
-		em.merge(guest);
-		
 		Guest guest3 = new Guest();
 		guest3.setName("Mika");
 		guest3.setLastName("Mikic");

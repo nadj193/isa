@@ -12,6 +12,48 @@
 		<meta HTTP-EQUIV="Expires" CONTENT="-1">
 		<link href="./bootstrap.min.css" rel="stylesheet" type="text/css" />
 		<script src="sorttable.js"></script>
+		
+		<script>
+(function(document) {
+	'use strict';
+
+	var LightTableFilter = (function(Arr) {
+
+		var _input;
+
+		function _onInputEvent(e) {
+			_input = e.target;
+			var tables = document.getElementsByClassName(_input.getAttribute('data-table'));
+			Arr.forEach.call(tables, function(table) {
+				Arr.forEach.call(table.tBodies, function(tbody) {
+					Arr.forEach.call(tbody.rows, _filter);
+				});
+			});
+		}
+
+		function _filter(row) {
+			var text = row.textContent.toLowerCase(), val = _input.value.toLowerCase();
+			row.style.display = text.indexOf(val) === -1 ? 'none' : 'table-row';
+		}
+
+		return {
+			init: function() {
+				var inputs = document.getElementsByClassName('light-table-filter');
+				Arr.forEach.call(inputs, function(input) {
+					input.oninput = _onInputEvent;
+				});
+			}
+		};
+	})(Array.prototype);
+
+	document.addEventListener('readystatechange', function() {
+		if (document.readyState === 'complete') {
+			LightTableFilter.init();
+		}
+	});
+
+})(document);
+</script>
 		  
 	 <style type="text/css">
 	body {
@@ -67,8 +109,10 @@ li a:hover {
 	</ul>
 	<div class="container">
 		<h2 align="center">Restorans List</h2>
-		<table class="table table-hover,sortable">
-			<thead class="sortable">
+		<input type="search" class="light-table-filter" data-table="order-table" placeholder="Filter">
+		<br />
+		<table class="table order-table table-hover sortable">
+			<thead>
 				<tr>
 					<th>Name</th>
 					<th>Description</th>
@@ -87,7 +131,7 @@ li a:hover {
 					<td><%=((Restoran)restorani.get(i)).getDistance()%></td>	
 					<td><%=((Restoran)restorani.get(i)).getAverageRate()%></td>
 					<td><%=((Restoran)restorani.get(i)).getAverageRateByGuestAndFriends(((Guest)guest).getId(),((Guest)guest).getFriends())%></td>
-					<td><%=((Restoran)restorani.get(i)).getAverageRate()%></td>
+					<td><a href="./ReservationStep1Controller?restoranId=<%=((Restoran)restorani.get(i)).getId()%>">Reservation</a></td>
 					<td><a href="./ShowRestoranMenuController?restoranId=<%=((Restoran)restorani.get(i)).getId()%>">Restoran menu</a></td>
 				</tr>
 			<%}%>

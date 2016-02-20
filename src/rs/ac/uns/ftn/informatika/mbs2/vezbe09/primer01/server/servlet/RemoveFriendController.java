@@ -14,20 +14,21 @@ import org.apache.log4j.Logger;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Guest;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.GuestDaoLocal;
 
-public class AddFriendController extends HttpServlet{
+
+
+public class RemoveFriendController extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;
 
-	private static Logger log = Logger.getLogger(AddFriendController.class);
+	private static Logger log = Logger.getLogger(RemoveFriendController.class);
 	
+
 	@EJB
 	private GuestDaoLocal guestDao;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		
-		Integer id = Integer.parseInt(request.getParameter("id"));
-		System.out.println(" id je: " +id);
 		
 		try {
 			
@@ -36,20 +37,21 @@ public class AddFriendController extends HttpServlet{
 				return;
 			}
 			
+			Integer id = Integer.parseInt(request.getParameter("id"));
+			
 			Guest guest = (Guest) request.getSession().getAttribute("guest");
 			Guest friend = (Guest)guestDao.findById(id);
 			
-
-			guest.addFriend(friend);
-			guestDao.merge(guest);
 			
+			guest.removeFriend(friend);
+			
+			guestDao.merge(guest);
 			
 			List<Guest> potencialFriend= guestDao.findPotencialFriends(guest.getId());
 			request.getSession().setAttribute("potencialFriends", potencialFriend);
 			
 
 			List<Guest> friendList = guestDao.getFriendsList(guest.getId());
-
 			request.getSession().setAttribute("friends", friendList);
 			
 			getServletContext().getRequestDispatcher("/friendsList.jsp").forward(request, response);
@@ -61,6 +63,7 @@ public class AddFriendController extends HttpServlet{
 			log.error(e);
 			throw e;
 		}
+		
 	
 	}
 

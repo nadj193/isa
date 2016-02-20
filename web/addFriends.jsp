@@ -13,6 +13,48 @@
   	<meta HTTP-EQUIV="Pragma" CONTENT="no-cache">
 	<meta HTTP-EQUIV="Expires" CONTENT="-1">
 	<link href="./bootstrap.min.css" rel="stylesheet" type="text/css" />
+		<script src="sorttable.js"></script>
+<script>
+(function(document) {
+	'use strict';
+
+	var LightTableFilter = (function(Arr) {
+
+		var _input;
+
+		function _onInputEvent(e) {
+			_input = e.target;
+			var tables = document.getElementsByClassName(_input.getAttribute('data-table'));
+			Arr.forEach.call(tables, function(table) {
+				Arr.forEach.call(table.tBodies, function(tbody) {
+					Arr.forEach.call(tbody.rows, _filter);
+				});
+			});
+		}
+
+		function _filter(row) {
+			var text = row.textContent.toLowerCase(), val = _input.value.toLowerCase();
+			row.style.display = text.indexOf(val) === -1 ? 'none' : 'table-row';
+		}
+
+		return {
+			init: function() {
+				var inputs = document.getElementsByClassName('light-table-filter');
+				Arr.forEach.call(inputs, function(input) {
+					input.oninput = _onInputEvent;
+				});
+			}
+		};
+	})(Array.prototype);
+
+	document.addEventListener('readystatechange', function() {
+		if (document.readyState === 'complete') {
+			LightTableFilter.init();
+		}
+	});
+
+})(document);
+</script>
 			
 	  <style type="text/css">
 	body {
@@ -67,12 +109,13 @@ li a:hover {
 	</ul>
 	<div class="container"> 
 	<h2 align="center">Friends List</h2>
-		<table class="table table-hover">
+	<input type="search" class="light-table-filter" data-table="order-table" placeholder="Filter">
+	<br />
+		<table class="table order-table table-hover sortable">
 			<thead>
 				<tr>
 					<th>Name</th>
 					<th>LastName</th>
-					<th> &nbsp; </th>
 					<th> &nbsp; </th>
 				</tr>
 			</thead>
@@ -81,7 +124,6 @@ li a:hover {
 				<tr>
 					<td>${friend.name}</td>
 					<td>${friend.lastName}</td>
-					<td><input type="hidden" name="id" value="${friend.id}"></td>
 					<td><a href="./AddFriendController?id=${friend.id}">Add to friends list</a></td> 
 				</tr>
 				</c:forEach>
