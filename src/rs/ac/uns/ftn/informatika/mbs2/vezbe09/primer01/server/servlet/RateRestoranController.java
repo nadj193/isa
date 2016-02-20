@@ -13,9 +13,11 @@ import org.apache.log4j.Logger;
 
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Guest;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Rate;
+import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Reservation;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Restoran;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.GuestDaoLocal;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.RateDaoLocal;
+import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.ReservationDaoLocal;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.RestoranDaoLocal;
 
 public class RateRestoranController extends HttpServlet {
@@ -32,6 +34,8 @@ private static Logger log = Logger.getLogger(AddFriendController.class);
 	
 	@EJB
 	private RateDaoLocal rateDao;
+	
+	@EJB ReservationDaoLocal reservationDao;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String restoranName = request.getParameter("restoran");
@@ -75,6 +79,8 @@ private static Logger log = Logger.getLogger(AddFriendController.class);
 			}
 			
 			request.getSession().setAttribute("restorani", restoranDao.findAll());
+			List<Reservation> reservations = reservationDao.findAll();
+			request.getSession().setAttribute("visitedRestorans", reservations);
 			getServletContext().getRequestDispatcher("/guestHome.jsp").forward(request, response);
 
 		} catch (ServletException e) {

@@ -1,6 +1,7 @@
 package rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet;
 
 import java.io.IOException;
+import java.util.Date;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -30,7 +31,12 @@ public class PrepareRateRestoranController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		Integer id = Integer.parseInt(request.getParameter("visitedRestoranId"));
+		String date = request.getParameter("visitDate");
+		String duration = request.getParameter("visitedDuration");
+		
 		System.out.println(" id je: " +id);
+		System.out.println("Date " + date);
+		System.out.println("Duration " + duration);
 		
 		try {
 			
@@ -39,10 +45,11 @@ public class PrepareRateRestoranController extends HttpServlet {
 				return;
 			}
 			
-			Guest guest = (Guest) request.getSession().getAttribute("guest");
 			Restoran restoran = restoranDao.findById(id);
 
 			request.getSession().setAttribute("visitedRestoran", restoran);
+			request.getSession().setAttribute("visitDate", date);
+			request.getSession().setAttribute("visitDuration", duration);
 			
 			getServletContext().getRequestDispatcher("/rateRestoran.jsp").forward(request, response);
 

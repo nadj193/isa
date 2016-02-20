@@ -6,7 +6,6 @@ import static javax.persistence.GenerationType.IDENTITY;
 
 import java.io.Serializable;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -48,6 +47,9 @@ public class Restoran implements Serializable{
 	
 	@Column(name = "restoran_distance", unique = false, nullable = true)
 	private int distance;
+	
+	@OneToMany(cascade = {ALL}, fetch = FetchType.EAGER, mappedBy = "restoran")
+	private Set<Reservation> reservations = new HashSet<Reservation>();
 	
 	public void addManager(Manager m) {
 		if (m.getRestoran() != null)
@@ -95,6 +97,18 @@ public class Restoran implements Serializable{
 	public void removeRate(Rate r) {
 		r.setRestoran(null);
 		rating.remove(r);
+	}
+	
+	public void addReservation(Reservation r) {
+		if (r.getRestoran() != null)
+			r.getRestoran().getReservations().remove(r);
+		r.setRestoran(this);
+		reservations.add(r);
+	}
+
+	public void removeReservatino(Reservation r) {
+		r.setRestoran(null);
+		reservations.remove(r);
 	}
 	
 	public Integer getId() {
@@ -162,6 +176,15 @@ public class Restoran implements Serializable{
 		this.distance = distance;
 	}
 	
+	
+	public Set<Reservation> getReservations() {
+		return reservations;
+	}
+
+	public void setReservations(Set<Reservation> reservations) {
+		this.reservations = reservations;
+	}
+
 	public float getAverageRate() {
 		int counter = 0;
 		int sum = 0;
@@ -204,12 +227,17 @@ public class Restoran implements Serializable{
 	
 	public Restoran() {}
 	
-	public Restoran(String name, String description, Set<Manager> managers, Set<Dish> menu) {
+	public Restoran(String name, String description, Set<Manager> managers, Set<Dish> menu,
+			Set<RestoranTable> tableConfiguration, Set<Rate> rating, int distance, Set<Reservation> reservations) {
 		super();
 		this.name = name;
 		this.description = description;
 		this.managers = managers;
 		this.menu = menu;
+		this.tableConfiguration = tableConfiguration;
+		this.rating = rating;
+		this.distance = distance;
+		this.reservations = reservations;
 	}
 
 	@Override

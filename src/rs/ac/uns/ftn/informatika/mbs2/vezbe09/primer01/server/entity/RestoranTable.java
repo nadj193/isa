@@ -39,6 +39,10 @@ public class RestoranTable {
 	@JoinColumn(name = "restoran_id", referencedColumnName = "restoran_id", nullable = false)
 	private Restoran restoran;
 	
+	@ManyToOne
+	@JoinColumn(name = "reservation_id", referencedColumnName = "reservation_id", nullable = true)
+	private Reservation reservation;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -86,15 +90,26 @@ public class RestoranTable {
 	public void setRestoran(Restoran restoran) {
 		this.restoran = restoran;
 	}
+	
+	public Reservation getReservation() {
+		return reservation;
+	}
+
+	public void setReservation(Reservation reservation) {
+		this.reservation = reservation;
+	}
 
 	public RestoranTable(){}
 	
-	public RestoranTable(Integer row, Integer column, Boolean isReserved, Integer ordinal) {
+	public RestoranTable(Integer row, Integer column, Boolean isReserved, Integer ordinal, Restoran restoran,
+			Reservation reservation) {
 		super();
 		this.row = row;
 		this.column = column;
 		this.isReserved = isReserved;
 		this.ordinal = ordinal;
+		this.restoran = restoran;
+		this.reservation = reservation;
 	}
 
 	@Override

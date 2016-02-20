@@ -42,6 +42,9 @@ public class Guest extends User implements Serializable{
 		      inverseJoinColumns=@JoinColumn(name="guest2", referencedColumnName="user_id"))
 	private Set<Guest> friends = new HashSet<Guest>();
 	
+	@OneToMany(cascade = {ALL}, fetch = FetchType.EAGER, mappedBy = "guest")
+	private Set<Reservation> reservations = new HashSet<Reservation>();
+	
 	public void addFriend(Guest g) {
 		if (g.getFriends() != null) {
 			g.getFriends().add(this);
@@ -79,6 +82,18 @@ public class Guest extends User implements Serializable{
 		restoranRates.remove(r);
 	}
 	
+	public void addReservation(Reservation r) {
+		if (r.getGuest() != null)
+			r.getGuest().getReservations().remove(r);
+		r.setGuest(this);
+		reservations.add(r);
+	}
+
+	public void removeReservation(Reservation r) {
+		r.setGuest(null);
+		reservations.remove(r);
+	}
+	
 	public Set<Guest> getFriends() {
 		return friends;
 	}
@@ -103,21 +118,26 @@ public class Guest extends User implements Serializable{
 		this.restoranRates = restoranRates;
 	}
 
+	public Set<Reservation> getReservations() {
+		return reservations;
+	}
+
+	public void setReservations(Set<Reservation> reservations) {
+		this.reservations = reservations;
+	}
+
 	public Guest() {}
 
 	public Guest(String name, String lastName, String email, String password) {
 		super(name, lastName, email, password);
 	}
 
-	public Guest(String adress, Set<Guest> friends) {
+	public Guest(String adress, Set<Rate> restoranRates, Set<Guest> friends, Set<Reservation> reservations) {
 		super();
 		this.adress = adress;
+		this.restoranRates = restoranRates;
 		this.friends = friends;
-	}
-	
-	
-	
-	
-	
+		this.reservations = reservations;
+	}	
 
 }

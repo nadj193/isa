@@ -1,5 +1,7 @@
 package rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session;
 
+import java.util.Date;
+
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -10,7 +12,9 @@ import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Dish;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Guest;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Manager;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Rate;
+import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Reservation;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Restoran;
+import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.RestoranTable;
 
 @Stateless
 @Remote(Init.class)
@@ -86,5 +90,36 @@ public class InitBean implements Init {
 		ocena2.setGuest(guest2);
 		em.persist(ocena2);
 		
+		Reservation reservation = new Reservation();
+		reservation.setDate(new Date());
+		reservation.setDuration(1);
+		reservation.setGuest(guest);
+		reservation.setRestoran(restoran);
+		em.persist(reservation);
+		
+		RestoranTable table = new RestoranTable();
+		table.setColumn(1);
+		table.setRow(1);
+		table.setIsReserved(false);
+		table.setOrdinal(1);
+		table.setRestoran(restoran);
+		table.setReservation(reservation);
+		em.persist(table);
+		
+		Reservation reservation1 = new Reservation();
+		reservation1.setDate(new Date());
+		reservation1.setDuration(2);
+		reservation1.setGuest(guest2);
+		reservation1.setRestoran(restoran);
+		em.persist(reservation1);
+		
+		RestoranTable table1 = new RestoranTable();
+		table1.setColumn(4);
+		table1.setRow(2);
+		table1.setIsReserved(false);
+		table1.setOrdinal(1);
+		table1.setRestoran(restoran);
+		table1.setReservation(reservation1);
+		em.persist(table1);
 	}
 }

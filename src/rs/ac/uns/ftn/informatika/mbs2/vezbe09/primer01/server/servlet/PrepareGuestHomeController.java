@@ -1,6 +1,7 @@
 package rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -11,7 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Guest;
+import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Reservation;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.GuestDaoLocal;
+import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.ReservationDaoLocal;
 
 public class PrepareGuestHomeController extends HttpServlet{
 
@@ -21,7 +24,10 @@ private static Logger log = Logger.getLogger(AddFriendController.class);
 	
 	@EJB
 	private GuestDaoLocal guestDao;
-
+	
+	@EJB
+	private ReservationDaoLocal reservationDao;
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		try {
@@ -31,7 +37,11 @@ private static Logger log = Logger.getLogger(AddFriendController.class);
 			}
 			
 			Guest guest = (Guest) request.getSession().getAttribute("guest");
-			//TODO add set visited restorans list for guest
+			//TODO reservation list should be fetched for logged user
+			List<Reservation> reservations = reservationDao.findAll();
+			
+			request.getSession().setAttribute("visitedRestorans", reservations);
+			request.getSession().setAttribute("guestFriends", guestDao.getFriendsList(guest.getId()));
 			
 			getServletContext().getRequestDispatcher("/guestHome.jsp").forward(request, response);
 

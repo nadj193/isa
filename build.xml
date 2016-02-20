@@ -140,6 +140,7 @@
 			DROP TABLE IF EXISTS restorantable;
 			DROP TABLE IF EXISTS friends;
 			DROP TABLE IF EXISTS rate;
+			DROP TABLE IF EXISTS reservation;
 			
 		</sql>
 	</target>
