@@ -102,7 +102,7 @@ public class InitBean implements Init {
 		table1.setColumn(4);
 		table1.setRow(2);
 		table1.setIsReserved(false);
-		table1.setOrdinal(1);
+		table1.setOrdinal(2);
 		table1.setRestoran(restoran);;
 		em.persist(table1);
 		
@@ -120,7 +120,7 @@ public class InitBean implements Init {
 		reservation1.setDuration(2);
 		reservation1.addGuest(guest2);
 		reservation1.addGuest(guest3);
-		reservation.addTable(table1);
+		reservation1.addTable(table1);
 		em.persist(reservation1);
 	}
 }

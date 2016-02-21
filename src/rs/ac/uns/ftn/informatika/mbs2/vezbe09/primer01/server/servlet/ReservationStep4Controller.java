@@ -29,6 +29,7 @@ import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.RestoranTab
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.GuestDaoLocal;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.ReservationDaoLocal;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.RestoranDaoLocal;
+import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.RestoranTableDaoLocal;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.TestLocal;
 import utils.DateTimeUtil;
 
@@ -49,6 +50,10 @@ public class ReservationStep4Controller extends HttpServlet{
 	
 	@EJB
 	private ReservationDaoLocal reservationDao;
+	
+	
+	@EJB
+	private RestoranTableDaoLocal restoranTableDao;
 	
 	@Resource(name="Mail")
 	Session session;
@@ -84,12 +89,14 @@ public class ReservationStep4Controller extends HttpServlet{
 			Reservation reservation =new Reservation();
 			reservation.setDate(DateTimeUtil.getInstance().getDate(dateAndTime));
 			reservation.setDuration(Integer.parseInt(duration));
-			for(RestoranTable table : reservedTables) {
-				reservation.addTable(table);
-			}
 			reservation.addGuest(guest);
 			
 			reservationDao.persist(reservation);
+			for(RestoranTable table : reservedTables) {
+				restoranTableDao.merge(table);
+				reservation.addTable(table);
+			}
+			reservationDao.merge(reservation);
 			
 			Integer reservationId = reservation.getId();
 			
