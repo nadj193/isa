@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.UUID;
 
 import javax.annotation.Resource;
@@ -100,6 +102,8 @@ public class ReservationStep4Controller extends HttpServlet{
 			
 			Integer reservationId = reservation.getId();
 			
+			//run timer to release reserved tables when reservation ends
+			runTimer(reservation);
 			if(check!=null) {
 			
 				String[] results = request.getParameterValues("check");
@@ -168,5 +172,22 @@ public class ReservationStep4Controller extends HttpServlet{
 
 	protected void doPost(HttpServletRequest request, 	HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
+	}
+	
+	private void runTimer(final Reservation reservation) {
+		Timer timer = new Timer();
+		long reservationEndTime = reservation.getDate().getTime() + reservation.getDuration() * 3600000;
+		long timerTime = reservationEndTime - new Date().getTime();
+		TimerTask timerTask = new TimerTask() {
+			
+			@Override
+			public void run() {
+				for(RestoranTable t : reservation.getTables()) {
+					t.setIsReserved(false);
+					restoranTableDao.merge(t);
+				}
+			}
+		};
+		timer.schedule(timerTask, timerTime);
 	}
 }

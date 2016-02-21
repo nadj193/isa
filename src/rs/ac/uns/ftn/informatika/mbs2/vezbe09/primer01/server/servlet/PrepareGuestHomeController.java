@@ -2,6 +2,7 @@ package rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -38,10 +39,15 @@ private static Logger log = Logger.getLogger(AddFriendController.class);
 			}
 			
 			Guest guest = (Guest) request.getSession().getAttribute("guest");
-			//TODO reservation list should be fetched for logged user
 			List<Reservation> reservations = reservationDao.getMyReservations(guest.getId());
+			List<Reservation> expiredReservations = new ArrayList<Reservation>();
+			for(Reservation r : reservations) {
+				if((r.getDate().getTime() + r.getDuration() * 3600000) > new Date().getTime()) {
+					expiredReservations.add(r);
+				}
+			}
 			
-			request.getSession().setAttribute("visitedRestorans", reservations);
+			request.getSession().setAttribute("visitedRestorans", expiredReservations);
 			List<Guest> friends = guestDao.getFriendsList(guest.getId());
 			
 			List<String> guestFriends = new ArrayList<String>(reservations.size());
