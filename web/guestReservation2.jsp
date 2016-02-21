@@ -51,6 +51,7 @@ li a:hover {
 }
 </style>
 
+<!-- 
 <style>
     td{
         cursor:pointer;
@@ -75,6 +76,7 @@ li a:hover {
         font-size:16pt;
     }
 </style>
+ -->
 
 <script>
 function validate() {

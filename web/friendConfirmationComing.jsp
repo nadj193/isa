@@ -2,7 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <%@ page import="java.util.ArrayList" %>
-<jsp:useBean id="friendsCallList" type="java.util.ArrayList" scope="session"/>
 <jsp:useBean id="friendsCallString" type="java.lang.String" scope="session"/>
 <!DOCTYPE html>
 <jsp:useBean id="restoran" type="rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Restoran" scope="session"/>
@@ -74,7 +73,7 @@ li a:hover {
         </div>
         
         <div class="form-group">
-			<a href="./ReservationConfirmController?restoranId=${reservation.id}" class="btn btn-lg btn-primary btn-block" >Coming</a>
+			<a href="./ReservationConfirmController" class="btn btn-lg btn-primary btn-block" >Coming</a>
 			<a href="./login.jsp" class="btn btn-lg btn-primary btn-block" >Not coming </a>
 			<input type="hidden" name="restoranId" value="${restoran.id}" />
 		</div>

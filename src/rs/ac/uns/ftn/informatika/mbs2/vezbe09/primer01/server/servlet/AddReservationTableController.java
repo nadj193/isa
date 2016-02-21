@@ -58,14 +58,9 @@ private static Logger log = Logger.getLogger(CreateController.class);
 			}
 			
 			request.getSession().setAttribute("reservationTables", reservationTables);
+			request.getSession().setAttribute("restoran", restoran);
 			getServletContext().getRequestDispatcher("/guestReservation2.jsp").forward(request, response);
 			
-			/*PrintWriter out = response.getWriter();
-			JSONObject jsonReply = new JSONObject();
-			response.setStatus(HttpServletResponse.SC_OK);
-			jsonReply.put("ordinal", 10);
-			jsonReply.put("successfully", true);
-			out.print(jsonReply);*/
 		} catch (IOException e) {
 			log.error(e);
 			throw e;

@@ -42,6 +42,7 @@ public class ReservationStep2Controller extends HttpServlet{
 			//dateandtime je oblika -->  2016-02-22T14:32 pa cu da zamenim T sa  space-om,
 			// ako bude trebalo mogu i da splitujem pa da dobijem posebno vreme a posebno datum
 			dateAndTime = dateAndTime.replace("T", " ");
+			dateAndTime = dateAndTime +":00";
 			
 			System.out.println("Ime restortana je : " +restoranName);
 			System.out.println("Date and time je: " +dateAndTime);

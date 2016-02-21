@@ -37,7 +37,7 @@ public class Reservation implements Serializable{
 	@Column(name= "reservation_duration", unique = false, nullable = false)
 	private Integer duration;
 	
-	@ManyToMany(mappedBy="reservations")
+	@ManyToMany(fetch = FetchType.EAGER, mappedBy="reservations")
 	private Set<Guest> guests = new HashSet<Guest>();
 	
 	@ManyToOne

@@ -39,7 +39,7 @@ public class Restoran implements Serializable{
 	@OneToMany(cascade = { ALL }, fetch = LAZY, mappedBy = "restoran")
 	private Set<Dish> menu = new HashSet<Dish>();
 	
-	@OneToMany(cascade = {ALL}, fetch = LAZY, mappedBy = "restoran")
+	@OneToMany(cascade = {ALL}, fetch = FetchType.EAGER, mappedBy = "restoran")
 	private Set<RestoranTable> tableConfiguration = new HashSet<RestoranTable>();
 	
 	@OneToMany(cascade = {ALL}, fetch = FetchType.EAGER, mappedBy = "restoran")
