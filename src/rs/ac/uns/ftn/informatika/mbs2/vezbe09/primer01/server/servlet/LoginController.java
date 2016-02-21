@@ -1,6 +1,7 @@
 package rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
@@ -49,6 +50,9 @@ public class LoginController extends HttpServlet {
 			
 			System.out.println("email je : " +korisnickoIme);
 			System.out.println("pass je: " +lozinka);
+			
+			//PrintWriter out = response.getWriter();
+			//out.println ("<html><body><script>alert('Hello World!');</script></body></html>");
 			
 			if ((korisnickoIme == null) || (korisnickoIme.equals("")) || (lozinka == null) || (lozinka.equals(""))) {
 				response.sendRedirect(response.encodeRedirectURL("./login.jsp"));
@@ -101,7 +105,22 @@ public class LoginController extends HttpServlet {
 							}
 						} catch (EJBException exp1) {
 							if (exp1.getCause().getClass().equals(NoResultException.class)) {
-								response.sendRedirect(response.encodeRedirectURL("./login.jsp"));
+								
+								PrintWriter pout = response.getWriter();
+								pout.println("<html>");
+								pout.println("<head>");
+								pout.println("</head>");
+								pout.println("<body>");
+								pout.println("<script>");
+								pout.println("alert(\"Niste dobro uneli email i sifru,ne postoji user.\")");
+								pout.println("window.location.href = \"./login.jsp\"");
+								pout.println("</script>");
+								//pout.println("<br>" + request.getParameter("ime"));
+								//pout.println("<br>" + request.getParameterNames());
+								pout.println("</body>");
+								pout.println("</html>");
+
+								//response.sendRedirect(response.encodeRedirectURL("./login.jsp"));
 							}
 						}
 					}

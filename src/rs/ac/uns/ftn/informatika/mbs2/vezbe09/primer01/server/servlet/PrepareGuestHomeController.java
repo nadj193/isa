@@ -42,7 +42,8 @@ private static Logger log = Logger.getLogger(AddFriendController.class);
 			List<Reservation> reservations = reservationDao.getMyReservations(guest.getId());
 			List<Reservation> expiredReservations = new ArrayList<Reservation>();
 			for(Reservation r : reservations) {
-				if((r.getDate().getTime() + r.getDuration() * 3600000) > new Date().getTime()) {
+
+				if((r.getDate().getTime() + r.getDuration() * 3600000) < new Date().getTime()) {
 					expiredReservations.add(r);
 				}
 			}

@@ -47,6 +47,7 @@
 	}
 	</style>
 	
+	
 	</head>
 
 	<body>
@@ -66,7 +67,7 @@
 				<input type="password" id="password" name="password" class="form-control" placeholder="password">
 			</div>	
 			<div class="form-group">
-			<input type="submit" class="btn btn-lg btn-primary btn-block" name="submit" value="Sign in"/>
+			<input type="submit" class="btn btn-lg btn-primary btn-block" name="submit" value="Sign in" />
 			</div>					
 		</form>
 		</div>

@@ -13,7 +13,6 @@ import org.apache.log4j.Logger;
 
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Guest;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Rate;
-import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Reservation;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Restoran;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.GuestDaoLocal;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.RateDaoLocal;
@@ -79,9 +78,8 @@ private static Logger log = Logger.getLogger(AddFriendController.class);
 			}
 			
 			request.getSession().setAttribute("restorani", restoranDao.findAll());
-			List<Reservation> reservations = reservationDao.findAll();
-			request.getSession().setAttribute("visitedRestorans", reservations);
-			getServletContext().getRequestDispatcher("/guestHome.jsp").forward(request, response);
+			
+			getServletContext().getRequestDispatcher("/PrepareGuestHomeController").forward(request, response);
 
 		} catch (ServletException e) {
 			log.error(e);
