@@ -1,7 +1,6 @@
 package rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -20,8 +19,6 @@ public class AddReservationTableController extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 	
 private static Logger log = Logger.getLogger(CreateController.class);
-	
-	private int counter;
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -46,6 +43,8 @@ private static Logger log = Logger.getLogger(CreateController.class);
 			Restoran restoran = (Restoran)request.getSession().getAttribute("restoran");
 			@SuppressWarnings("unchecked")
 			List<RestoranTable> reservationTables = (List<RestoranTable>)request.getSession().getAttribute("reservationTables");
+			@SuppressWarnings("unchecked")
+			List<RestoranTable> reservedTables = (List<RestoranTable>)request.getSession().getAttribute("reservedTables");
 			
 			Iterator<RestoranTable> iter = restoran.getTableConfiguration().iterator();
 			while(iter.hasNext()) {
@@ -54,10 +53,12 @@ private static Logger log = Logger.getLogger(CreateController.class);
 				if (tablePosition == position) {
 					table.setIsReserved(true);
 					reservationTables.set(position, table);
+					reservedTables.add(table);
 				}
 			}
 			
 			request.getSession().setAttribute("reservationTables", reservationTables);
+			request.getSession().setAttribute("reservedTables", reservedTables);
 			request.getSession().setAttribute("restoran", restoran);
 			getServletContext().getRequestDispatcher("/guestReservation2.jsp").forward(request, response);
 			

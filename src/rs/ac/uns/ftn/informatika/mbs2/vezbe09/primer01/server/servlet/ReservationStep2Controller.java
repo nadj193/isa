@@ -49,8 +49,6 @@ public class ReservationStep2Controller extends HttpServlet{
 			System.out.println("Duration je: " +duration);
 			System.out.println("Id restorana je: " +restoranId);
 			
-			
-			
 			Integer id = Integer.parseInt(restoranId);
 			Restoran restoran = restoranDao.findById(id);
 			request.getSession().setAttribute("restoran", restoran);
@@ -66,6 +64,13 @@ public class ReservationStep2Controller extends HttpServlet{
 			}
 			
 			request.getSession().setAttribute("reservationTables", reservationTables);
+			
+			//list of reserved tables
+			//this list will be filled with reserved tables in add reservation table servlet
+			//this attribute is used in reservation step for creating new reservation
+			List<RestoranTable> reservedTables = new ArrayList<RestoranTable>();
+			request.getSession().setAttribute("reservedTables", reservedTables);
+			
 			getServletContext().getRequestDispatcher("/guestReservation2.jsp").forward(request, response);
 			
 		} catch (ServletException e) {

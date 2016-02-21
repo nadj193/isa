@@ -3,6 +3,7 @@ package rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 import javax.annotation.Resource;
@@ -24,6 +25,7 @@ import org.apache.log4j.Logger;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Guest;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Reservation;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Restoran;
+import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.RestoranTable;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.GuestDaoLocal;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.ReservationDaoLocal;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.RestoranDaoLocal;
@@ -68,7 +70,8 @@ public class ReservationStep4Controller extends HttpServlet{
 			
 			Restoran restoran = (Restoran) request.getSession().getAttribute("restoran");
 			Guest guest = (Guest) request.getSession().getAttribute("guest");
-			
+			@SuppressWarnings("unchecked")
+			List<RestoranTable> reservedTables = (List<RestoranTable>)request.getSession().getAttribute("reservedTables");
 			
 			
 			Integer id = Integer.parseInt(restoranId);
@@ -81,14 +84,14 @@ public class ReservationStep4Controller extends HttpServlet{
 			Reservation reservation =new Reservation();
 			reservation.setDate(DateTimeUtil.getInstance().getDate(dateAndTime));
 			reservation.setDuration(Integer.parseInt(duration));
-			reservation.setRestoran(restoran);
+			for(RestoranTable table : reservedTables) {
+				reservation.addTable(table);
+			}
 			reservation.addGuest(guest);
 			
 			reservationDao.persist(reservation);
 			
 			Integer reservationId = reservation.getId();
-			
-			
 			
 			if(check!=null) {
 			

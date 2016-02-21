@@ -112,7 +112,6 @@ public class InitBean implements Init {
 		reservation.addGuest(guest);
 		reservation.addGuest(guest3);
 		reservation.addGuest(guest2);
-		reservation.setRestoran(restoran);
 		reservation.addTable(table);
 		em.persist(reservation);
 		
@@ -121,7 +120,6 @@ public class InitBean implements Init {
 		reservation1.setDuration(2);
 		reservation1.addGuest(guest2);
 		reservation1.addGuest(guest3);
-		reservation1.setRestoran(restoran);
 		reservation.addTable(table1);
 		em.persist(reservation1);
 	}

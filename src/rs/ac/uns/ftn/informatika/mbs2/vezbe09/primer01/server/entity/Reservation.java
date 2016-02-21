@@ -14,9 +14,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -39,10 +37,6 @@ public class Reservation implements Serializable{
 	
 	@ManyToMany(fetch = FetchType.EAGER, mappedBy="reservations")
 	private Set<Guest> guests = new HashSet<Guest>();
-	
-	@ManyToOne
-	@JoinColumn(name = "restoran_id", referencedColumnName = "restoran_id", nullable = false)
-	private Restoran restoran;
 	
 	@OneToMany(cascade = {ALL}, fetch = FetchType.EAGER, mappedBy = "reservation")
 	private Set<RestoranTable> tables = new HashSet<RestoranTable>();
@@ -116,14 +110,6 @@ public class Reservation implements Serializable{
 		this.guests = guests;
 	}
 
-	public Restoran getRestoran() {
-		return restoran;
-	}
-
-	public void setRestoran(Restoran restoran) {
-		this.restoran = restoran;
-	}
-
 	public Set<RestoranTable> getTables() {
 		return tables;
 	}
@@ -134,19 +120,18 @@ public class Reservation implements Serializable{
 	
 	public Reservation(){}
 	
-	public Reservation(Date date, Integer duration, Set<Guest> guests, Restoran restoran, Set<RestoranTable> tables) {
+	public Reservation(Date date, Integer duration, Set<Guest> guests, Set<RestoranTable> tables) {
 		super();
 		this.date = date;
 		this.duration = duration;
 		this.guests = guests;
-		this.restoran = restoran;
 		this.tables = tables;
 	}
 
 	@Override
 	public String toString() {
 		return "Reservation [id=" + id + ", date=" + date + ", duration=" + duration + ", guests=" + guests
-				+ ", restoran=" + restoran + ", tables=" + tables + "]";
+				+ ", tables=" + tables + "]";
 	}
 	
 	
