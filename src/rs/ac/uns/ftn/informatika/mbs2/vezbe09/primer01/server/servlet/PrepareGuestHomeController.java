@@ -77,7 +77,7 @@ private static Logger log = Logger.getLogger(AddFriendController.class);
 			request.getSession().setAttribute("reservedTables", reservedTables);
 			
 			getServletContext().getRequestDispatcher("/guestHome.jsp").forward(request, response);
-
+			
 		} catch (ServletException e) {
 			log.error(e);
 			throw e;
@@ -103,12 +103,8 @@ private static Logger log = Logger.getLogger(AddFriendController.class);
 		for(Reservation r : reservations) {
 			long reservationEndTime = r.getDate().getTime() + r.getDuration() * 3600000;
 			if (reservationEndTime < new Date().getTime()) {
-				for(RestoranTable t : r.getTables()) {
-					if(t.getIsReserved()) {
-						t.setIsReserved(false);
-						reservationTableDao.merge(t);
-					}
-				}
+				r.getTables().clear();
+				reservationDao.merge(r);
 			}
 		}
 	}

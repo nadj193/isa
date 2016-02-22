@@ -1,13 +1,17 @@
 package rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -33,9 +37,6 @@ public class RestoranTable implements Serializable{
 	@Column(name = "table_column", unique = false, nullable = false)
 	private Integer column;
 	
-	@Column(name = "table_reserved", unique = false, nullable = false)
-	private Boolean isReserved;
-	
 	@Column(name = "table_ordinal", unique = false, nullable = false)
 	private Integer ordinal;
 	
@@ -43,9 +44,8 @@ public class RestoranTable implements Serializable{
 	@JoinColumn(name = "restoran_id", referencedColumnName = "restoran_id", nullable = false)
 	private Restoran restoran;
 	
-	@ManyToOne
-	@JoinColumn(name = "reservation_id", referencedColumnName = "reservation_id", nullable = true)
-	private Reservation reservation;
+	@ManyToMany(fetch = FetchType.EAGER, mappedBy="tables")
+	private Set<Reservation> reservations = new HashSet<Reservation>();
 	
 	public Integer getId() {
 		return id;
@@ -71,14 +71,6 @@ public class RestoranTable implements Serializable{
 		this.column = column;
 	}
 
-	public Boolean getIsReserved() {
-		return isReserved;
-	}
-
-	public void setIsReserved(Boolean isReserved) {
-		this.isReserved = isReserved;
-	}
-
 	public Integer getOrdinal() {
 		return ordinal;
 	}
@@ -95,30 +87,29 @@ public class RestoranTable implements Serializable{
 		this.restoran = restoran;
 	}
 	
-	public Reservation getReservation() {
-		return reservation;
+	public Set<Reservation> getReservations() {
+		return reservations;
 	}
 
-	public void setReservation(Reservation reservation) {
-		this.reservation = reservation;
+	public void setReservation(Set<Reservation> reservations) {
+		this.reservations = reservations;
 	}
 
 	public RestoranTable(){}
 	
-	public RestoranTable(Integer row, Integer column, Boolean isReserved, Integer ordinal, Restoran restoran,
-			Reservation reservation) {
+	public RestoranTable(Integer row, Integer column, Integer ordinal, Restoran restoran,
+			Set<Reservation> reservations) {
 		super();
 		this.row = row;
 		this.column = column;
-		this.isReserved = isReserved;
 		this.ordinal = ordinal;
 		this.restoran = restoran;
-		this.reservation = reservation;
+		this.reservations = reservations;
 	}
 
 	@Override
 	public String toString() {
-		return "RestoranTable [id=" + id + ", row=" + row + ", column=" + column + ", isReserved=" + isReserved
+		return "RestoranTable [id=" + id + ", row=" + row + ", column=" + column
 				+ ", ordinal=" + ordinal + "]";
 	}
 	

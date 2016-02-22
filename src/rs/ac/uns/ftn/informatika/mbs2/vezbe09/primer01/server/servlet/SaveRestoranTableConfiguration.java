@@ -50,7 +50,6 @@ public class SaveRestoranTableConfiguration extends HttpServlet {
 					table.setRow(row);
 					table.setColumn(column);
 					table.setOrdinal(tableOrdinal);
-					table.setIsReserved(false);
 					table.setRestoran(restoran);
 					restoranTableDao.persist(table);
 					tableOrdinal++;

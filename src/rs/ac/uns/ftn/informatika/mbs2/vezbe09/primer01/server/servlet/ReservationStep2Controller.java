@@ -15,6 +15,7 @@ import org.apache.log4j.Logger;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Restoran;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.RestoranTable;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.RestoranDaoLocal;
+import utils.DateTimeUtil;
 
 public class ReservationStep2Controller extends HttpServlet{
 
@@ -70,6 +71,7 @@ public class ReservationStep2Controller extends HttpServlet{
 			//this attribute is used in reservation step for creating new reservation
 			List<RestoranTable> reservedTables = new ArrayList<RestoranTable>();
 			request.getSession().setAttribute("reservedTables", reservedTables);
+			request.getSession().setAttribute("reservationDate", DateTimeUtil.getInstance().getDate(dateAndTime));
 			
 			getServletContext().getRequestDispatcher("/guestReservation2.jsp").forward(request, response);
 			

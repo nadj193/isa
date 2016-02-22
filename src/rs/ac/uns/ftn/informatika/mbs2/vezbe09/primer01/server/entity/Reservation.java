@@ -14,8 +14,9 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -38,7 +39,11 @@ public class Reservation implements Serializable{
 	@ManyToMany(fetch = FetchType.EAGER, mappedBy="reservations")
 	private Set<Guest> guests = new HashSet<Guest>();
 	
-	@OneToMany(cascade = {ALL}, fetch = FetchType.EAGER, mappedBy = "reservation")
+	@ManyToMany(cascade = {ALL}, fetch = FetchType.EAGER)
+	@JoinTable(
+		      name="tableReservation",
+		      joinColumns=@JoinColumn(name="reservation", referencedColumnName="reservation_id"),
+		      inverseJoinColumns=@JoinColumn(name="restoranTable", referencedColumnName="table_id"))
 	private Set<RestoranTable> tables = new HashSet<RestoranTable>();
 	
 	public void addGuest(Guest g) {
@@ -67,13 +72,27 @@ public class Reservation implements Serializable{
 	}
 	
 	public void addTable(RestoranTable t) {
-		if (t.getReservation() != null)
-			t.getReservation().getTables().remove(t);
-		t.setReservation(this);
+		if (t.getReservations() != null)
+			t.getReservations().add(this);
 		tables.add(t);
 	}
 
 	public void removeTable(RestoranTable t) {
+		Iterator<RestoranTable> iter = tables.iterator();
+		while(iter.hasNext()) {
+			RestoranTable table = iter.next();
+			if(table.getId().intValue() == t.getId().intValue()) {
+				iter.remove();
+			}
+		}
+		
+		Iterator<Reservation> iter1 = t.getReservations().iterator();
+		while(iter1.hasNext()) {
+			Reservation reservation = iter1.next();
+			if(reservation.getId().intValue() == this.id.intValue()) {
+				iter1.remove();
+			}
+		}
 		t.setReservation(null);
 		tables.remove(t);
 	}

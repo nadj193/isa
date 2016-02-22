@@ -50,7 +50,6 @@ private static Logger log = Logger.getLogger(CreateController.class);
 				RestoranTable table = iter.next();
 				int tablePosition = table.getRow()*8+table.getColumn();
 				if (tablePosition == position) {
-					table.setIsReserved(true);
 					reservationTables.set(position, table);
 					reservedTables.add(table);
 				}

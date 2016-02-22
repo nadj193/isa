@@ -93,7 +93,6 @@ public class InitBean implements Init {
 		RestoranTable table = new RestoranTable();
 		table.setColumn(1);
 		table.setRow(1);
-		table.setIsReserved(false);
 		table.setOrdinal(1);
 		table.setRestoran(restoran);
 		em.persist(table);
@@ -101,7 +100,6 @@ public class InitBean implements Init {
 		RestoranTable table1 = new RestoranTable();
 		table1.setColumn(4);
 		table1.setRow(2);
-		table1.setIsReserved(false);
 		table1.setOrdinal(2);
 		table1.setRestoran(restoran);;
 		em.persist(table1);

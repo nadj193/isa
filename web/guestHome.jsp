@@ -81,27 +81,17 @@ li a:hover {
 			<tbody>
 			<%for(int i=0; i < visitedRestorans.size(); i++){%>
 				<tr>
-					<td><%=((Restoran)((RestoranTable)((Reservation)visitedRestorans.get(i)).getTables().toArray()[0]).getRestoran()).getName()%></td>
+					<%if(!(((Reservation)visitedRestorans.get(i)).getTables().isEmpty())) {%>
+						<td><%=((Restoran)((RestoranTable)((Reservation)visitedRestorans.get(i)).getTables().toArray()[0]).getRestoran()).getName()%></td>
+					<%} else {%>
+						<td>&nbsp;</td>
+					<%}%>
 					<td><%=((Reservation)visitedRestorans.get(i)).getDate()%></td>	
 					<td><%=((Restoran)((RestoranTable)((Reservation)visitedRestorans.get(i)).getTables().toArray()[0]).getRestoran()).getAverageRate()%></td>	
 					<td><%=guestFriends.get(i)%></td>
 					<td><a href="./PrepareRateRestoranController?visitedRestoranId=<%=((Restoran)((RestoranTable)((Reservation)visitedRestorans.get(i)).getTables().toArray()[0]).getRestoran()).getId()%>&visitDate=<%=((Reservation)visitedRestorans.get(i)).getDate()%> &visitDuration=<%=((Reservation)visitedRestorans.get(i)).getDuration()%>&visitFriends=<%=guestFriends.get(i)%> ">Rate</a></td>
 				</tr>
 			<%}%>
-			<tr>
-				<td>Dva stapica</td>
-				<td>21.02.2015</td>	
-				<td>5.0</td>	
-				<td>Mika, Pera</td>
-				<td><a href="./PrepareRateRestoranController?visitedRestoranId=1">Rate</a></td>
-			</tr>
-			<tr>
-				<td>Dunavska terasa</td>
-				<td>25.02.2015</td>	
-				<td>5.0</td>	
-				<td>Mika, Pera</td>
-				<td><a href="./PrepareRateRestoranController?visitedRestoranId=1">Rate</a></td>
-			</tr>
 			</tbody>
 		</table>
 		</div>

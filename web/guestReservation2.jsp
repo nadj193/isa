@@ -4,7 +4,9 @@
 <jsp:useBean id="duration" type="java.lang.String" scope="session"/>
 <jsp:useBean id="reservationTables" type="java.util.List" scope="session"/>
 <jsp:useBean id="reservedTables" type="java.util.List" scope="session"/>
+<jsp:useBean id="reservationDate" type="java.util.Date" scope="session"/>
 <%@ page import="rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.RestoranTable" %>
+<%@ page import="rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Reservation" %>
 <html>
   <head >
     <meta charset="utf-8">
@@ -95,13 +97,22 @@ function validate() {
 <script  src="http://code.jquery.com/jquery-1.9.1.min.js" ></script>     
 <script>
     $(document).ready(function(){
-        $("#myTable td").click(function() {     
+        $("#myTable #green").click(function() {     
  
             var column_num = parseInt( $(this).index() ) + 1;
             var row_num = parseInt( $(this).parent().index() )+1;    
             window.location.href = "./AddReservationTableController?row=" +  row_num + "&column=" + column_num;
         });
     });
+</script>
+<script>
+	function boolean checkTable(RestoranTable table) {
+		if (table.getReservations().isEmpty()) {
+			return  true;
+		} else {
+			return false;
+		} 
+	}
 </script>
 </head>
 <body>
@@ -136,10 +147,15 @@ function validate() {
     		<tr>
     		<% for(int j = 0; j < 8; j++){
     			if ((RestoranTable)reservationTables.get(i*8+j) != null) {%>
-    				<%if(((RestoranTable)reservationTables.get(i*8+j)).getIsReserved()) {%>
-    					<td bgcolor='red'><%} else { %>
-    						<td bgcolor='green' > <%} %>
-    						<%=((RestoranTable)reservationTables.get(i*8+j)).getOrdinal()%></td>
+    				<td id = "green" bgcolor='green'>
+    				<%for(Reservation r : ((RestoranTable)reservationTables.get(i*8+j)).getReservations()) {
+    					if (r.getDate().getYear() == reservationDate.getYear() && r.getDate().getDate() == reservationDate.getDate() && r.getDate().getMonth() == reservationDate.getMonth()) {
+    						if (((reservationDate.getHours() + Integer.parseInt(duration)) < r.getDate().getHours())) {%>
+    							<td bgcolor='red' > 
+    							<%} 
+    						}
+    					}%>
+    				<%=((RestoranTable)reservationTables.get(i*8+j)).getOrdinal()%></td>
     			<%} else {%>
     				<td>&nbsp;</td>
     			<%}

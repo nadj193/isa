@@ -93,12 +93,10 @@ public class ReservationStep4Controller extends HttpServlet{
 			reservation.setDuration(Integer.parseInt(duration));
 			reservation.addGuest(guest);
 			
-			reservationDao.persist(reservation);
 			for(RestoranTable table : reservedTables) {
-				restoranTableDao.merge(table);
 				reservation.addTable(table);
 			}
-			reservationDao.merge(reservation);
+			reservationDao.persist(reservation);
 			
 			Integer reservationId = reservation.getId();
 			
@@ -182,10 +180,8 @@ public class ReservationStep4Controller extends HttpServlet{
 			
 			@Override
 			public void run() {
-				for(RestoranTable t : reservation.getTables()) {
-					t.setIsReserved(false);
-					restoranTableDao.merge(t);
-				}
+				reservation.getTables().clear();
+				reservationDao.merge(reservation);
 			}
 		};
 		timer.schedule(timerTask, timerTime);
