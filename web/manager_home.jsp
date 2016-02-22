@@ -47,7 +47,7 @@
   <li class="navbar-right"><a href="./LogoutController">Logout</a></li>
 </ul>
 <h1 align="center">${restoran.name}</h1>
-  <img src="./images/restoran.jpg" alt="Mountain View" style="width:1920px;height:500px;"> 
+  <img src="./images/restoran.jpg" alt="Mountain View" style="width:1920px;height:650px;"> 
 <h2 align="center"> ${restoran.description}</h2>
 </body>
 </html>

@@ -72,6 +72,10 @@ private static Logger log = Logger.getLogger(AddFriendController.class);
 			
 			request.getSession().setAttribute("guestFriends", guestFriends);
 			request.getSession().setAttribute("friends", friends);
+			
+			List<RestoranTable> reservedTables = new ArrayList<RestoranTable>();
+			request.getSession().setAttribute("reservedTables", reservedTables);
+			
 			getServletContext().getRequestDispatcher("/guestHome.jsp").forward(request, response);
 
 		} catch (ServletException e) {

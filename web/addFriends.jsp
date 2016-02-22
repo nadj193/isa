@@ -3,13 +3,14 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 
 <jsp:useBean id="potencialFriends" type="java.util.List" scope="session"/>
+<jsp:useBean id="guest" type="rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Guest" scope="session"/>
 
 <fmt:setBundle basename="messages.messages"/>
 
 <html>
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Add friends</title>
+    <title>Add friends</title>
   	<meta HTTP-EQUIV="Pragma" CONTENT="no-cache">
 	<meta HTTP-EQUIV="Expires" CONTENT="-1">
 	<link href="./bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -106,7 +107,13 @@ li a:hover {
   		<li><a href="./PrepareFriendsController">Friends List</a></li>
   		<li><a href="./PrepareAddFriendsController">Add Friends</a></li>
   		<li class="navbar-right"><a href="./LogoutController">Logout</a></li>
+  		<li class="navbar-right"><font color="white">Welcome,</font><a href="updateGuest.jsp">${guest.name}</a> </li>
+  		
 	</ul>
+	<% if(potencialFriends.isEmpty()) { %>
+		<br /> <h1 align="center"> There are no guests that you can add to your Friends List </h1>
+		<% } else { %>
+	
 	<div class="container"> 
 	<h2 align="center">Friends List</h2>
 	<input type="search" class="light-table-filter" data-table="order-table" placeholder="Filter">
@@ -131,7 +138,7 @@ li a:hover {
 			
 		</table>
 		</div>
-		
+		<% } %>
 		
 	</body>	
 </html>

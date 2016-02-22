@@ -3,12 +3,13 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 
 <jsp:useBean id="friends" type="java.util.List" scope="session"/>
+<jsp:useBean id="guest" type="rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Guest" scope="session"/>
 
 <fmt:setBundle basename="messages.messages"/>
 
 <html>
 <head> 
-
+	<title>Friends list</title>
 	<link href="./bootstrap.min.css" rel="stylesheet" type="text/css" />
 	<script src="sorttable.js"></script>
 <script>
@@ -103,6 +104,7 @@ li a:hover {
   	  <li><a href="./PrepareFriendsController">Friends List</a></li>
   	  <li><a href="./PrepareAddFriendsController">Add Friends</a></li>
   	  <li class="navbar-right"><a href="./LogoutController">Logout</a></li>
+  	  <li class="navbar-right"><font color="white">Welcome,</font><a href="updateGuest.jsp">${guest.name}</a> </li>
 	</ul>
 	<% if(friends.isEmpty()) { %>
 		<br /> <h1 align="center"> Friends list are empty </h1>

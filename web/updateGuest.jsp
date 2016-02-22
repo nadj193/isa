@@ -35,6 +35,22 @@ li a:hover {
     background-color: #111;
 }
 </style>
+
+<script>
+	function message() {
+		var name = document.getElementById("name").value;
+		var lastName = document.getElementById("lastName").value;
+		var password = document.getElementById("password").value;
+		
+		if(!name.match(/\S/) || !lastName.match(/\S/) || !password.match(/\S/) ) {
+	        alert ("Field can't be empty!");
+	        return false;
+		} else	{
+		return true;
+		}
+	}
+	</script>
+
 	</head>
 	<body>
   		<ul>
@@ -45,6 +61,7 @@ li a:hover {
   		  <li><a href="./PrepareFriendsController">Friends List</a></li>
   		  <li><a href="./PrepareAddFriendsController">Add Friends</a></li>
   		  <li class="navbar-right"><a href="./LogoutController">Logout</a></li>
+  		  <li class="navbar-right"><font color="white">Welcome,</font><a href="updateGuest.jsp">${guest.name}</a> </li>
   		</ul>
    	<h2 align="center">Profile settings</h2>
 	<div class="col-md-4 col-md-offset-4 panel panel-default">
@@ -71,7 +88,7 @@ li a:hover {
         	<input type="text" id="password" name = "password" class="form-control" value="${guest.password}" >
         </div>
         <div class="form-group">
-			<input type="submit" class="btn btn-lg btn-primary btn-block" name="submit" value="Update"/>
+			<input type="submit" class="btn btn-lg btn-primary btn-block" name="submit" value="Update" onclick="return message();"/>
 		</div>
       </form>
     </div>

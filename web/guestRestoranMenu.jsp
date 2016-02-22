@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <jsp:useBean id="restoranMenu" type="java.util.List" scope="session"/>
+<jsp:useBean id="guest" type="rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Guest" scope="session"/>
 <html>
 	<head>
 		<title>Restoran menu</title>
@@ -51,7 +52,14 @@
   			<li><a href="./PrepareFriendsController">Friends List</a></li>
   			<li><a href="./PrepareAddFriendsController">Add Friends</a></li>
   			<li class="navbar-right"><a href="./LogoutController">Logout</a></li>
+  			<li class="navbar-right"><font color="white">Welcome,</font><a href="updateGuest.jsp">${guest.name}</a> </li>
 		</ul>
+		
+		<% if(restoranMenu.isEmpty()) { %>
+		<br /> <h1 align="center"> Restorans menu are empty </h1>
+		<div class="col-md-4 col-md-offset-4 panel panel-default">
+		</div>
+		<% } else { %>
 		
 		<!-- Menu table -->
 		<div class="container">
@@ -75,5 +83,6 @@
 			</tbody>
 		</table>
 		</div>
+		<% } %>
 	</body>	
 </html>

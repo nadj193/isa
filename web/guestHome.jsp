@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <jsp:useBean id="visitedRestorans" type="java.util.List" scope="session"/>
 <jsp:useBean id="guestFriends" type="java.util.List" scope="session"/>
+<jsp:useBean id="guest" type="rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Guest" scope="session"/>
 <%@ page import="rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Reservation" %>
 <%@ page import="rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Restoran" %>
 <%@ page import="rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.RestoranTable" %>
@@ -62,6 +63,8 @@ li a:hover {
   <li><a href="./PrepareFriendsController">Friends List</a></li>
   <li><a href="./PrepareAddFriendsController">Add Friends</a></li>
   <li class="navbar-right"><a href="./LogoutController">Logout</a></li>
+  <li class="navbar-right"><font color="white">Welcome,</font><a href="updateGuest.jsp">${guest.name}</a> </li>
+  
 </ul>
 	<div class="container">
 		<h2 align="center">My visits</h2>

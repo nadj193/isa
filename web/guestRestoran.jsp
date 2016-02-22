@@ -106,6 +106,7 @@ li a:hover {
   		<li><a href="./PrepareFriendsController">Friends List</a></li>
   		<li><a href="./PrepareAddFriendsController">Add Friends</a></li>
   		<li class="navbar-right"><a href="./LogoutController">Logout</a></li>
+  		<li class="navbar-right"><font color="white">Welcome,</font><a href="updateGuest.jsp">${guest.name}</a> </li>
 	</ul>
 	<div class="container">
 		<h2 align="center">Restorans List</h2>

@@ -48,15 +48,24 @@
 	
 	<script>
 	function message() {
+		var name = document.getElementById("name").value;
+		var lastName = document.getElementById("lastName").value;
+		var email = document.getElementById("email").value;
+		var password = document.getElementById("password").value;
+		var repeatPassword = document.getElementById("repeatpassword").value;
 		var pass = document.getElementById("password");
 		var repeatPass = document.getElementById("repeatpassword");
-		if(pass.value!=repeatPass.value)
+		
+		if(!name.match(/\S/) || !lastName.match(/\S/) || !email.match(/\S/) || !password.match(/\S/) || !repeatPassword.match(/\S/) ) {
+	        alert ("Field can't be empty!");
+	        return false;
+	    }else if(pass.value!=repeatPass.value)
 			{
 			alert("You must enter same password!");
-			}
-		else
+			return false;
+			} else
 			{
-			alert("Mail with activation link is sent on your email account. Please chack your mail, you can't login before activation your account!");
+		return true;
 			}
 	}
 	</script>
@@ -81,7 +90,7 @@
 			</div>
 			<div class="form-group">
 				<label for="email">Email:</label>
-				<input type="text" id="email" name="email" class="form-control" placeholder="email">
+				<input type="email" id="email" name="email" class="form-control" placeholder="email">
 			</div>
 			<div class="form-group">
 				<label for="password">Password:</label>
@@ -92,7 +101,7 @@
 				<input type="password" id="repeatpassword" name="repeatpassword" class="form-control" placeholder="password">
 			</div>
 			<div class="form-group">
-			<input type="submit" class="btn btn-lg btn-primary btn-block" name="submit" value="Sign up" onclick="message();"/>
+			<input type="submit" class="btn btn-lg btn-primary btn-block" name="submit" value="Sign up" onclick="return message();"/>
 			</div>					
 		</form>
 		</div>

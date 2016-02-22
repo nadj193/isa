@@ -45,7 +45,6 @@ private static Logger log = Logger.getLogger(CreateController.class);
 			List<RestoranTable> reservationTables = (List<RestoranTable>)request.getSession().getAttribute("reservationTables");
 			@SuppressWarnings("unchecked")
 			List<RestoranTable> reservedTables = (List<RestoranTable>)request.getSession().getAttribute("reservedTables");
-			
 			Iterator<RestoranTable> iter = restoran.getTableConfiguration().iterator();
 			while(iter.hasNext()) {
 				RestoranTable table = iter.next();

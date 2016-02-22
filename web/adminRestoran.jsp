@@ -49,6 +49,48 @@ li a:hover {
     background-color: #111;
 }
 </style>
+
+<script>
+(function(document) {
+	'use strict';
+
+	var LightTableFilter = (function(Arr) {
+
+		var _input;
+
+		function _onInputEvent(e) {
+			_input = e.target;
+			var tables = document.getElementsByClassName(_input.getAttribute('data-table'));
+			Arr.forEach.call(tables, function(table) {
+				Arr.forEach.call(table.tBodies, function(tbody) {
+					Arr.forEach.call(tbody.rows, _filter);
+				});
+			});
+		}
+
+		function _filter(row) {
+			var text = row.textContent.toLowerCase(), val = _input.value.toLowerCase();
+			row.style.display = text.indexOf(val) === -1 ? 'none' : 'table-row';
+		}
+
+		return {
+			init: function() {
+				var inputs = document.getElementsByClassName('light-table-filter');
+				Arr.forEach.call(inputs, function(input) {
+					input.oninput = _onInputEvent;
+				});
+			}
+		};
+	})(Array.prototype);
+
+	document.addEventListener('readystatechange', function() {
+		if (document.readyState === 'complete') {
+			LightTableFilter.init();
+		}
+	});
+
+})(document);
+</script>
   
 		
 	</head>
@@ -62,9 +104,19 @@ li a:hover {
   		 <li><a href="adminManageri.jsp">Manager</a></li>
   		 <li class="navbar-right"><a href="./LogoutController">Logout</a></li>
 	</ul>
+	<% if(restorani.isEmpty()) { %>
+		<br /> <h1 align="center"> Restorans list are empty </h1>
+		<div class="col-md-4 col-md-offset-4 panel panel-default">
+		<a class="btn btn-lg btn-primary btn-block" href="./PrepareCreateRestoranController">addNewRestoran</a>
+		</div>
+		<% } else { %>
 	<div class="container">
 		<h2 align="center">Restorans List</h2>
-		<table class="table table-hover">
+		
+	<input type="search" class="light-table-filter" data-table="order-table" placeholder="Filter">
+	<br />
+	
+		<table class="table order-table table-hover">
 			<thead>
 				<tr>
 					<th>Name</th>
@@ -86,6 +138,6 @@ li a:hover {
 		</table>
 		 <a class="btn btn-lg btn-primary btn-block" href="./PrepareCreateRestoranController">addNewRestoran</a>
 		</div>
-		
+		<% } %>
 	</body>	
 </html>

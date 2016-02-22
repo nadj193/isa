@@ -2,6 +2,7 @@
 <jsp:useBean id="guest" type="rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Guest" scope="session"/>
 <html>
 <head>
+	<title>GuestProfile</title>
 	<link href="./bootstrap.min.css" rel="stylesheet" type="text/css" />
 	<style type="text/css">
 	body {
@@ -45,6 +46,7 @@ li a:hover {
   <li><a href="./PrepareFriendsController">Friends List</a></li>
   <li><a href="./PrepareAddFriendsController">Add Friends</a></li>
   <li class="navbar-right"><a href="./LogoutController">Logout</a></li>
+  <li class="navbar-right"><font color="white">Welcome,</font><a href="updateGuest.jsp">${guest.name}</a> </li>
 </ul>
 <h2 align="center">Your profile</h2>
 <div class="col-md-4 col-md-offset-4 panel panel-default">

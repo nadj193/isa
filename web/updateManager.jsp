@@ -47,6 +47,23 @@ li a:hover {
     background-color: #111;
 }
 </style>
+
+<script>
+	function message() {
+		var name = document.getElementById("name").value;
+		var lastName = document.getElementById("lastName").value;
+		var email = document.getElementById("email").value;
+		var password = document.getElementById("password").value;
+		var restoran = document.getElementById("restoran").value;
+		
+		if(!name.match(/\S/) || !lastName.match(/\S/) || !email.match(/\S/) || !password.match(/\S/) || !restoran.match(/\S/) ) {
+	        alert ("Field can't be empty!");
+	        return false;
+		} else	{
+		return true;
+		}
+	}
+	</script>
 		
 	</head>
 	<c:if test="${sessionScope.admin==null}">
@@ -81,7 +98,7 @@ li a:hover {
         </div>
          <div class="form-group">
         	<label for="restoran">Manager restoran</label>
-        	<select name="restoran" class="form-control">
+        	<select id="restoran" name="restoran" class="form-control">
 					<c:forEach items="${restorani}" var="restoran">
 						<c:if test="${manager.restoran.id == restoran.id}">
 							<option value="${restoran.id}" selected="selected">${restoran.name}</option>
@@ -94,7 +111,7 @@ li a:hover {
         </div>
         
         <div class="form-group">
-			<input type="submit" class="btn btn-lg btn-primary btn-block" name="submit" value="Update"/>
+			<input type="submit" class="btn btn-lg btn-primary btn-block" name="submit" value="Update" onclick="return message();"/>
 		</div>
       </form>
     </div>

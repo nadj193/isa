@@ -48,6 +48,26 @@
 		}
 		</style>
 		
+	<script>
+	function message() {
+		var name = document.getElementById("name").value;
+		var lastName = document.getElementById("lastName").value;
+		var email = document.getElementById("email").value;
+		var password = document.getElementById("password").value;
+		var restoran = document.getElementById("restoran").value;
+		
+		if(!name.match(/\S/) || !lastName.match(/\S/) || !email.match(/\S/) || !password.match(/\S/) ) {
+	        alert ("Field can't be empty!");
+	        return false;
+		} else if(!restoran.match(/\S/)) {
+			alert ("Can not create manager without restoran! Please select one restoran from the list or create new restoran first if there are not any restoran created.");
+	        return false;
+		} else	{
+		return true;
+		}
+	}
+	</script>
+		
 	</head>
 	<c:if test="${sessionScope.admin==null}">
 		<c:redirect url="./login.jsp" />
@@ -82,7 +102,7 @@
         <div class="form-group">
         	<label for="restoran">Managers restoran</label><br />
   
-        	<select name="restoran" class="form-control">
+        	<select id="restoran" name="restoran" class="form-control">
 						<c:forEach items="${restorani}" var="restoran">
 							<option value="${restoran.id}">${restoran.name}</option>
 						</c:forEach>
@@ -90,7 +110,7 @@
 		</div>	
         
         <div class="form-group">
-			<input type="submit" class="btn btn-lg btn-primary btn-block" name="submit" value="Create"/>
+			<input type="submit" class="btn btn-lg btn-primary btn-block" name="submit" value="Create" onclick="return message();"/>
 		</div>
       </form>
     </div>

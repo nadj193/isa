@@ -48,6 +48,20 @@
 		}
 		</style>
 		
+	<script>
+	function message() {
+		var name = document.getElementById("name").value;
+		var description = document.getElementById("description").value;
+		
+		if(!name.match(/\S/) || !description.match(/\S/) ) {
+	        alert ("Field can't be empty!");
+	        return false;
+		} else	{
+		return true;
+		}
+	}
+	</script>
+		
 	</head>
 	<c:if test="${sessionScope.admin==null}">
 		<c:redirect url="./login.jsp" />
@@ -73,7 +87,7 @@
         </div>
 
         <div class="form-group">
-			<input type="submit" class="btn btn-lg btn-primary btn-block" name="submit" value="Create"/>
+			<input type="submit" class="btn btn-lg btn-primary btn-block" name="submit" value="Create" onclick="return message();"/>
 		</div>
       </form>
     </div>

@@ -1,6 +1,8 @@
 package rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -11,7 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Restoran;
+import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.RestoranTable;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.RestoranDaoLocal;
+import utils.MessageServletUtil;
 
 public class ReservationStep3Controller extends HttpServlet {
 
@@ -30,7 +34,15 @@ public class ReservationStep3Controller extends HttpServlet {
 				response.sendRedirect(response.encodeURL("./login.jsp"));
 				return;
 			}
-
+			
+			PrintWriter pout = response.getWriter();
+			List<RestoranTable> reservedTables = (List<RestoranTable>)request.getSession().getAttribute("reservedTables");
+			
+			if(reservedTables.isEmpty() || reservedTables==null ){
+				String message = "You must select table for reservation!.";
+				String redirectLocation = "./guestReservation2.jsp";
+				MessageServletUtil.getInstance().SetMessage(message, redirectLocation, pout);
+			}else {
 			String restoranName = request.getParameter("name");
 			String dateAndTime = request.getParameter("dateandtime");
 			String duration = request.getParameter("duration");
@@ -59,7 +71,7 @@ public class ReservationStep3Controller extends HttpServlet {
 			
 
 			getServletContext().getRequestDispatcher("/guestReservation3.jsp").forward(request, response);
-			
+			}
 		} catch (ServletException e) {
 			log.error(e);
 			throw e;

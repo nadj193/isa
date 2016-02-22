@@ -3,6 +3,7 @@
 <jsp:useBean id="dateandtime" type="java.lang.String" scope="session"/>
 <jsp:useBean id="duration" type="java.lang.String" scope="session"/>
 <jsp:useBean id="reservationTables" type="java.util.List" scope="session"/>
+<jsp:useBean id="reservedTables" type="java.util.List" scope="session"/>
 <%@ page import="rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.RestoranTable" %>
 <html>
   <head >
@@ -82,19 +83,13 @@ li a:hover {
 function validate() {
 	var duration = document.getElementById("duration");
 	var dateandtime = document.getElementById("dateandtime");
-	if(duration.value < 1 || rate.value >24) {
-		alert("You must enter number from 1 to 24 for duration!");
+	if(reservedTables === undefined || reservedTables.length == 0 || reservedTables.isEmpty()) {
+		alert("You must select table!");
 		return false;
-	} else {
-		return true;  	
+	}else {
+		return true;
 	}
-	
-	if(dateandtime.value == "" || dateandtime.value==null || dateandtime.length==0 ) {
-		alert("You must select date and time!");
-		return false;
-	} else {
-		return true;  	
-	}
+		
 }
 </script>
 <script  src="http://code.jquery.com/jquery-1.9.1.min.js" ></script>     

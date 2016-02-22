@@ -22,6 +22,7 @@ import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.DishDaoLoc
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.GuestDaoLocal;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.ManagerDaoLocal;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.RestoranDaoLocal;
+import utils.MessageServletUtil;
 
 public class LoginController extends HttpServlet {
 
@@ -47,12 +48,7 @@ public class LoginController extends HttpServlet {
 		String korisnickoIme = request.getParameter("email");
 		String lozinka = request.getParameter("password");
 		try {
-			
-			System.out.println("email je : " +korisnickoIme);
-			System.out.println("pass je: " +lozinka);
-			
-			//PrintWriter out = response.getWriter();
-			//out.println ("<html><body><script>alert('Hello World!');</script></body></html>");
+		
 			
 			if ((korisnickoIme == null) || (korisnickoIme.equals("")) || (lozinka == null) || (lozinka.equals(""))) {
 				response.sendRedirect(response.encodeRedirectURL("./login.jsp"));
@@ -63,7 +59,6 @@ public class LoginController extends HttpServlet {
 			//Korisnik korisnik = korisnikDao.findKorisnikSaKorisnickimImenomILozinkom(korisnickoIme, lozinka);
 			
 			if(admin != null){
-				System.out.println("ADMIN LOG USAO");
 				HttpSession session = request.getSession(true);
 				session.setAttribute("admin", admin);
 				log.info("Admin " + admin.getName() + " se prijavio.");
@@ -83,7 +78,6 @@ public class LoginController extends HttpServlet {
 				try {
 					Manager manager = managerDao.findManager(korisnickoIme, lozinka);
 					if(manager != null) {	
-						System.out.println("MANAGER LOG USAO");
 						HttpSession session = request.getSession(true);
 						session.setAttribute("manager", manager);
 						session.setAttribute("restoran", manager.getRestoran());
@@ -96,7 +90,6 @@ public class LoginController extends HttpServlet {
 						try {
 							Guest guest = guestDao.findGuest(korisnickoIme, lozinka);
 							if(guest != null) {	
-								System.out.println("GUEST LOG USAO");
 								HttpSession session = request.getSession(true);
 								session.setAttribute("guest", guest);
 								log.info("Guest " + guest.getName() + " se prijavio.");
@@ -106,21 +99,10 @@ public class LoginController extends HttpServlet {
 						} catch (EJBException exp1) {
 							if (exp1.getCause().getClass().equals(NoResultException.class)) {
 								
+								String message = "User with entered email and password doesn't exist.";
+								String redirectLocation = "./login.jsp";
 								PrintWriter pout = response.getWriter();
-								pout.println("<html>");
-								pout.println("<head>");
-								pout.println("</head>");
-								pout.println("<body>");
-								pout.println("<script>");
-								pout.println("alert(\"Niste dobro uneli email i sifru,ne postoji user.\")");
-								pout.println("window.location.href = \"./login.jsp\"");
-								pout.println("</script>");
-								//pout.println("<br>" + request.getParameter("ime"));
-								//pout.println("<br>" + request.getParameterNames());
-								pout.println("</body>");
-								pout.println("</html>");
-
-								//response.sendRedirect(response.encodeRedirectURL("./login.jsp"));
+								MessageServletUtil.getInstance().SetMessage(message, redirectLocation, pout);
 							}
 						}
 					}

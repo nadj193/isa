@@ -34,6 +34,22 @@
     		background-color: #111;
 		}
 	</style>
+	
+	<script>
+	function message() {
+		var name = document.getElementById("dishName").value;
+		var description = document.getElementById("dishDescription").value;
+		var price = document.getElementById("dishPrice").value;
+		
+		if(!name.match(/\S/) || !description.match(/\S/) || !price.match(/\S/) ) {
+	        alert ("Field can't be empty!");
+	        return false;
+		} else	{
+		return true;
+		}
+	}
+	</script>
+	
 	</head>
 	<body>
 	<ul>
@@ -59,7 +75,7 @@
         	<input type="text" id="dishPrice" name = "dishPrice" class="form-control" value="${dish.price}" required>
         </div>
         <div class="form-group">
-			<input type="submit" class="btn btn-lg btn-primary btn-block" name="submit" value="Update"/>
+			<input type="submit" class="btn btn-lg btn-primary btn-block" name="submit" value="Update" onclick="return message();"/>
 		</div>
       </form>
     </div>
